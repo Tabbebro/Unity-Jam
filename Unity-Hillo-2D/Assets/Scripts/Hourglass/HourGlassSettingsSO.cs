@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class HourGlassSettingsSO : MonoBehaviour
+[CreateAssetMenu(menuName = "Hourglass/Settings", fileName = "Hourglass Settings")]
+public class HourGlassSettingsSO : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Settings")]
+    public LayerMask LayerToCheck;
+    public int BallsToLetThrough = 5;
+    public float BallDropInterval = 0.2f;
+    public float BallCheckInterval = 2f;
 }

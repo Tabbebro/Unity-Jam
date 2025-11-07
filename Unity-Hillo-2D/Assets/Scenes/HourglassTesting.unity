@@ -7983,7 +7983,6 @@ GameObject:
   - component: {fileID: 1464277321}
   - component: {fileID: 1464277320}
   - component: {fileID: 1464277322}
-  - component: {fileID: 1464277323}
   m_Layer: 0
   m_Name: Hourglass
   m_TagString: Untagged
@@ -8003,7 +8002,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007d5270a7f26c14993679b1703815af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hourglass
-  Rotate: 0
+  Settings: {fileID: 11400000, guid: aa0ba0dc74f01c8458daf454a648cb1a, type: 2}
+  TopPoint: {fileID: 291246414}
+  BottomPoint: {fileID: 85851261}
+  SandParent: {fileID: 1561924562}
   Points: 0
   IsRightSideUp: 1
 --- !u!4 &1464277321
@@ -8051,52 +8053,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &1464277323
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1464277319}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1001 &1470330081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10794,8 +10750,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2058039667}
-  - component: {fileID: 2058039668}
   - component: {fileID: 2058039669}
+  - component: {fileID: 2058039668}
   m_Layer: 12
   m_Name: HourGlassStopperDetector
   m_TagString: Untagged
@@ -10879,16 +10835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad05194f50027b4a80bd6d7ddf8215f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourGlassStopper
-  _topPoint: {fileID: 291246414}
-  _bottomPoint: {fileID: 85851261}
-  _layerToCheck:
-    serializedVersion: 2
-    m_Bits: 256
-  _ballsToLetThrough: 15
-  _ballDropInterval: 0.05
-  _ballCheckInterval: 2
-  _timer: 0
-  _sandParent: {fileID: 1561924561}
+  _hourglass: {fileID: 1464277320}
 --- !u!1001 &2064890329
 PrefabInstance:
   m_ObjectHideFlags: 0
