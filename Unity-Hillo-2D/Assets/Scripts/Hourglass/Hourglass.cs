@@ -16,6 +16,7 @@ public class Hourglass : MonoBehaviour
     Collider2D _collider;
     bool _isRotating = false;
     Tween _rotationTween;
+    [HideInInspector] public bool IsRightSideUp = true;
 
     // Events If Needed
     public event Action StartedRotating;
@@ -64,6 +65,7 @@ public class Hourglass : MonoBehaviour
     }
 
     void FinnishRotation() {
+        IsRightSideUp = !IsRightSideUp;
         _isRotating = false;
         FinishedRotating?.Invoke();
     }
