@@ -3,9 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Hourglass/Settings", fileName = "Hourglass Settings")]
 public class HourGlassSettingsSO : ScriptableObject
 {
-    [Header("Settings")]
-    public LayerMask LayerToCheck;
-    public int BallsToLetThrough = 5;
-    public float BallDropInterval = 0.2f;
-    public float BallCheckInterval = 2f;
+    [Header("Normal Flow")]
+    public int BallsToFlowThrough = 5;
+    public float BallFlowInterval = 0.2f;
+    public float FlowCheckInterval = 2f;
+
+    [Header("Nudge")]
+    public int BallsNudgeLetThrough = 1;
 }

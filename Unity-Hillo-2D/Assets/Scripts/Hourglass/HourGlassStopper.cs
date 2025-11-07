@@ -1,32 +1,39 @@
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class HourGlassStopper : MonoBehaviour
 {
     [Header("Refs")]
     [SerializeField] Hourglass _hourglass;
-    
+
+    [Header("Layer Mask")]
+    [SerializeField] LayerMask _layerToCheck;
+
     List<GameObject> _possibleBalls = new();
     List<GameObject> _selectedBalls = new();
+    List<GameObject> _nudgedBalls = new();
     List<GameObject> _usedBalls = new();
     bool _ballsGoneThrough = false;
 
     float _timer = 0f;
-    Coroutine _ballDropRoutine;
-    private void Start() {
+    Coroutine _ballFlowRoutine;
+    void Start() {
         _hourglass.StartedRotating += ResetStatus;
+        _hourglass.Nudge.OnSandNudged += Nudged;
     }
 
-    private void Update() {
-        if (_ballDropRoutine != null || _ballsGoneThrough) { return; }
+    void Update() {
+        if (_ballFlowRoutine != null || _ballsGoneThrough) { return; }
         _timer += Time.deltaTime;
-        if (_timer < _hourglass.Settings.BallCheckInterval) { return; }
+        if (_timer < _hourglass.Settings.FlowCheckInterval) { return; }
 
         if (_possibleBalls.Count > 0) {
             _timer = 0;
-            _ballDropRoutine = StartCoroutine(DropBalls());
+            _ballFlowRoutine = StartCoroutine(BallFlow());
         }
         else if (_hourglass.SandParent.childCount == _usedBalls.Count) {
             _ballsGoneThrough = true;
@@ -34,55 +41,33 @@ public class HourGlassStopper : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other) {
         // Checks For Correct Layer
-        if ((_hourglass.Settings.LayerToCheck & (1 << other.gameObject.layer)) == 0) { return; }
+        if ((_layerToCheck & (1 << other.gameObject.layer)) == 0) { return; }
 
         if (_possibleBalls.Contains(other.gameObject)) { return; }
 
-        other.excludeLayers = 0;
         _possibleBalls.Add(other.gameObject);
     }
 
-    IEnumerator DropBalls() {
-        if (_possibleBalls.Count == 0) { _ballDropRoutine = null;  yield break; }
+    void OnTriggerExit2D(Collider2D other) {
+        // Checks For Correct Layer
+        if ((_layerToCheck & (1 << other.gameObject.layer)) == 0) { return; }
 
-        int BallsThrough;
-        if (_possibleBalls.Count < _hourglass.Settings.BallsToLetThrough) {
-            BallsThrough = _possibleBalls.Count;
-        }
-        else {
-            BallsThrough = _hourglass.Settings.BallsToLetThrough;
-        }
+        if (_possibleBalls.Contains(other.gameObject)) { _possibleBalls.Remove(other.gameObject); }
+    }
 
+    IEnumerator BallFlow() {
+        if (_possibleBalls.Count == 0) { _ballFlowRoutine = null;  yield break; }
 
-        for (int i = 0; i < BallsThrough; i++) {
-            if (_possibleBalls.Count == 0) { _ballDropRoutine = null; yield break; }
-            int rndIndex = Random.Range(0, _possibleBalls.Count - 1);
-            var ball = _possibleBalls[rndIndex];
-            if (!_usedBalls.Contains(ball)) {
-                _selectedBalls.Add(ball);
-                _usedBalls.Add(ball);
-            }
-            else {
-                i--;
-            }
-            _possibleBalls.Remove(ball);
-        }
+        List<GameObject> newBall = GetBall(_hourglass.Settings.BallsToFlowThrough);
+        if (newBall?.Count == 0) { _ballFlowRoutine = null; yield break; }
+        _selectedBalls = newBall;
 
-        foreach (var ball in _selectedBalls) {
-            if (_hourglass.IsRightSideUp) {
-                ball.transform.position = _hourglass.BottomPoint.position;
-            }
-            else {
-                ball.transform.position = _hourglass.TopPoint.position;
-            }
-            _hourglass.InvokeBallWentThrough(1);
-            yield return new WaitForSeconds(_hourglass.Settings.BallDropInterval);
-        }
+        yield return SpawnBalls(_selectedBalls);
 
         _selectedBalls.Clear();
-        _ballDropRoutine = null;
+        _ballFlowRoutine = null;
     }
 
     void ResetStatus() {
@@ -90,5 +75,61 @@ public class HourGlassStopper : MonoBehaviour
         _usedBalls.Clear();
         _ballsGoneThrough = false;
         _timer = 0;
+    }
+
+    void Nudged() {
+        StartCoroutine(DropNudgedBalls());
+    }
+
+    IEnumerator DropNudgedBalls() {
+        List<GameObject> newBall = GetBall(_hourglass.Settings.BallsNudgeLetThrough);
+        if (newBall?.Count == 0) { yield break; }
+        _nudgedBalls = newBall;
+
+        yield return SpawnBalls(_nudgedBalls);
+        
+        _nudgedBalls.Clear();
+    }
+
+    List<GameObject> GetBall(int amountOfBalls) {
+        List<GameObject> newBalls = new();
+        if (_possibleBalls.Count <= 0) { return null; }
+
+        int ballsThrough;
+        if (_possibleBalls.Count < amountOfBalls) {
+            ballsThrough = _possibleBalls.Count;
+        }
+        else {
+            ballsThrough = amountOfBalls;
+        }
+
+        for (int i = 0; i < ballsThrough; i++) {
+            if (_possibleBalls.Count == 0) { return null; }
+            var ball = _possibleBalls[Random.Range(0, _possibleBalls.Count - 1)];
+            if (!_usedBalls.Contains(ball) || _nudgedBalls.Contains(ball)) {
+                _usedBalls.Add(ball);
+                newBalls.Add(ball);
+            }
+            else {
+                i--;
+            }
+            _possibleBalls.Remove(ball);
+        }
+
+        return newBalls;
+    }
+
+    IEnumerator SpawnBalls(List<GameObject> ballList) {
+        foreach (var ball in ballList) {
+            if (ball == null) { continue; }
+            if (_hourglass.IsRightSideUp) {
+                ball.transform.position = _hourglass.BottomPoint.position;
+            }
+            else {
+                ball.transform.position = _hourglass.TopPoint.position;
+            }
+            _hourglass.InvokeBallWentThrough(1);
+            yield return new WaitForSeconds(_hourglass.Settings.BallFlowInterval);
+        }
     }
 }

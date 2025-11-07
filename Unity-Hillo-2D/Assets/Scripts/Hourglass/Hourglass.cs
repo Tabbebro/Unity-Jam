@@ -10,6 +10,7 @@ public class Hourglass : MonoBehaviour
     public HourGlassSettingsSO Settings;
 
     [Header("Refs")]
+    public MouseClickNudge Nudge;
     public Transform TopPoint;
     public Transform BottomPoint;
     public Transform SandParent;

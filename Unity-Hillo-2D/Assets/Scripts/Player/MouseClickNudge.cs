@@ -13,7 +13,7 @@ public class MouseClickNudge : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame) 
         {
-            print("click");
+            //print("click");
             ClickNudge();
         }
     }
@@ -32,11 +32,11 @@ public class MouseClickNudge : MonoBehaviour
             
             foreach (Collider2D col in colliders)
             {
-                print("found collider");
+                //print("found collider");
                 Rigidbody2D rb = col.attachedRigidbody;
                 if (rb != null)
                 {
-                    print("found rb");
+                    //print("found rb");
                     Vector2 direction = (rb.position - mouseWorldPos).normalized;
                     rb.AddForce(direction * forceAmount, ForceMode2D.Impulse);
                 }
