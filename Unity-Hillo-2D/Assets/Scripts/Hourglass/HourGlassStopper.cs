@@ -61,7 +61,7 @@ public class HourGlassStopper : MonoBehaviour
         if (_possibleBalls.Count == 0) { _ballFlowRoutine = null;  yield break; }
 
         List<GameObject> newBall = GetBall(_hourglass.Settings.BallsToFlowThrough);
-        if (newBall?.Count == 0) { _ballFlowRoutine = null; yield break; }
+        if (newBall == null || newBall.Count == 0) { _ballFlowRoutine = null; yield break; }
         _selectedBalls = newBall;
 
         yield return SpawnBalls(_selectedBalls);
@@ -83,7 +83,7 @@ public class HourGlassStopper : MonoBehaviour
 
     IEnumerator DropNudgedBalls() {
         List<GameObject> newBall = GetBall(_hourglass.Settings.BallsNudgeLetThrough);
-        if (newBall?.Count == 0) { yield break; }
+        if (newBall == null || newBall.Count == 0) { yield break; }
         _nudgedBalls = newBall;
 
         yield return SpawnBalls(_nudgedBalls);
@@ -120,6 +120,8 @@ public class HourGlassStopper : MonoBehaviour
     }
 
     IEnumerator SpawnBalls(List<GameObject> ballList) {
+        if (ballList == null || ballList.Count == 0) { yield break; }
+
         foreach (var ball in ballList) {
             if (ball == null) { continue; }
             if (_hourglass.IsRightSideUp) {
