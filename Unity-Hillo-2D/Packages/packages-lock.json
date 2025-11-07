@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.humsteri.custom-console": {
+      "version": "https://github.com/Humsteri/UnityCustomConsole.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "dc8ac17e40039e0d4d0d0a3862329b7772a1e44b"
+    },
     "com.humsteri.stats-monitor": {
       "version": "https://github.com/Humsteri/UnityProjectStatsPackage.git",
       "depth": 0,
