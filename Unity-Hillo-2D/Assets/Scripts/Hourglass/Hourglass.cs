@@ -13,6 +13,7 @@ public class Hourglass : MonoBehaviour
     public int Points = 0;
 
     Rigidbody2D _rb;
+    Collider2D _collider;
     bool _isRotating = false;
     Tween _rotationTween;
 
@@ -30,8 +31,7 @@ public class Hourglass : MonoBehaviour
             Destroy(gameObject);
         }
         _rb = GetComponent<Rigidbody2D>();
-
-        FinishedRotating += ClearBallList;
+        _collider = GetComponent<Collider2D>();
     }
 
     private void OnEnable() {
@@ -75,14 +75,4 @@ public class Hourglass : MonoBehaviour
         }
     }
     #endregion
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (_ballsGoneThrough.Contains(collision.gameObject)) { return; }
-        _ballsGoneThrough.Add(collision.gameObject);
-        Points++;
-    }
-
-    void ClearBallList() {
-        _ballsGoneThrough.Clear();
-    }
 }
