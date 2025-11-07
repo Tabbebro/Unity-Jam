@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.humsteri.stats-monitor": {
+      "version": "https://github.com/Humsteri/UnityProjectStatsPackage.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c8874b52d3c8041e30894f522b8d3fcfc13a5cca"
+    },
     "com.unity.2d.animation": {
       "version": "12.0.2",
       "depth": 0,
