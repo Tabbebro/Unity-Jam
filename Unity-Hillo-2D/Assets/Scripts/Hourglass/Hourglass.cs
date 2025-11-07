@@ -6,14 +6,18 @@ public class Hourglass : MonoBehaviour
 {
     public static Hourglass Instance;
 
-    [Header("Debug")]
-    public bool Rotate = false;
+    [Header("Settings")]
+    public HourGlassSettingsSO Settings;
+
+    [Header("Refs")]
+    public Transform TopPoint;
+    public Transform BottomPoint;
+    public Transform SandParent;
 
     [Header("Points")]
     public int Points = 0;
 
     Rigidbody2D _rb;
-    Collider2D _collider;
     bool _isRotating = false;
     Tween _rotationTween;
     [HideInInspector] public bool IsRightSideUp = true;
@@ -21,8 +25,7 @@ public class Hourglass : MonoBehaviour
     // Events If Needed
     public event Action StartedRotating;
     public event Action FinishedRotating;
-
-    List<GameObject> _ballsGoneThrough = new();
+    public event Action<int> BallWentThrough;
 
     private void Awake() {
         if (Instance == null) {
@@ -32,7 +35,8 @@ public class Hourglass : MonoBehaviour
             Destroy(gameObject);
         }
         _rb = GetComponent<Rigidbody2D>();
-        _collider = GetComponent<Collider2D>();
+
+        BallWentThrough += CheckForBalls;
     }
 
     private void OnEnable() {
@@ -47,12 +51,6 @@ public class Hourglass : MonoBehaviour
         KillRotationTween();
     }
 
-    private void Update() {
-        if (Rotate) {
-            Rotate = false;
-            RotateHourGlass();
-        }
-    }
     #region Rotation
     public void RotateHourGlass() {
         if (_isRotating) { return; }
@@ -77,4 +75,12 @@ public class Hourglass : MonoBehaviour
         }
     }
     #endregion
+
+    public void InvokeBallWentThrough(int value) {
+        BallWentThrough?.Invoke(value);
+    }
+
+    void CheckForBalls(int value) {
+        Points += value;
+    }
 }

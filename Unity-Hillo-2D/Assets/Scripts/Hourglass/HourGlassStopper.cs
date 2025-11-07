@@ -5,52 +5,38 @@ using UnityEngine.UI;
 
 public class HourGlassStopper : MonoBehaviour
 {
-    [Header("Teleport Points")]
-    [SerializeField] Transform _topPoint;
-    [SerializeField] Transform _bottomPoint;
-
-    [Header("Layer Masks")]
-    [SerializeField] LayerMask _layerToCheck;
-
-    [Header("Balls In The Field")]
+    [Header("Refs")]
+    [SerializeField] Hourglass _hourglass;
+    
     List<GameObject> _possibleBalls = new();
     List<GameObject> _selectedBalls = new();
     List<GameObject> _usedBalls = new();
     bool _ballsGoneThrough = false;
 
-    [Header("Settings")]
-    [SerializeField] int _ballsToLetThrough = 5;
-    [SerializeField] float _ballDropInterval = 0.2f;
-    [SerializeField] float _ballCheckInterval = 2f;
-    [SerializeField] float _timer = 0f;
-
-    [Header("Sand Parent")]
-    [SerializeField] GameObject _sandParent;
-
+    float _timer = 0f;
     Coroutine _ballDropRoutine;
     private void Start() {
-        Hourglass.Instance.StartedRotating += ResetStatus;
+        _hourglass.StartedRotating += ResetStatus;
     }
 
     private void Update() {
         if (_ballDropRoutine != null || _ballsGoneThrough) { return; }
         _timer += Time.deltaTime;
-        if (_timer < _ballCheckInterval) { return; }
+        if (_timer < _hourglass.Settings.BallCheckInterval) { return; }
 
         if (_possibleBalls.Count > 0) {
             _timer = 0;
             _ballDropRoutine = StartCoroutine(DropBalls());
         }
-        else if (_sandParent.transform.childCount == _usedBalls.Count) {
+        else if (_hourglass.SandParent.childCount == _usedBalls.Count) {
             _ballsGoneThrough = true;
-            Hourglass.Instance.RotateHourGlass();
-            Debug.Log("All Balls Gone Through");
+            _hourglass.RotateHourGlass();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         // Checks For Correct Layer
-        if ((_layerToCheck & (1 << other.gameObject.layer)) == 0) { return; }
+        if ((_hourglass.Settings.LayerToCheck & (1 << other.gameObject.layer)) == 0) { return; }
 
         if (_possibleBalls.Contains(other.gameObject)) { return; }
 
@@ -62,16 +48,18 @@ public class HourGlassStopper : MonoBehaviour
         if (_possibleBalls.Count == 0) { _ballDropRoutine = null;  yield break; }
 
         int BallsThrough;
-        if (_possibleBalls.Count < _ballsToLetThrough) {
+        if (_possibleBalls.Count < _hourglass.Settings.BallsToLetThrough) {
             BallsThrough = _possibleBalls.Count;
         }
         else {
-            BallsThrough = _ballsToLetThrough;
+            BallsThrough = _hourglass.Settings.BallsToLetThrough;
         }
 
 
         for (int i = 0; i < BallsThrough; i++) {
-            var ball = _possibleBalls[Random.Range(0, _possibleBalls.Count - 1)];
+            if (_possibleBalls.Count == 0) { _ballDropRoutine = null; yield break; }
+            int rndIndex = Random.Range(0, _possibleBalls.Count - 1);
+            var ball = _possibleBalls[rndIndex];
             if (!_usedBalls.Contains(ball)) {
                 _selectedBalls.Add(ball);
                 _usedBalls.Add(ball);
@@ -83,13 +71,14 @@ public class HourGlassStopper : MonoBehaviour
         }
 
         foreach (var ball in _selectedBalls) {
-            if (Hourglass.Instance.IsRightSideUp) {
-                ball.transform.position = _bottomPoint.position;
+            if (_hourglass.IsRightSideUp) {
+                ball.transform.position = _hourglass.BottomPoint.position;
             }
             else {
-                ball.transform.position = _topPoint.position;
+                ball.transform.position = _hourglass.TopPoint.position;
             }
-                yield return new WaitForSeconds(_ballDropInterval);
+            _hourglass.InvokeBallWentThrough(1);
+            yield return new WaitForSeconds(_hourglass.Settings.BallDropInterval);
         }
 
         _selectedBalls.Clear();
