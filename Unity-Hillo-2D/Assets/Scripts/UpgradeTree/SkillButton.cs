@@ -1,44 +1,56 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public enum Group
-{
-    Middle,
-    Left,
-    Right,
-    Down
-}
 public class SkillButton : MonoBehaviour
 {
     Button _button;
-    [SerializeField] Group _skillGroup;
+    [SerializeField] List<SkillButton> _connections = new();
     [SerializeField] int _rowLevel = 0;
+    [SerializeField] int _rowIndex = 0;
     [SerializeField] int _currentLevel = 0;
     [SerializeField] int _maxLevel = 5;
     [SerializeField] int _unlockNext = 1;
     UpgradeTree _upgradeTree;
+    Image img; 
     void Start()
     {
         _upgradeTree = FindAnyObjectByType<UpgradeTree>();
+
         _button = GetComponent<Button>();
         _button.onClick.AddListener(delegate { OnClicked(); });
-        Color color = GetComponent<Image>().color;
+        img = GetComponent<Image>();
+
+        Color color = img.color;
         color.a = 0.2f;
-        GetComponent<Image>().color = color;
+        img.color = color;
     }
     public void OnClicked()
     {
+        // Exit if max level
         if (_currentLevel >= _maxLevel) return;
+
+        // Increase level and albedo
         _currentLevel++;
-        Color color = GetComponent<Image>().color;
+        Color color = img.color;
         color.a += 0.2f;
-        GetComponent<Image>().color = color;
+        img.color = color;
+
+        // Unlock next connections
         if (_currentLevel == _unlockNext)
         {
-            _upgradeTree.UnlockRow?.Invoke(_skillGroup, _rowLevel);
+            foreach (SkillButton button in _connections)
+            {
+                button.Unlock();
+            }
         }
     }
-    public void SetRow(int level)
+    public void Unlock()
+    {
+        gameObject.SetActive(true);
+    }
+    public void SetRow(int level, int index)
     {
         _rowLevel = level;
+        _rowIndex = index;
     }
 }
