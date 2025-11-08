@@ -17,6 +17,7 @@ public class HourGlassStopper : MonoBehaviour
     List<GameObject> _selectedBalls = new();
     List<GameObject> _nudgedBalls = new();
     HashSet<GameObject> _usedBalls = new();
+    [SerializeField] bool _ballsCanGoThrough = true;
     bool _ballsGoneThrough = false;
 
     float _timer = 0f;
@@ -24,14 +25,19 @@ public class HourGlassStopper : MonoBehaviour
     void Start() {
         _hourglass.StartedRotating += ResetStatus;
         _hourglass.Nudge.OnSandNudged += Nudged;
+        _hourglass.StartedRotating += DisableBallsCanGoThrough;
+        _hourglass.FinishedRotating += EnableBallsCanGoThrough;
     }
 
     private void OnDestroy() {
         _hourglass.StartedRotating -= ResetStatus;
         _hourglass.Nudge.OnSandNudged -= Nudged;
+        _hourglass.StartedRotating -= DisableBallsCanGoThrough;
+        _hourglass.FinishedRotating -= EnableBallsCanGoThrough;
     }
 
     void Update() {
+        if (!_ballsCanGoThrough) { return; }
         if (_ballFlowRoutine != null || _ballsGoneThrough) { return; }
         _timer += Time.deltaTime;
         if (_timer < _hourglass.Settings.FlowCheckInterval) { return; }
@@ -40,8 +46,7 @@ public class HourGlassStopper : MonoBehaviour
             _timer = 0;
             _ballFlowRoutine = StartCoroutine(BallFlow());
         }
-        else if (_hourglass.SandParent.childCount == _usedBalls.Count || _timer >= _hourglass.Settings.RotationFailSafeTimer) {
-            _ballsGoneThrough = true;
+        else if (_timer >= _hourglass.Settings.RotationFailSafeTimer) {
             _hourglass.InvokeCanRotate();
         }
     }
@@ -137,5 +142,13 @@ public class HourGlassStopper : MonoBehaviour
             _hourglass.InvokeBallWentThrough(1);
             yield return new WaitForSeconds(_hourglass.Settings.BallFlowInterval);
         }
+    }
+
+    public void EnableBallsCanGoThrough() {
+        _ballsCanGoThrough = true;
+    }
+
+    public void DisableBallsCanGoThrough() {
+        _ballsCanGoThrough = false;
     }
 }

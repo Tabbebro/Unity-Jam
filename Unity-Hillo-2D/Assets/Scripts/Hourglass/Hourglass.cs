@@ -16,7 +16,7 @@ public class Hourglass : MonoBehaviour
 
     [Header("Sand")]
     public MouseClickNudge Nudge;
-    public Transform SandParent;
+    public SandManager SandManager;
     public Transform TopPoint;
     public Transform BottomPoint;
 
@@ -44,6 +44,7 @@ public class Hourglass : MonoBehaviour
         BallWentThrough += CheckForBalls;
         CanRotate += EnableButton;
         StartedRotating += DisableButton;
+        SandManager.OnAllSandWentThrough += InvokeCanRotate;
     }
 
     private void OnEnable() {
@@ -59,6 +60,7 @@ public class Hourglass : MonoBehaviour
         BallWentThrough -= CheckForBalls;
         CanRotate -= EnableButton;
         StartedRotating -= DisableButton;
+        SandManager.OnAllSandWentThrough -= InvokeCanRotate;
     }
 
     #region Rotation
