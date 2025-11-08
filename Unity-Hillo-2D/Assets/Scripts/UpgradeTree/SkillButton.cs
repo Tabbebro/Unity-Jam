@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class SkillButton : MonoBehaviour
 {
     Button _button;
+    [SerializeField] Image _line;
+    [SerializeField] float _lineLength = 1;
     [SerializeField] List<SkillButton> _connections = new();
     [SerializeField] int _rowLevel = 0;
     [SerializeField] int _rowIndex = 0;
@@ -13,15 +15,15 @@ public class SkillButton : MonoBehaviour
     [SerializeField] int _unlockNext = 1;
     UpgradeTree _upgradeTree;
     Upgrade _upgrade;
-    Image img; 
+    [SerializeField] Image img; 
     void Start()
     {
+        _line.gameObject.SetActive(false);
         _upgradeTree = FindAnyObjectByType<UpgradeTree>();
 
         _button = GetComponent<Button>();
         _upgrade = GetComponent<Upgrade>();
         _button.onClick.AddListener(delegate { OnClicked(); });
-        img = GetComponent<Image>();
 
         Color color = img.color;
         color.a = 0.2f;
@@ -79,16 +81,35 @@ public class SkillButton : MonoBehaviour
             foreach (SkillButton button in _connections)
             {
                 button.Unlock();
+                button.SetLine(transform.position);
             }
         }
     }
     public void Unlock()
     {
         gameObject.SetActive(true);
+
     }
     public void SetRow(int level, int index)
     {
         _rowLevel = level;
         _rowIndex = index;
+    }
+    public void SetLine(Vector3 endPos)
+    {
+        _line.gameObject.SetActive(true);
+
+        Vector3 midPoint = (gameObject.transform.position + endPos) * 0.5f;
+        Vector3 direction = endPos - transform.position;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Rotation and set position to middle
+        _line.transform.rotation = Quaternion.Euler(0, 0, angle);
+        _line.transform.position = midPoint;
+        
+        // Length
+        float distance = direction.magnitude * _lineLength;
+        _line.rectTransform.sizeDelta = new Vector2(distance, _line.rectTransform.sizeDelta.y);
     }
 }
