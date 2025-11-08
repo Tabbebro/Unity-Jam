@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eca264c6ab7d5d4aa74df5557db84df, type: 3}
   m_Name: Hourglass Settings
   m_EditorClassIdentifier: Assembly-CSharp::HourGlassSettingsSO
-  LayerToCheck:
-    serializedVersion: 2
-    m_Bits: 256
-  BallsToLetThrough: 10
-  BallDropInterval: 0.05
-  BallCheckInterval: 0.2
+  BallsToFlowThrough: 5
+  BallFlowInterval: 0.2
+  FlowCheckInterval: 2
+  BallsNudgeLetThrough: 1
