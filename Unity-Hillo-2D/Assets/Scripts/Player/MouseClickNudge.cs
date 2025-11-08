@@ -37,7 +37,7 @@ public class MouseClickNudge : MonoBehaviour
 
 
         // if the collider is higher than y 0
-        if (colliders.Length > 0 && colliders[0].transform.position.y > 0)
+        if (colliders.Length > 0 && colliders[0].transform.position.y > -0.5f)
         {
             OnSandNudged?.Invoke();
             CameraShake.Instance.Shake(0.1f, 1f);

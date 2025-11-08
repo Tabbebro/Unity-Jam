@@ -190,7 +190,7 @@ public class SkillButton : MonoBehaviour
                 var type = item.Script.GetType();
                 var field = type.GetField(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 PropertyInfo prop = type.GetProperty(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                UpgradeManager.Instance.RaiseUpgradeHappened(item.VariableName);
+                UpgradeManager.Instance.RaiseUpgradeHappened(item.VariableName, item);
                 if (field != null)
                 {
                     //Debug.LogWarning($"Field '{item.VariableName}' not found on {type.Name}");

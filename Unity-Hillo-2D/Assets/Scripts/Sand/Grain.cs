@@ -6,10 +6,15 @@ public class Grain : MonoBehaviour
 {
     public bool hasGoneThrough;
     SandManager sandManager;
+    public float worth = 1;
     void Start()
     {
         Hourglass.Instance.OnRotationFinished += HourglassRotated;
         sandManager = transform.parent.GetComponent<SandManager>();
+    }
+    public void IncreaseWorth(float multiplier = 1)
+    {
+        worth *= multiplier;
     }
 
     private void HourglassRotated()
@@ -35,6 +40,7 @@ public class Grain : MonoBehaviour
             }
             hasGoneThrough = true;
             sandManager.SandWentThrough();
+            UpgradeManager.Instance.ModifySandResource(1);
         }
     }
 }

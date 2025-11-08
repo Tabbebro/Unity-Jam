@@ -33,6 +33,7 @@ public class UpgradeManager : MonoBehaviour
     public float LetThroughPerSecond = 1f;
     public float LetThroughInterval = 1f;
     public float GrainValue = 1f;
+    public int SandCount = 1;
 
     public bool RedSandUnlocked = false;
     public bool BlueSandUnlocked = false;
@@ -49,10 +50,10 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] int _addAmountPerTick = 200;
     private int _sandResourceToAdd;
     private int _flipResourceToAdd;
-    public event Action<object> UpgradeHappened;
-    public void RaiseUpgradeHappened(string obj)
+    public event Action<object, object> UpgradeHappened;
+    public void RaiseUpgradeHappened(string obj, object obj2)
     {
-        UpgradeHappened?.Invoke(obj);
+        UpgradeHappened?.Invoke(obj, obj2);
     }
     void Start()
     {
@@ -62,7 +63,7 @@ public class UpgradeManager : MonoBehaviour
         UpgradeHappened += Testing;
     }
 
-    private void Testing(object obj)
+    private void Testing(object obj, object obj2)
     {
         print(obj);
     }

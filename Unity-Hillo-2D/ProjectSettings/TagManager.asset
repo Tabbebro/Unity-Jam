@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DeathArea
   - BottomArea
+  - TopArea
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4271967717125607846
+--- !u!114 &-6064117456804452644
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,30 +20,27 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Sand
-  m_Shader: {fileID: -6465566751694194690, guid: 7867a4408abaa6e4eaf45b988483a940, type: 3}
+  m_Name: M_Grain
+  m_Shader: {fileID: -6465566751694194690, guid: 98d341b240004e741bf1bd547a266a3b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _SPECULAR_SETUP
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
-  disabledShaderPasses:
-  - MOTIONVECTORS
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 8400000, guid: 9ad33a99c42de754db950571ce49b5fd, type: 2}
+        m_Texture: {fileID: 2800000, guid: 0f5f5e35d271e72419726aa05433311b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Normal:
+    - _NormalTexture:
         m_Texture: {fileID: 2800000, guid: 74838d0208055174e81d36634cb3ffdd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -60,29 +57,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats:
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
-    - _Blend: 0
-    - _BlendModePreserveSpecular: 1
-    - _CastShadows: 1
-    - _Cull: 2
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _ReceiveShadows: 1
-    - _SrcBlend: 1
-    - _SrcBlendAlpha: 1
-    - _Surface: 0
-    - _Thickness: 1
-    - _WorkflowMode: 0
-    - _ZTest: 4
-    - _ZWrite: 1
-    - _ZWriteControl: 0
+    m_Floats: []
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Offset: {r: -2.09, g: -2.36, b: 0, a: 0}
-    - _Tiling: {r: 5.11, g: 4.18, b: 0, a: 0}
+    - _Vector2: {r: 1, g: 1, b: 0, a: 0}
+    - _Vector2_1: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
