@@ -264,6 +264,7 @@ MonoBehaviour:
   _levelText: {fileID: 0}
   _mainText: {fileID: 0}
   _line: {fileID: 5006596608759025051}
+  _middleIcon: {fileID: 8459751482041524642}
   img: {fileID: 3784192521905848668}
   _hoverImg: {fileID: 273251136558081298}
   _connections: []
@@ -276,6 +277,7 @@ MonoBehaviour:
   _xDeadZone: 150
   _scaleIncrease: {x: 1.2, y: 1.2}
   _animationDuration: 0.1
+  _icon: {fileID: 21300000, guid: e2e553f2b5f29e34ba96972ad48a81b9, type: 3}
   _description: 
   _currentLevel: 0
   _maxLevel: 5
@@ -583,7 +585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e2e553f2b5f29e34ba96972ad48a81b9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

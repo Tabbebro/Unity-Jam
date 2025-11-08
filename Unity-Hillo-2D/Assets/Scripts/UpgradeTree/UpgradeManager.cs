@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
@@ -12,7 +13,8 @@ public class UpgradeManager : MonoBehaviour
             Instance = this;
     }
     #endregion
-
+    [SerializeField] TextMeshProUGUI _coinAmountText;
+    [SerializeField] TextMeshProUGUI _flipAmountText;
     public HourGlassSettingsSO HourGlassSettings;
     [SerializeField] float _nudgeForce = 1;
     public float NudgeForce
@@ -38,6 +40,20 @@ public class UpgradeManager : MonoBehaviour
     public float FlipResource = 0;
     public bool EnoughResource(float amount) => SandResource >= amount;
     public bool EnoughFlipResource(float amount) => FlipResource >= amount;
-    public void ModifySandResource(float amount) => SandResource += amount;
-    public void ModifyFlipResource(float amount) => FlipResource += amount;
+    public void ModifySandResource(float amount)
+    {
+        SandResource += amount;
+        _coinAmountText.text = SandResource.ToString();
+    }
+    public void ModifyFlipResource(float amount)
+    {
+        FlipResource += amount;
+        _flipAmountText.text = SandResource.ToString();
+    }
+
+    void Start()
+    {
+        _coinAmountText.text = SandResource.ToString();
+        _flipAmountText.text = FlipResource.ToString();
+    }
 }

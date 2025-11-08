@@ -7,11 +7,21 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SkillButton : MonoBehaviour
 {
+    [Space]
+    [Header("Stats")]
+    [SerializeField] Sprite _icon;
+    [SerializeField] string _description;
+    [SerializeField] int _currentLevel = 0;
+    [SerializeField] int _maxLevel = 5;
+    [SerializeField] int _unlockNext = 1;
+    [SerializeField] float _levelUpResourceCost = 5;
+    [SerializeField] float _levelUpFlipCost = 5;
+    [SerializeField] float _levelUpMultiplier = 1.2f;
+
+    
     [Header("References")]
-    [SerializeField] TextMeshProUGUI _costText;
-    [SerializeField] TextMeshProUGUI _levelText;
-    [SerializeField] TextMeshProUGUI _mainText;
     [SerializeField] Image _line;
+    [SerializeField] Image _middleIcon;
     [SerializeField] Image img;
     [SerializeField] Image _hoverImg;
     [SerializeField] List<SkillButton> _connections = new();
@@ -37,16 +47,6 @@ public class SkillButton : MonoBehaviour
     Coroutine _scaleCoroutine = null;
 
     [Space]
-    [Header("Stats")]
-    [SerializeField] string _description;
-    [SerializeField] int _currentLevel = 0;
-    [SerializeField] int _maxLevel = 5;
-    [SerializeField] int _unlockNext = 1;
-    [SerializeField] float _levelUpResourceCost = 5;
-    [SerializeField] float _levelUpFlipCost = 5;
-    [SerializeField] float _levelUpMultiplier = 1.2f;
-
-    [Space]
     [Header("Audio")]
     [SerializeField] List<AudioClip> _audioClips = new();
 
@@ -58,8 +58,13 @@ public class SkillButton : MonoBehaviour
     AudioSource _audio;
     Upgrade _upgrade;
     RectTransform _rect;
-    Vector3 _startScale;    void Start()
+    Vector3 _startScale;    
+    void Start()
     {
+        if (_icon != null)
+        {
+            _middleIcon.sprite = _icon;
+        }
         _startScale = transform.localScale;
 
         _upgradeManager = UpgradeManager.Instance;
