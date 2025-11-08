@@ -17,3 +17,4 @@ MonoBehaviour:
   BallFlowInterval: 0.1
   FlowCheckInterval: 0.03
   BallsNudgeLetThrough: 1
+  NudgeForce: 1

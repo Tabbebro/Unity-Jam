@@ -42,8 +42,8 @@ public class VariableMonitorEditor : Editor
                 foreach (var f in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                     members.Add(f.Name);
                     //members.Add($"{f.Name}: {f.FieldType.Name}");
-                /* foreach (var p in type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-                    members.Add(p.Name); */
+                foreach (var p in type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                    members.Add(p.Name);
 
                 int currentIndex = Mathf.Max(0, members.IndexOf(variableNameProp.stringValue));
                 int newIndex = EditorGUILayout.Popup("Variable", currentIndex, members.ToArray());
@@ -52,31 +52,91 @@ public class VariableMonitorEditor : Editor
                 {
                     variableNameProp.stringValue = members[newIndex];
                     var field = type.GetField(variableNameProp.stringValue, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                    PropertyInfo prop = type.GetProperty(variableNameProp.stringValue, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                    if (field != null)
+                    {
+                        //Debug.LogWarning($"Field '{variableNameProp.stringValue}' not found on {type.Name}");
+                        /* PropertyInfo prop = type.GetProperty(variableNameProp.stringValue, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                        if (prop != null)
+                        {
+                            Debug.LogWarning($"Not null");
+                            // skip indexer properties
+                            if (prop.GetIndexParameters().Length == 0)
+                            {
+                                object currentValueProp = prop.GetValue(script);
+                                if (currentValueProp is float ff)
+                                {
+                                    EditorGUILayout.PropertyField(variableMultiplier);
+                                }
+                                else if (currentValueProp is int inttt)
+                                {
+                                    EditorGUILayout.PropertyField(variableUpgradeAmount);
 
-                    if (field == null)
-                    {
-                        Debug.LogWarning($"Field '{variableNameProp.stringValue}' not found on {type.Name}");
-                        continue;
-                    }
-                    object currentValue = field.GetValue(script);
-                    if (currentValue is float f)
-                    {
-                        EditorGUILayout.PropertyField(variableMultiplier);
-                    }
-                    else if (currentValue is int intt)
-                    {
-                        EditorGUILayout.PropertyField(variableUpgradeAmount);
+                                }
+                                else if (currentValueProp is bool bb)
+                                {
+                                    EditorGUILayout.PropertyField(variableBoolean);
+                                }
+                                else
+                                {
+                                    
+                                }
+                                //currentObject = prop.GetValue(currentObject);
+                            }
+                            else
+                            {
+                                
+                            }
+                            //continue;
+                        } */
+                        object currentValue = field.GetValue(script);
+                        if (currentValue is float f)
+                        {
+                            EditorGUILayout.PropertyField(variableMultiplier);
+                        }
+                        else if (currentValue is int intt)
+                        {
+                            EditorGUILayout.PropertyField(variableUpgradeAmount);
 
+                        }
+                        else if (currentValue is bool b)
+                        {
+                            EditorGUILayout.PropertyField(variableBoolean);
+                        }
+                        else
+                        {
+
+                            Debug.LogError("Was somethg else");
+                        }
+                        //continue;
                     }
-                    else if (currentValue is bool b)
+                    else if(prop != null)
                     {
-                        EditorGUILayout.PropertyField(variableBoolean);
+                        object currentValue = prop.GetValue(script);
+                        if (currentValue is float f)
+                        {
+                            EditorGUILayout.PropertyField(variableMultiplier);
+                        }
+                        else if (currentValue is int intt)
+                        {
+                            EditorGUILayout.PropertyField(variableUpgradeAmount);
+
+                        }
+                        else if (currentValue is bool b)
+                        {
+                            EditorGUILayout.PropertyField(variableBoolean);
+                        }
+                        else
+                        {
+
+                            Debug.LogError("Was somethg else");
+                        }
                     }
                     else
                     {
-
-                        Debug.LogError("Was somethg else");
+                        continue;
                     }
+                    
                 }
 
             }

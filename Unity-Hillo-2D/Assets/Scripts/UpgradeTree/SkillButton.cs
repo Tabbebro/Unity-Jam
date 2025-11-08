@@ -4,22 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SkillButton : MonoBehaviour
 {
-    Button _button;
     [SerializeField] Image _line;
-    [SerializeField] float _lineLength = 1;
+    [SerializeField] Image img; 
     [SerializeField] List<SkillButton> _connections = new();
-    [SerializeField] int _rowLevel = 0;
-    [SerializeField] int _rowIndex = 0;
+    [SerializeField] float _lineLength = 1;
     [SerializeField] int _currentLevel = 0;
     [SerializeField] int _maxLevel = 5;
     [SerializeField] int _unlockNext = 1;
-    UpgradeTree _upgradeTree;
+    [SerializeField] int _levelUpCost = 5;
+    bool _unlocked = false;
+    Button _button;
+    UpgradeManager _upgradeManager;
     Upgrade _upgrade;
-    [SerializeField] Image img; 
     void Start()
     {
         _line.gameObject.SetActive(false);
-        _upgradeTree = FindAnyObjectByType<UpgradeTree>();
+        _upgradeManager = UpgradeManager.Instance;
 
         _button = GetComponent<Button>();
         _upgrade = GetComponent<Upgrade>();
@@ -33,6 +33,9 @@ public class SkillButton : MonoBehaviour
     {
         // Exit if max level
         if (_currentLevel >= _maxLevel) return;
+
+        if (!_upgradeManager.EnoughResource(_levelUpCost)) return;
+        _upgradeManager.ModifyResource(-_levelUpCost);
 
         // Increase level and albedo
         _currentLevel++;
@@ -49,29 +52,52 @@ public class SkillButton : MonoBehaviour
 
                 var type = item.Script.GetType();
                 var field = type.GetField(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                PropertyInfo prop = type.GetProperty(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
-                if (field == null)
+                if (field != null)
                 {
-                    Debug.LogWarning($"Field '{item.VariableName}' not found on {type.Name}");
+                    //Debug.LogWarning($"Field '{item.VariableName}' not found on {type.Name}");
+                    object currentValue = field.GetValue(item.Script);
+                    if (currentValue is float f)
+                    {
+                        field.SetValue(item.Script, f *= item.UpgradeMultiplier);
+                    }
+                    else if (currentValue is int i)
+                    {
+                        field.SetValue(item.Script, i + Mathf.RoundToInt(item.UpgradeAmount));
+                    }
+                    else if (currentValue is bool b)
+                    {
+                        field.SetValue(item.Script, item.UpgradeBool);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Field '{item.VariableName}' on {type.Name} is not a numeric type.");
+                    }
                     continue;
                 }
-                object currentValue = field.GetValue(item.Script);
-                if (currentValue is float f)
+                else if(prop != null)
                 {
-                    field.SetValue(item.Script, f *= item.UpgradeMultiplier);
+                    object currentValue = prop.GetValue(item.Script);
+                    if (currentValue is float f)
+                    {
+                        prop.SetValue(item.Script, f *= item.UpgradeMultiplier);
+                    }
+                    else if (currentValue is int i)
+                    {
+                        prop.SetValue(item.Script, i + Mathf.RoundToInt(item.UpgradeAmount));
+                    }
+                    else if (currentValue is bool b)
+                    {
+                        prop.SetValue(item.Script, item.UpgradeBool);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Field '{item.VariableName}' on {type.Name} is not a numeric type.");
+                    }
+                    continue;
                 }
-                else if (currentValue is int i)
-                {
-                    field.SetValue(item.Script, i + Mathf.RoundToInt(item.UpgradeAmount));
-                }
-                else if (currentValue is bool b)
-                {
-                    field.SetValue(item.Script, item.UpgradeBool);
-                }
-                else
-                {
-                    Debug.LogWarning($"Field '{item.VariableName}' on {type.Name} is not a numeric type.");
-                }
+                
             }
         }
         
@@ -87,16 +113,16 @@ public class SkillButton : MonoBehaviour
     }
     public void Unlock()
     {
+        if (_unlocked) return;
+        _unlocked = true;
+
         gameObject.SetActive(true);
 
     }
-    public void SetRow(int level, int index)
-    {
-        _rowLevel = level;
-        _rowIndex = index;
-    }
     public void SetLine(Vector3 endPos)
     {
+        if (_line.gameObject.activeInHierarchy) return;
+
         _line.gameObject.SetActive(true);
 
         Vector3 midPoint = (gameObject.transform.position + endPos) * 0.5f;

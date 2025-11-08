@@ -13,4 +13,5 @@ public class HourGlassSettingsSO : ScriptableObject
 
     [Header("Nudge")]
     [Min(0)] public int BallsNudgeLetThrough = 1;
+    [Min(0)] public float NudgeForce = 1;
 }

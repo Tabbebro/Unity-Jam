@@ -25,7 +25,6 @@ public class UpgradeTree : MonoBehaviour
         {
             foreach (SkillButton button in row.Row)
             {
-                button.SetRow(rowToSetup.IndexOf(row), row.Row.IndexOf(button));
                 button.gameObject.SetActive(false);
             }
         }
