@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class Zoom : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandler
 {

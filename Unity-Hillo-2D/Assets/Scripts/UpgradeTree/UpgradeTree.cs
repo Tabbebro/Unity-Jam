@@ -18,6 +18,8 @@ public class UpgradeTree : MonoBehaviour
         SetupRow(_leftRows);
         SetupRow(_rightRows);
         SetupRow(_downRows);
+
+        InfoBox.Instance.gameObject.SetActive(false);
     }
     void SetupRow(List<UpgradeRow> rowToSetup)
     {

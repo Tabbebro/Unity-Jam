@@ -1,9 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class SkillButton : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI _costText;
+    [SerializeField] TextMeshProUGUI _levelText;
+    [SerializeField] TextMeshProUGUI _mainText;
     [SerializeField] Image _line;
     [SerializeField] Image img; 
     [SerializeField] List<SkillButton> _connections = new();
@@ -15,19 +20,77 @@ public class SkillButton : MonoBehaviour
     bool _unlocked = false;
     Button _button;
     UpgradeManager _upgradeManager;
+    UpgradeTree _upgradeTree;
+    RectTransform _borders;
     Upgrade _upgrade;
     void Start()
     {
-        _line.gameObject.SetActive(false);
         _upgradeManager = UpgradeManager.Instance;
 
+        _levelUpCost = GetLevelUpCost(_upgradeManager.TotalLevel);
+        /* _costText.text = _levelUpCost.ToString();
+        _levelText.text = _currentLevel.ToString(); */
+
+        _line.gameObject.SetActive(false);
+
         _button = GetComponent<Button>();
+        _upgradeTree = FindAnyObjectByType<UpgradeTree>();
+        _borders = _upgradeTree.GetComponent<RectTransform>();
         _upgrade = GetComponent<Upgrade>();
         _button.onClick.AddListener(delegate { OnClicked(); });
 
         Color color = img.color;
         color.a = 0.2f;
         img.color = color;
+    }
+    public int CostIncrease(int level)
+    {
+        double points = 0;
+
+        for (int lvl = 1; lvl < level; lvl++)
+        {
+            points += Math.Floor(lvl + 300.0 * Math.Pow(2.0, lvl / 7.0));
+        }
+
+        return (int)Math.Floor(points / 4);
+    }
+    public int GetLevelUpCost(int currentLevel)
+    {
+        int totalCurrent = CostIncrease(currentLevel);
+        int totalNext = CostIncrease(currentLevel + 1);
+        return totalNext - totalCurrent;
+    }
+    public void PointerEnter()
+    {
+        Vector2 myPos = transform.position;
+        myPos += new Vector2(0, 200);
+        Vector2 halfSize = InfoBox.Instance.transform.GetComponent<RectTransform>().rect.size;
+        Vector2 bounds = _borders.rect.size;
+        
+        if (myPos.y > bounds.y - 80)
+        {
+            myPos += new Vector2(0, -400);
+        }
+        if (myPos.x < bounds.x + 150)
+        {
+            myPos += new Vector2(200, 0);
+        }
+        if (myPos.x > bounds.x * 2 - 150)
+        {
+            myPos += new Vector2(-200, 0);
+        }
+
+        float clampedX = Mathf.Clamp(myPos.x, -bounds.x + myPos.x, bounds.x - myPos.x);
+        float clampedY = Mathf.Clamp(myPos.y, -bounds.y + myPos.y, bounds.y - myPos.y);
+
+        //new Vector2(clampedX, clampedY)
+        InfoBox.Instance.transform.position = myPos;
+        InfoBox.Instance.gameObject.SetActive(true);
+        InfoBox.Instance.MoveInfo("Juu level up", _currentLevel, _maxLevel, _levelUpCost);
+    }
+    public void PointerExit()
+    {
+        InfoBox.Instance.gameObject.SetActive(false);
     }
     public void OnClicked()
     {
@@ -37,8 +100,14 @@ public class SkillButton : MonoBehaviour
         if (!_upgradeManager.EnoughResource(_levelUpCost)) return;
         _upgradeManager.ModifyResource(-_levelUpCost);
 
-        // Increase level and albedo
         _currentLevel++;
+        _upgradeManager.TotalLevel++;
+        //_levelText.text = _currentLevel.ToString();
+        _levelUpCost = GetLevelUpCost(_upgradeManager.TotalLevel);
+        InfoBox.Instance.MoveInfo("Juu level up", _currentLevel, _maxLevel, _levelUpCost);
+        //_costText.text = _levelUpCost.ToString();
+
+        // Increase level and albedo
         Color color = img.color;
         color.a += 0.2f;
         img.color = color;
@@ -132,10 +201,13 @@ public class SkillButton : MonoBehaviour
 
         // Rotation and set position to middle
         _line.transform.rotation = Quaternion.Euler(0, 0, angle);
+        _line.transform.GetChild(0).rotation = Quaternion.Euler(0, 0, angle);
         _line.transform.position = midPoint;
+        _line.transform.GetChild(0).position = midPoint;
         
         // Length
         float distance = direction.magnitude * _lineLength;
         _line.rectTransform.sizeDelta = new Vector2(distance, _line.rectTransform.sizeDelta.y);
+        _line.transform.GetChild(0).GetComponent<Image>().rectTransform.sizeDelta = new Vector2(distance, _line.rectTransform.sizeDelta.y);
     }
 }
