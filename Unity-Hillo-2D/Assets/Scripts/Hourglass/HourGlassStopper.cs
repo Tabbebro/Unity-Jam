@@ -26,6 +26,11 @@ public class HourGlassStopper : MonoBehaviour
         _hourglass.Nudge.OnSandNudged += Nudged;
     }
 
+    private void OnDestroy() {
+        _hourglass.StartedRotating -= ResetStatus;
+        _hourglass.Nudge.OnSandNudged -= Nudged;
+    }
+
     void Update() {
         if (_ballFlowRoutine != null || _ballsGoneThrough) { return; }
         _timer += Time.deltaTime;
@@ -92,28 +97,23 @@ public class HourGlassStopper : MonoBehaviour
     }
 
     List<GameObject> GetBall(int amountOfBalls) {
-        List<GameObject> newBalls = new();
+
+        _possibleBalls.RemoveAll(b => b == null);
         if (_possibleBalls.Count <= 0) { return null; }
 
-        int ballsThrough;
-        if (_possibleBalls.Count < amountOfBalls) {
-            ballsThrough = _possibleBalls.Count;
-        }
-        else {
-            ballsThrough = amountOfBalls;
-        }
+        List<GameObject> newBalls = new();
+        int ballsThrough = Mathf.Min(amountOfBalls, _possibleBalls.Count);
+        int safety = 0;
 
-        for (int i = 0; i < ballsThrough; i++) {
-            if (_possibleBalls.Count == 0) { return null; }
-            var ball = _possibleBalls[Random.Range(0, _possibleBalls.Count - 1)];
-            if (!_usedBalls.Contains(ball) || _nudgedBalls.Contains(ball)) {
+        while (newBalls.Count < ballsThrough && _possibleBalls.Count > 0 && safety < ballsThrough * 10) {
+            safety++;
+            var ball = _possibleBalls[Random.Range(0, _possibleBalls.Count)];
+            _possibleBalls.Remove(ball);
+
+            if (!_usedBalls.Contains(ball) && !_selectedBalls.Contains(ball) && !_nudgedBalls.Contains(ball)) {
                 _usedBalls.Add(ball);
                 newBalls.Add(ball);
             }
-            else {
-                i--;
-            }
-            _possibleBalls.Remove(ball);
         }
 
         return newBalls;

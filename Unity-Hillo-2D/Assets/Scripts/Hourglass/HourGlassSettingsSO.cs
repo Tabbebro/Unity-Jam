@@ -4,10 +4,10 @@ using UnityEngine;
 public class HourGlassSettingsSO : ScriptableObject
 {
     [Header("Normal Flow")]
-    public int BallsToFlowThrough = 5;
-    public float BallFlowInterval = 0.2f;
-    public float FlowCheckInterval = 2f;
+    [Min(0)] public int BallsToFlowThrough = 5;
+    [Min(0)] public float BallFlowInterval = 0.2f;
+    [Min(0)] public float FlowCheckInterval = 2f;
 
     [Header("Nudge")]
-    public int BallsNudgeLetThrough = 1;
+    [Min(0)] public int BallsNudgeLetThrough = 1;
 }

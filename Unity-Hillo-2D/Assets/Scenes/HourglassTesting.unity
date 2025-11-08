@@ -8700,6 +8700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hourglass
   Settings: {fileID: 11400000, guid: aa0ba0dc74f01c8458daf454a648cb1a, type: 2}
+  Nudge: {fileID: 611188651}
   TopPoint: {fileID: 291246414}
   BottomPoint: {fileID: 85851261}
   SandParent: {fileID: 1561924562}
@@ -12356,6 +12357,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourGlassStopper
   _hourglass: {fileID: 1464277320}
+  _layerToCheck:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &2064890329
 PrefabInstance:
   m_ObjectHideFlags: 0
