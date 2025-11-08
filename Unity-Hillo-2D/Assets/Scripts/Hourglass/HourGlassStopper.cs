@@ -16,7 +16,7 @@ public class HourGlassStopper : MonoBehaviour
     List<GameObject> _possibleBalls = new();
     List<GameObject> _selectedBalls = new();
     List<GameObject> _nudgedBalls = new();
-    List<GameObject> _usedBalls = new();
+    HashSet<GameObject> _usedBalls = new();
     bool _ballsGoneThrough = false;
 
     float _timer = 0f;
@@ -40,7 +40,7 @@ public class HourGlassStopper : MonoBehaviour
             _timer = 0;
             _ballFlowRoutine = StartCoroutine(BallFlow());
         }
-        else if (_hourglass.SandParent.childCount == _usedBalls.Count) {
+        else if (_hourglass.SandParent.childCount == _usedBalls.Count || _timer >= _hourglass.Settings.RotationFailSafeTimer) {
             _ballsGoneThrough = true;
             _hourglass.InvokeCanRotate();
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 public class HourGlassSettingsSO : ScriptableObject
 {
     [Header("Hourglass Rotation")]
+    [Min(0)] public float RotationFailSafeTimer = 5f; // Not An Upgrade
     [Min(0)] public float TimeForRotation = 5;
 
     [Header("Normal Flow")]
