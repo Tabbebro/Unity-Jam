@@ -10,13 +10,15 @@ public class Hourglass : MonoBehaviour
     [Header("Settings")]
     public HourGlassSettingsSO Settings;
 
-    [Header("Refs")]
+    [Header("Rotation")]
     public Button RotateButton;
     public Rigidbody2D VisualRB;
+
+    [Header("Sand")]
     public MouseClickNudge Nudge;
+    public Transform SandParent;
     public Transform TopPoint;
     public Transform BottomPoint;
-    public Transform SandParent;
 
     [Header("Points")]
     public int Points = 0;
