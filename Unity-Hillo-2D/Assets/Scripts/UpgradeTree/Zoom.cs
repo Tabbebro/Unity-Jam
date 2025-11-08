@@ -23,6 +23,7 @@ public class Zoom : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandl
     [SerializeField] private float _zoomSpeed = 0.1f;
     [SerializeField] private float _maxZoom = 10f;
     private Vector3 _initialScale;
+    private Vector3 _initialInvertScale;
 
     [Header("Dragging")]
     [SerializeField] private float _dragSpeed = 0.1f;
@@ -33,6 +34,7 @@ public class Zoom : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandl
     void Start()
     {
         _initialScale = transform.localScale;
+        _initialInvertScale = InfoBox.Instance.transform.localScale;
     }
     public void OnScroll(PointerEventData eventData)
     {
@@ -40,8 +42,12 @@ public class Zoom : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandl
         var desiredScale = transform.localScale + delta;
 
         desiredScale = ClampDesiredScale(desiredScale);
-
         transform.localScale = desiredScale;
+
+        float mainScaleRatio = desiredScale.x / _initialScale.x;
+        Vector3 inverseScale = _initialInvertScale / mainScaleRatio;
+
+        InfoBox.Instance.transform.localScale = inverseScale;
     }
 
     private Vector3 ClampDesiredScale(Vector3 desiredScale)

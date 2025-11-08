@@ -22,7 +22,9 @@ public class SkillButton : MonoBehaviour
     [SerializeField] float _yDeadZone = 150;
     [SerializeField] float _xDeadZone = 150;
 
-    [Space][Header("Stats")]
+    [Space]
+    [Header("Stats")]
+    [SerializeField] string _description;
     [SerializeField] int _currentLevel = 0;
     [SerializeField] int _maxLevel = 5;
     [SerializeField] int _unlockNext = 1;
@@ -35,6 +37,7 @@ public class SkillButton : MonoBehaviour
     UpgradeTree _upgradeTree;
     RectTransform _borders;
     Upgrade _upgrade;
+    RectTransform _rect;
     void Start()
     {
         _upgradeManager = UpgradeManager.Instance;
@@ -46,6 +49,7 @@ public class SkillButton : MonoBehaviour
         _line.gameObject.SetActive(false);
 
         _button = GetComponent<Button>();
+        _rect = GetComponent<RectTransform>();
         _upgradeTree = FindAnyObjectByType<UpgradeTree>();
         _borders = _upgradeTree.GetComponent<RectTransform>();
         _upgrade = GetComponent<Upgrade>();
@@ -77,25 +81,25 @@ public class SkillButton : MonoBehaviour
         if (Zoom.Instance.IsDragging) return;
 
         Vector2 myPos = transform.position;
-        myPos += new Vector2(0, _offsetY);
+        myPos += new Vector2(0, _offsetY /* + _rect.rect.height / 2 + _rect.localPosition.y */);
         Vector2 bounds = _borders.rect.size;
 
-        if (myPos.y > bounds.y - _yDeadZone)
+        if (myPos.y > bounds.y - _yDeadZone) // Top
         {
             myPos += new Vector2(0, -_offsetY * 2);
         }
-        if (myPos.x < bounds.x + _xDeadZone)
+        if (myPos.x < bounds.x + _xDeadZone) // Left
         {
             myPos += new Vector2(_offsetX, 0);
         }
-        if (myPos.x > bounds.x * 2 - _xDeadZone)
+        if (myPos.x > bounds.x * 2 - _xDeadZone) // Right
         {
             myPos += new Vector2(-_offsetX, 0);
         }
 
         InfoBox.Instance.transform.position = myPos;
         InfoBox.Instance.gameObject.SetActive(true);
-        InfoBox.Instance.MoveInfo("Juu level up", _currentLevel, _maxLevel, _levelUpCost);
+        InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpCost);
     }
     public void PointerExit()
     {
@@ -113,7 +117,7 @@ public class SkillButton : MonoBehaviour
         _upgradeManager.TotalLevel++;
         //_levelText.text = _currentLevel.ToString();
         _levelUpCost = GetLevelUpCost(_upgradeManager.TotalLevel);
-        InfoBox.Instance.MoveInfo("Juu level up", _currentLevel, _maxLevel, _levelUpCost);
+        InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpCost);
         //_costText.text = _levelUpCost.ToString();
 
         // Increase level and albedo

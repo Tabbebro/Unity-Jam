@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 55784170}
   - component: {fileID: 55784172}
   - component: {fileID: 55784171}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 170119756}
   - component: {fileID: 170119758}
   - component: {fileID: 170119757}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -917,7 +917,7 @@ GameObject:
   - component: {fileID: 276655832}
   - component: {fileID: 276655834}
   - component: {fileID: 276655833}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Lv.
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,7 +957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1314,11 +1314,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -113
+      value: -123
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 107
+      value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2017,7 +2017,7 @@ GameObject:
   - component: {fileID: 993312770}
   - component: {fileID: 993312772}
   - component: {fileID: 993312771}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2057,7 +2057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2192,7 +2192,7 @@ GameObject:
   - component: {fileID: 1140655084}
   - component: {fileID: 1140655086}
   - component: {fileID: 1140655085}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: SeperatorLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2232,7 +2232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2727,7 +2727,7 @@ MonoBehaviour:
   BlueSandUnlocked: 0
   AutomaticHourGlassFlipUnlocked: 0
   TotalLevel: 0
-  ResourceAmount: 2147483647
+  ResourceAmount: 200
 --- !u!4 &1404056098
 Transform:
   m_ObjectHideFlags: 0
@@ -2754,7 +2754,7 @@ GameObject:
   - component: {fileID: 1436629313}
   - component: {fileID: 1436629315}
   - component: {fileID: 1436629314}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: SeperatorLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2794,7 +2794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2892,11 +2892,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -275
+      value: -285
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 81
+      value: 98
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3063,7 +3063,7 @@ GameObject:
   - component: {fileID: 1736679049}
   - component: {fileID: 1736679051}
   - component: {fileID: 1736679050}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: CostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3103,7 +3103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3452,7 +3452,7 @@ GameObject:
   - component: {fileID: 1898932829}
   - component: {fileID: 1898932828}
   - component: {fileID: 1898932827}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: InfoBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3719,11 +3719,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -183
+      value: -193
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 250
+      value: 267
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3861,6 +3861,10 @@ PrefabInstance:
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _description
+      value: Joo
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpCost
