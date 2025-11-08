@@ -50,7 +50,7 @@ public class UpgradeManager : MonoBehaviour
     private int _sandResourceToAdd;
     private int _flipResourceToAdd;
     public event Action<object> UpgradeHappened;
-    public void RaiseUpgradeHappened(object obj)
+    public void RaiseUpgradeHappened(string obj)
     {
         UpgradeHappened?.Invoke(obj);
     }
