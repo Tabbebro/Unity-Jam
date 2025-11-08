@@ -13,7 +13,14 @@ public class SkillButton : MonoBehaviour
     [SerializeField] TextMeshProUGUI _mainText;
     [SerializeField] Image _line;
     [SerializeField] Image img;
+    [SerializeField] Image _hoverImg;
     [SerializeField] List<SkillButton> _connections = new();
+
+    [Space]
+    [Header("Hover")]
+    [SerializeField] float _hoverDuration = 0.1f;
+    [SerializeField] Vector3 _endScale = new();
+    Coroutine _hoverCoroutine = null;
 
     [Space]
     [Header("Settings")]
@@ -26,7 +33,6 @@ public class SkillButton : MonoBehaviour
     [Space]
     [Header("Animation settings")]
     [SerializeField] Vector2 _scaleIncrease = new Vector2(1.2f, 1.2f);
-    [SerializeField] float _rotationIncrease = 0.2f;
     [SerializeField] float _animationDuration = 0.2f;
     Coroutine _scaleCoroutine = null;
 
@@ -52,8 +58,7 @@ public class SkillButton : MonoBehaviour
     AudioSource _audio;
     Upgrade _upgrade;
     RectTransform _rect;
-    Vector3 _startScale;
-    void Start()
+    Vector3 _startScale;    void Start()
     {
         _startScale = transform.localScale;
 
@@ -76,6 +81,13 @@ public class SkillButton : MonoBehaviour
     public void PointerEnter()
     {
         if (Zoom.Instance.IsDragging) return;
+
+        if (_hoverCoroutine != null)
+        {
+            StopCoroutine(_hoverCoroutine);
+            _hoverCoroutine = null;
+        }
+        _hoverCoroutine = StartCoroutine(Scale(_endScale, _hoverImg.gameObject));
 
         Vector2 myPos = transform.position;
         myPos += new Vector2(0, _offsetY /* + _rect.rect.height / 2 + _rect.localPosition.y */);
@@ -100,6 +112,13 @@ public class SkillButton : MonoBehaviour
     }
     public void PointerExit()
     {
+        if (_hoverCoroutine != null)
+        {
+            StopCoroutine(_hoverCoroutine);
+            _hoverCoroutine = null;
+        }
+        _hoverCoroutine = StartCoroutine(Scale(new Vector3(1, 1, 1), _hoverImg.gameObject));
+        
         InfoBox.Instance.gameObject.SetActive(false);
     }
     public void OnClicked()
@@ -254,23 +273,22 @@ public class SkillButton : MonoBehaviour
         _line.rectTransform.sizeDelta = new Vector2(distance, _line.rectTransform.sizeDelta.y);
         _line.transform.GetChild(0).GetComponent<Image>().rectTransform.sizeDelta = new Vector2(distance, _line.rectTransform.sizeDelta.y);
     }
-    IEnumerator Transition(Quaternion endRot, GameObject obj)
+    IEnumerator Scale(Vector2 endScale, GameObject obj)
     {
         float timePassed = 0f;
-        Quaternion startRot = obj.transform.rotation;
+        Vector2 startScale = obj.transform.localScale;
 
         while (timePassed < _animationDuration)
         {
             timePassed += Time.deltaTime;
             float t = timePassed / _animationDuration;
 
-            obj.transform.rotation = Quaternion.Lerp(startRot, endRot, t);
+            obj.transform.localScale = Vector2.Lerp(startScale, endScale, t);
 
             yield return null;
         }
-
-        obj.transform.rotation = endRot;
-
+        obj.transform.localScale = endScale;
+        _hoverCoroutine = null;
     }
     IEnumerator TransitionScale(Vector2 endScale, GameObject obj)
     {
