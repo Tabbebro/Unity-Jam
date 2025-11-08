@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -38,6 +40,31 @@ public class UpgradeManager : MonoBehaviour
 
     public float SandResource = 100;
     public float FlipResource = 0;
+
+    [Header("Score increaser")]
+    bool _isCountingSand = false;
+    bool _isCountingFlip = false;
+    Coroutine _countingSand;
+    Coroutine _countingFlip;
+    [SerializeField] int _addAmountPerTick = 200;
+    private int _sandResourceToAdd;
+    private int _flipResourceToAdd;
+    void Start()
+    {
+        _coinAmountText.text = SandResource.ToString();
+        _flipAmountText.text = FlipResource.ToString();
+    }
+    void Update()
+    {
+        if (!_isCountingSand)
+        {
+            _countingSand = StartCoroutine(CountSand());
+        }
+        if (!_isCountingFlip)
+        {
+            _countingFlip = StartCoroutine(CountFlip());
+        }
+    }
     public bool EnoughResource(float amount) => SandResource >= amount;
     public bool EnoughFlipResource(float amount) => FlipResource >= amount;
     public void ModifySandResource(float amount)
@@ -50,10 +77,29 @@ public class UpgradeManager : MonoBehaviour
         FlipResource += amount;
         _flipAmountText.text = SandResource.ToString();
     }
-
-    void Start()
+    public IEnumerator CountSand()
     {
-        _coinAmountText.text = SandResource.ToString();
-        _flipAmountText.text = FlipResource.ToString();
+        _isCountingSand = true;
+        while (_sandResourceToAdd != 0)
+        {
+            int tick = Mathf.Min(Mathf.Abs(_addAmountPerTick), Mathf.Abs(_sandResourceToAdd)) * Math.Sign(_sandResourceToAdd);
+            _sandResourceToAdd -= tick;
+            ModifySandResource(tick);
+            yield return new WaitForSeconds(0.05f);
+        }
+        _isCountingSand = false;
     }
+    public IEnumerator CountFlip()
+    {
+        _isCountingFlip = true;
+        while (_sandResourceToAdd != 0)
+        {
+            int tick = Mathf.Min(Mathf.Abs(_addAmountPerTick), Mathf.Abs(_flipResourceToAdd)) * Math.Sign(_flipResourceToAdd);
+            _flipResourceToAdd -= tick;
+            ModifyFlipResource(tick);
+            yield return new WaitForSeconds(0.05f);
+        }
+        _isCountingFlip = false;
+    }
+    
 }

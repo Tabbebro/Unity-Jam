@@ -3618,6 +3618,10 @@ PrefabInstance:
       propertyPath: _flipAmountText
       value: 
       objectReference: {fileID: 8545436700179261575}
+    - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
+      propertyPath: _addAmountPerTick
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
