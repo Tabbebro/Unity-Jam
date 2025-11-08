@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
@@ -23,33 +24,46 @@ public class SkillButton : MonoBehaviour
     [SerializeField] float _xDeadZone = 150;
 
     [Space]
+    [Header("Animation settings")]
+    [SerializeField] Vector2 _scaleIncrease = new Vector2(1.2f, 1.2f);
+    [SerializeField] float _rotationIncrease = 0.2f;
+    [SerializeField] float _animationDuration = 0.2f;
+    Coroutine _scaleCoroutine = null;
+
+    [Space]
     [Header("Stats")]
     [SerializeField] string _description;
     [SerializeField] int _currentLevel = 0;
     [SerializeField] int _maxLevel = 5;
     [SerializeField] int _unlockNext = 1;
-    [SerializeField] int _levelUpCost = 5;
+    [SerializeField] float _levelUpResourceCost = 5;
+    [SerializeField] float _levelUpFlipCost = 5;
+    [SerializeField] float _levelUpMultiplier = 1.2f;
 
+    [Space]
+    [Header("Audio")]
+    [SerializeField] List<AudioClip> _audioClips = new();
 
     bool _unlocked = false;
     Button _button;
     UpgradeManager _upgradeManager;
     UpgradeTree _upgradeTree;
     RectTransform _borders;
+    AudioSource _audio;
     Upgrade _upgrade;
     RectTransform _rect;
+    Vector3 _startScale;
     void Start()
     {
-        _upgradeManager = UpgradeManager.Instance;
+        _startScale = transform.localScale;
 
-        _levelUpCost = GetLevelUpCost(_upgradeManager.TotalLevel);
-        /* _costText.text = _levelUpCost.ToString();
-        _levelText.text = _currentLevel.ToString(); */
+        _upgradeManager = UpgradeManager.Instance;
 
         _line.gameObject.SetActive(false);
 
         _button = GetComponent<Button>();
         _rect = GetComponent<RectTransform>();
+        _audio = GetComponent<AudioSource>();
         _upgradeTree = FindAnyObjectByType<UpgradeTree>();
         _borders = _upgradeTree.GetComponent<RectTransform>();
         _upgrade = GetComponent<Upgrade>();
@@ -58,23 +72,6 @@ public class SkillButton : MonoBehaviour
         Color color = img.color;
         color.a = 0.2f;
         img.color = color;
-    }
-    public int CostIncrease(int level)
-    {
-        double points = 0;
-
-        for (int lvl = 1; lvl < level; lvl++)
-        {
-            points += Math.Floor(lvl + 300.0 * Math.Pow(2.0, lvl / 7.0));
-        }
-
-        return (int)Math.Floor(points / 4);
-    }
-    public int GetLevelUpCost(int currentLevel)
-    {
-        int totalCurrent = CostIncrease(currentLevel);
-        int totalNext = CostIncrease(currentLevel + 1);
-        return totalNext - totalCurrent;
     }
     public void PointerEnter()
     {
@@ -99,7 +96,7 @@ public class SkillButton : MonoBehaviour
 
         InfoBox.Instance.transform.position = myPos;
         InfoBox.Instance.gameObject.SetActive(true);
-        InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpCost);
+        InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpResourceCost, _levelUpFlipCost);
     }
     public void PointerExit()
     {
@@ -107,18 +104,52 @@ public class SkillButton : MonoBehaviour
     }
     public void OnClicked()
     {
-        // Exit if max level
-        if (_currentLevel >= _maxLevel) return;
+        
 
-        if (!_upgradeManager.EnoughResource(_levelUpCost)) return;
-        _upgradeManager.ModifyResource(-_levelUpCost);
+        // Exit if max level
+        if (_currentLevel >= _maxLevel)
+        {
+            _audio.clip = _audioClips[1];
+            _audio.Play();
+            return;
+        }
+        if (!_upgradeManager.EnoughResource(_levelUpResourceCost) || !_upgradeManager.EnoughFlipResource(_levelUpFlipCost))
+        {
+            _audio.clip = _audioClips[3];
+            _audio.Play();
+            return;
+        }
+        
+
+        _upgradeManager.ModifySandResource(-_levelUpResourceCost);
+        _upgradeManager.ModifyFlipResource(-_levelUpFlipCost);
+
+        if (_scaleCoroutine != null)
+        {
+            StopCoroutine(_scaleCoroutine);
+            _scaleCoroutine = null;
+        }
+        _scaleCoroutine = StartCoroutine(TransitionScale(_scaleIncrease, gameObject));
+
+        _levelUpResourceCost *= _levelUpMultiplier;
+        _levelUpResourceCost = Mathf.Round(_levelUpResourceCost * 10.0f) * 0.1f;
+        _levelUpFlipCost *= _levelUpMultiplier;
+        _levelUpFlipCost = Mathf.Round(_levelUpFlipCost * 10.0f) * 0.1f;
 
         _currentLevel++;
-        _upgradeManager.TotalLevel++;
-        //_levelText.text = _currentLevel.ToString();
-        _levelUpCost = GetLevelUpCost(_upgradeManager.TotalLevel);
-        InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpCost);
-        //_costText.text = _levelUpCost.ToString();
+        if (_currentLevel >= _maxLevel)
+        {
+            _audio.clip = _audioClips[2];
+            _audio.Play();
+            _levelUpResourceCost = 0;
+            _levelUpFlipCost = 0;
+        }
+        else
+        {
+            _audio.clip = _audioClips[0];
+            _audio.Play();
+        }
+        InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpResourceCost, _levelUpFlipCost);
 
         // Increase level and albedo
         Color color = img.color;
@@ -217,10 +248,55 @@ public class SkillButton : MonoBehaviour
         _line.transform.GetChild(0).rotation = Quaternion.Euler(0, 0, angle);
         _line.transform.position = midPoint;
         _line.transform.GetChild(0).position = midPoint;
-        
+
         // Length
         float distance = direction.magnitude * _lineLength;
         _line.rectTransform.sizeDelta = new Vector2(distance, _line.rectTransform.sizeDelta.y);
         _line.transform.GetChild(0).GetComponent<Image>().rectTransform.sizeDelta = new Vector2(distance, _line.rectTransform.sizeDelta.y);
+    }
+    IEnumerator Transition(Quaternion endRot, GameObject obj)
+    {
+        float timePassed = 0f;
+        Quaternion startRot = obj.transform.rotation;
+
+        while (timePassed < _animationDuration)
+        {
+            timePassed += Time.deltaTime;
+            float t = timePassed / _animationDuration;
+
+            obj.transform.rotation = Quaternion.Lerp(startRot, endRot, t);
+
+            yield return null;
+        }
+
+        obj.transform.rotation = endRot;
+
+    }
+    IEnumerator TransitionScale(Vector2 endScale, GameObject obj)
+    {
+        float timePassed = 0f;
+        Vector2 startScale = obj.transform.localScale;
+
+        while (timePassed < _animationDuration)
+        {
+            timePassed += Time.deltaTime;
+            float t = timePassed / _animationDuration;
+
+            obj.transform.localScale = Vector2.Lerp(startScale, endScale, t);
+
+            yield return null;
+        }
+        timePassed = 0f;
+        while (timePassed < _animationDuration)
+        {
+            timePassed += Time.deltaTime;
+            float t = timePassed / _animationDuration;
+
+            obj.transform.localScale = Vector2.Lerp(endScale, _startScale, t);
+
+            yield return null;
+        }
+        obj.transform.localScale = _startScale;
+        _scaleCoroutine = null;
     }
 }

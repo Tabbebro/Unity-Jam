@@ -34,8 +34,10 @@ public class UpgradeManager : MonoBehaviour
     public bool BlueSandUnlocked = false;
     public bool AutomaticHourGlassFlipUnlocked = false;
 
-    public int TotalLevel = 0;
-    public int ResourceAmount = 100;
-    public bool EnoughResource(int amount) => ResourceAmount >= amount;
-    public void ModifyResource(int amount) => ResourceAmount += amount;
+    public float SandResource = 100;
+    public float FlipResource = 0;
+    public bool EnoughResource(float amount) => SandResource >= amount;
+    public bool EnoughFlipResource(float amount) => FlipResource >= amount;
+    public void ModifySandResource(float amount) => SandResource += amount;
+    public void ModifyFlipResource(float amount) => FlipResource += amount;
 }
