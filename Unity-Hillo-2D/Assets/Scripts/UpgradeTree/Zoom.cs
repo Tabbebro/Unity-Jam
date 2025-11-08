@@ -1,9 +1,23 @@
 using System;
+using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Zoom : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandler
+public class Zoom : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandler, IEndDragHandler
 {
+    #region Instance
+    public static Zoom Instance { get; private set; }
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+        
+        _rectTransform = _movable.GetComponent<RectTransform>();
+    }
+    #endregion
 
     [Header("Zoom")]
     [SerializeField] private float _zoomSpeed = 0.1f;
@@ -15,10 +29,7 @@ public class Zoom : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandl
     [SerializeField] GameObject _movable;
     private RectTransform _rectTransform;
     private Vector2 _lastMousePosition;
-    void Awake()
-    {
-        _rectTransform = _movable.GetComponent<RectTransform>();
-    }
+    public bool IsDragging = false;
     void Start()
     {
         _initialScale = transform.localScale;
@@ -43,6 +54,7 @@ public class Zoom : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandl
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        IsDragging = true;
         _lastMousePosition = eventData.position;
     }
 
@@ -53,5 +65,10 @@ public class Zoom : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandl
         _rectTransform.anchoredPosition -= delta * _dragSpeed * Time.deltaTime;
 
         _lastMousePosition = currentMousePosition;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        IsDragging = false;
     }
 }

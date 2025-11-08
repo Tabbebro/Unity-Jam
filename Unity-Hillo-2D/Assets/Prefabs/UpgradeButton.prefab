@@ -401,6 +401,10 @@ MonoBehaviour:
   img: {fileID: 3784192521905848668}
   _connections: []
   _lineLength: 3
+  _offsetY: 80
+  _offsetX: 200
+  _yDeadZone: 150
+  _xDeadZone: 150
   _currentLevel: 0
   _maxLevel: 5
   _unlockNext: 1

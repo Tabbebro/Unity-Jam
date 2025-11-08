@@ -6,17 +6,29 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SkillButton : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] TextMeshProUGUI _costText;
     [SerializeField] TextMeshProUGUI _levelText;
     [SerializeField] TextMeshProUGUI _mainText;
     [SerializeField] Image _line;
-    [SerializeField] Image img; 
+    [SerializeField] Image img;
     [SerializeField] List<SkillButton> _connections = new();
+
+    [Space]
+    [Header("Settings")]
     [SerializeField] float _lineLength = 1;
+    [SerializeField] float _offsetY = 200;
+    [SerializeField] float _offsetX = 200;
+    [SerializeField] float _yDeadZone = 150;
+    [SerializeField] float _xDeadZone = 150;
+
+    [Space][Header("Stats")]
     [SerializeField] int _currentLevel = 0;
     [SerializeField] int _maxLevel = 5;
     [SerializeField] int _unlockNext = 1;
     [SerializeField] int _levelUpCost = 5;
+
+
     bool _unlocked = false;
     Button _button;
     UpgradeManager _upgradeManager;
@@ -62,28 +74,25 @@ public class SkillButton : MonoBehaviour
     }
     public void PointerEnter()
     {
+        if (Zoom.Instance.IsDragging) return;
+
         Vector2 myPos = transform.position;
-        myPos += new Vector2(0, 200);
-        Vector2 halfSize = InfoBox.Instance.transform.GetComponent<RectTransform>().rect.size;
+        myPos += new Vector2(0, _offsetY);
         Vector2 bounds = _borders.rect.size;
-        
-        if (myPos.y > bounds.y - 80)
+
+        if (myPos.y > bounds.y - _yDeadZone)
         {
-            myPos += new Vector2(0, -400);
+            myPos += new Vector2(0, -_offsetY * 2);
         }
-        if (myPos.x < bounds.x + 150)
+        if (myPos.x < bounds.x + _xDeadZone)
         {
-            myPos += new Vector2(200, 0);
+            myPos += new Vector2(_offsetX, 0);
         }
-        if (myPos.x > bounds.x * 2 - 150)
+        if (myPos.x > bounds.x * 2 - _xDeadZone)
         {
-            myPos += new Vector2(-200, 0);
+            myPos += new Vector2(-_offsetX, 0);
         }
 
-        float clampedX = Mathf.Clamp(myPos.x, -bounds.x + myPos.x, bounds.x - myPos.x);
-        float clampedY = Mathf.Clamp(myPos.y, -bounds.y + myPos.y, bounds.y - myPos.y);
-
-        //new Vector2(clampedX, clampedY)
         InfoBox.Instance.transform.position = myPos;
         InfoBox.Instance.gameObject.SetActive(true);
         InfoBox.Instance.MoveInfo("Juu level up", _currentLevel, _maxLevel, _levelUpCost);
