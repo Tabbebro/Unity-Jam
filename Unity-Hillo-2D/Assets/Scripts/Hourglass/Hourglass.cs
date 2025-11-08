@@ -80,7 +80,7 @@ public class Hourglass : MonoBehaviour
         OnRotationStarted?.Invoke();
 
         float targetRotation = VisualRB.rotation + 180;
-        DOTween.To(() => VisualRB.rotation, x => VisualRB.MoveRotation(x), targetRotation, Settings.TimeForRotation).SetEase(Ease.InOutQuad).OnComplete(FinnishRotation);
+        DOTween.To(() => VisualRB.rotation, x => VisualRB.MoveRotation(x), targetRotation, Settings.RotationSpeed).SetEase(Ease.InOutQuad).OnComplete(FinnishRotation);
     }
 
     void FinnishRotation() {
@@ -119,7 +119,7 @@ public class Hourglass : MonoBehaviour
     }
 
     public void PlayeRotateAudio() {
-        _audioSource.pitch = _rotateClip.length / Settings.TimeForRotation;
+        _audioSource.pitch = _rotateClip.length / Settings.RotationSpeed;
         _audioSource.PlayOneShot(_rotateClip);
     }
 }

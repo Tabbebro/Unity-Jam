@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Hourglass/Settings", fileName = "Hourglass Settings")]
@@ -5,7 +6,7 @@ public class HourGlassSettingsSO : ScriptableObject
 {
     [Header("Hourglass Rotation")]
     [Min(0)] public float RotationFailSafeTimer = 5f; // Not An Upgrade
-    [Min(0)] public float TimeForRotation = 5;
+    [Min(0)] public float RotationSpeed = 5;
     public bool AutomaticRotationUnlocked = true;
     [Min(0)] public float AutomaticRotationTime = 2f;
 
