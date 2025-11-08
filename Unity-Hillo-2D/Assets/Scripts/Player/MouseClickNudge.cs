@@ -7,14 +7,26 @@ public class MouseClickNudge : MonoBehaviour
     [Header("Nudge Settings")]
     public float radius = 2f;       
     public float forceAmount = 10f; 
-    
+    public float cooldown = 1f;
+    float timer;
+    public bool canNudge;
     public event Action OnSandNudged;
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame) 
+        if (Mouse.current.leftButton.wasPressedThisFrame && canNudge) 
         {
             //print("click");
             ClickNudge();
+            canNudge = false;
+        }
+        else if (!canNudge)
+        {
+            timer += Time.deltaTime;
+            if (timer >= cooldown) 
+            {
+                timer = 0;
+                canNudge = true;
+            }
         }
     }
     void ClickNudge()

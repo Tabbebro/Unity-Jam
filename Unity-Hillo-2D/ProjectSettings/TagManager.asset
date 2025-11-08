@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - DeathArea
+  - BottomArea
   layers:
   - Default
   - TransparentFX
