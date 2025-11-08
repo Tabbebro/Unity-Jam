@@ -7,13 +7,20 @@ public class Hourglass : MonoBehaviour
 {
     public static Hourglass Instance;
 
+    [HideInInspector] public bool IsRightSideUp = true;
+    
     [Header("Settings")]
     public HourGlassSettingsSO Settings;
 
+    [Header("Points")]
+    public int Points = 0;
+
     [Header("Rotation")]
+    public bool IsRotating = false;
     public bool CanRotate = false;
     public Button RotateButton;
     public Rigidbody2D VisualRB;
+    Tween _rotationTween;
 
     [Header("Sand")]
     public MouseClickNudge Nudge;
@@ -21,18 +28,16 @@ public class Hourglass : MonoBehaviour
     public Transform TopPoint;
     public Transform BottomPoint;
 
-    [Header("Points")]
-    public int Points = 0;
+    [Header("Audio")]
+    [SerializeField] AudioClip _rotateClip;
+    [SerializeField] AudioSource _audioSource;
 
-    bool _isRotating = false;
-    Tween _rotationTween;
-    [HideInInspector] public bool IsRightSideUp = true;
 
     // Events If Needed
-    public event Action EnableRotation;
-    public event Action StartedRotating;
-    public event Action FinishedRotating;
-    public event Action<int> BallWentThrough;
+    public event Action OnRotationEnabled;
+    public event Action OnRotationStarted;
+    public event Action OnRotationFinished;
+    public event Action<int> OnBallWentThrough;
 
     private void Awake() {
         if (Instance == null) {
@@ -42,9 +47,10 @@ public class Hourglass : MonoBehaviour
             Destroy(gameObject);
         }
 
-        BallWentThrough += CheckForBalls;
-        EnableRotation += EnableButton;
-        StartedRotating += DisableButton;
+        OnBallWentThrough += CheckForBalls;
+        OnRotationEnabled += EnableButton;
+        OnRotationStarted += DisableButton;
+        OnRotationStarted += PlayeRotateAudio;
         SandManager.OnAllSandWentThrough += InvokeCanRotate;
     }
 
@@ -58,27 +64,28 @@ public class Hourglass : MonoBehaviour
 
     private void OnDestroy() {
         KillRotationTween();
-        BallWentThrough -= CheckForBalls;
-        EnableRotation -= EnableButton;
-        StartedRotating -= DisableButton;
+        OnBallWentThrough -= CheckForBalls;
+        OnRotationEnabled -= EnableButton;
+        OnRotationStarted -= DisableButton;
+        OnRotationStarted -= PlayeRotateAudio;
         SandManager.OnAllSandWentThrough -= InvokeCanRotate;
     }
 
     #region Rotation
     public void RotateHourGlass() {
-        if (_isRotating) { return; }
+        if (IsRotating) { return; }
         KillRotationTween();
-        _isRotating = true;
-        StartedRotating?.Invoke();
+        IsRightSideUp = !IsRightSideUp;
+        IsRotating = true;
+        OnRotationStarted?.Invoke();
 
         float targetRotation = VisualRB.rotation + 180;
         DOTween.To(() => VisualRB.rotation, x => VisualRB.MoveRotation(x), targetRotation, Settings.TimeForRotation).SetEase(Ease.InOutQuad).OnComplete(FinnishRotation);
     }
 
     void FinnishRotation() {
-        IsRightSideUp = !IsRightSideUp;
-        _isRotating = false;
-        FinishedRotating?.Invoke();
+        IsRotating = false;
+        OnRotationFinished?.Invoke();
     }
 
     void KillRotationTween() {
@@ -90,11 +97,11 @@ public class Hourglass : MonoBehaviour
     #endregion
 
     public void InvokeBallWentThrough(int value) {
-        BallWentThrough?.Invoke(value);
+        OnBallWentThrough?.Invoke(value);
     }
 
     public void InvokeCanRotate() {
-        EnableRotation?.Invoke();
+        OnRotationEnabled?.Invoke();
     }
 
     void CheckForBalls(int value) {
@@ -109,5 +116,10 @@ public class Hourglass : MonoBehaviour
     public void DisableButton() {
         CanRotate = false;
         RotateButton.interactable = false;
+    }
+
+    public void PlayeRotateAudio() {
+        _audioSource.pitch = _rotateClip.length / Settings.TimeForRotation;
+        _audioSource.PlayOneShot(_rotateClip);
     }
 }

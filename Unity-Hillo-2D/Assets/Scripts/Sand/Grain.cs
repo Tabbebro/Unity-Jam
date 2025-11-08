@@ -8,7 +8,7 @@ public class Grain : MonoBehaviour
     SandManager sandManager;
     void Start()
     {
-        Hourglass.Instance.FinishedRotating += HourglassRotated;
+        Hourglass.Instance.OnRotationFinished += HourglassRotated;
         sandManager = transform.parent.GetComponent<SandManager>();
     }
 

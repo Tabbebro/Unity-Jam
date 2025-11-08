@@ -23,23 +23,25 @@ public class HourGlassStopper : MonoBehaviour
     [SerializeField] GameObject _rotationTimerMaskImage;
     [SerializeField] Image _RotationTimerFill;
 
+    [Header("Audio")]
+    [SerializeField] List<AudioClip> _sandClips;
+    [SerializeField] AudioSource _audioSource;
+
     Coroutine _ballFlowRoutine;
     void Start() {
-        _hourglass.StartedRotating += ResetStatus;
+        _hourglass.OnRotationStarted += ResetStatus;
         _hourglass.Nudge.OnSandNudged += Nudged;
-        _hourglass.StartedRotating += DisableBallsCanGoThrough;
-        _hourglass.FinishedRotating += EnableBallsCanGoThrough;
+        _hourglass.OnRotationStarted += ResetAutoRotation;
     }
 
     private void OnDestroy() {
-        _hourglass.StartedRotating -= ResetStatus;
+        _hourglass.OnRotationStarted -= ResetStatus;
         _hourglass.Nudge.OnSandNudged -= Nudged;
-        _hourglass.StartedRotating -= DisableBallsCanGoThrough;
-        _hourglass.FinishedRotating -= EnableBallsCanGoThrough;
+        _hourglass.OnRotationStarted -= ResetAutoRotation;
     }
 
     void Update() {
-        if (!_ballsCanGoThrough) { return; }
+        if (!_ballsCanGoThrough || _hourglass.IsRotating) { return; }
         if (_ballFlowRoutine != null || _ballsGoneThrough) { return; }
         _timer += Time.deltaTime;
         if (_timer < _hourglass.Settings.FlowCheckInterval) { return; }
@@ -48,20 +50,17 @@ public class HourGlassStopper : MonoBehaviour
             _timer = 0;
             _ballFlowRoutine = StartCoroutine(BallFlow());
         }
-        else if (_timer >= _hourglass.Settings.RotationFailSafeTimer && !_hourglass.CanRotate) {
+        else if (_timer >= _hourglass.Settings.RotationFailSafeTimer && !_hourglass.CanRotate && !_hourglass.IsRotating) {
             _timer = 0;
             _hourglass.InvokeCanRotate();
         }
-        else if (_hourglass.CanRotate && _hourglass.Settings.AutomaticRotationUnlocked) {
+        else if (_hourglass.Settings.AutomaticRotationUnlocked && _hourglass.CanRotate && !_hourglass.IsRotating) {
             if (!_rotationTimerMaskImage.activeInHierarchy) { _rotationTimerMaskImage.SetActive(true); }
 
             _RotationTimerFill.fillAmount = _timer / _hourglass.Settings.AutomaticRotationTime;
 
             if (_timer >= _hourglass.Settings.AutomaticRotationTime) {
-                _timer = 0;
                 _hourglass.RotateHourGlass();
-                _RotationTimerFill.fillAmount = 0;
-                _rotationTimerMaskImage.SetActive(false);
             }
         }
     }
@@ -153,17 +152,21 @@ public class HourGlassStopper : MonoBehaviour
             if (_hourglass.IsRightSideUp) { ball.transform.position = _hourglass.BottomPoint.position; }
             else { ball.transform.position = _hourglass.TopPoint.position; }
 
-
+            PlaySandAudio();
             _hourglass.InvokeBallWentThrough(1);
             yield return new WaitForSeconds(_hourglass.Settings.BallFlowInterval);
         }
     }
 
-    public void EnableBallsCanGoThrough() {
-        _ballsCanGoThrough = true;
+    void PlaySandAudio() {
+        float randomVolume = Random.Range(0.5f, 1f);
+        AudioClip randomClip = _sandClips[Random.Range(0, _sandClips.Count)];
+        _audioSource.PlayOneShot(randomClip, randomVolume);
     }
 
-    public void DisableBallsCanGoThrough() {
-        _ballsCanGoThrough = false;
+    public void ResetAutoRotation() {
+        _timer = 0;
+        _RotationTimerFill.fillAmount = 0;
+        _rotationTimerMaskImage.SetActive(false);
     }
 }
