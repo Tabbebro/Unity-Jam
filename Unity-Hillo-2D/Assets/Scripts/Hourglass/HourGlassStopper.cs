@@ -42,7 +42,7 @@ public class HourGlassStopper : MonoBehaviour
         }
         else if (_hourglass.SandParent.childCount == _usedBalls.Count) {
             _ballsGoneThrough = true;
-            _hourglass.RotateHourGlass();
+            _hourglass.InvokeCanRotate();
         }
     }
 

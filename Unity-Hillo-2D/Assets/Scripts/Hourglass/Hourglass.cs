@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UnityEngine.UI;
 public class Hourglass : MonoBehaviour
 {
     public static Hourglass Instance;
@@ -10,6 +11,8 @@ public class Hourglass : MonoBehaviour
     public HourGlassSettingsSO Settings;
 
     [Header("Refs")]
+    public Button RotateButton;
+    public Rigidbody2D VisualRB;
     public MouseClickNudge Nudge;
     public Transform TopPoint;
     public Transform BottomPoint;
@@ -18,12 +21,12 @@ public class Hourglass : MonoBehaviour
     [Header("Points")]
     public int Points = 0;
 
-    Rigidbody2D _rb;
     bool _isRotating = false;
     Tween _rotationTween;
     [HideInInspector] public bool IsRightSideUp = true;
 
     // Events If Needed
+    public event Action CanRotate;
     public event Action StartedRotating;
     public event Action FinishedRotating;
     public event Action<int> BallWentThrough;
@@ -35,9 +38,10 @@ public class Hourglass : MonoBehaviour
         else {
             Destroy(gameObject);
         }
-        _rb = GetComponent<Rigidbody2D>();
 
         BallWentThrough += CheckForBalls;
+        CanRotate += EnableButton;
+        StartedRotating += DisableButton;
     }
 
     private void OnEnable() {
@@ -50,6 +54,9 @@ public class Hourglass : MonoBehaviour
 
     private void OnDestroy() {
         KillRotationTween();
+        BallWentThrough -= CheckForBalls;
+        CanRotate -= EnableButton;
+        StartedRotating -= DisableButton;
     }
 
     #region Rotation
@@ -59,8 +66,8 @@ public class Hourglass : MonoBehaviour
         _isRotating = true;
         StartedRotating?.Invoke();
 
-        float targetRotation = _rb.rotation + 180;
-        DOTween.To(() => _rb.rotation, x => _rb.MoveRotation(x), targetRotation, Settings.TimeForRotation).SetEase(Ease.InOutQuad).OnComplete(FinnishRotation);
+        float targetRotation = VisualRB.rotation + 180;
+        DOTween.To(() => VisualRB.rotation, x => VisualRB.MoveRotation(x), targetRotation, Settings.TimeForRotation).SetEase(Ease.InOutQuad).OnComplete(FinnishRotation);
     }
 
     void FinnishRotation() {
@@ -81,7 +88,19 @@ public class Hourglass : MonoBehaviour
         BallWentThrough?.Invoke(value);
     }
 
+    public void InvokeCanRotate() {
+        CanRotate?.Invoke();
+    }
+
     void CheckForBalls(int value) {
         Points += value;
+    }
+
+    public void EnableButton() {
+        RotateButton.interactable = true;
+    }
+
+    public void DisableButton() {
+        RotateButton.interactable = false;
     }
 }
