@@ -49,11 +49,24 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] int _addAmountPerTick = 200;
     private int _sandResourceToAdd;
     private int _flipResourceToAdd;
+    public event Action<object> UpgradeHappened;
+    public void RaiseUpgradeHappened(object obj)
+    {
+        UpgradeHappened?.Invoke(obj);
+    }
     void Start()
     {
         _coinAmountText.text = SandResource.ToString();
         _flipAmountText.text = FlipResource.ToString();
+
+        UpgradeHappened += Testing;
     }
+
+    private void Testing(object obj)
+    {
+        print(obj);
+    }
+
     void Update()
     {
         if (!_isCountingSand)

@@ -18,7 +18,7 @@ public class SkillButton : MonoBehaviour
     [SerializeField] float _levelUpFlipCost = 5;
     [SerializeField] float _levelUpMultiplier = 1.2f;
 
-    
+
     [Header("References")]
     [SerializeField] Image _line;
     [SerializeField] Image _middleIcon;
@@ -190,7 +190,7 @@ public class SkillButton : MonoBehaviour
                 var type = item.Script.GetType();
                 var field = type.GetField(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 PropertyInfo prop = type.GetProperty(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-
+                UpgradeManager.Instance.RaiseUpgradeHappened(item.VariableName);
                 if (field != null)
                 {
                     //Debug.LogWarning($"Field '{item.VariableName}' not found on {type.Name}");
