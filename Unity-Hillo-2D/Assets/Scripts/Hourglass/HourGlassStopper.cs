@@ -77,6 +77,8 @@ public class HourGlassStopper : MonoBehaviour
 
     void ResetStatus() {
         _possibleBalls.Clear();
+        _selectedBalls.Clear();
+        _nudgedBalls.Clear();
         _usedBalls.Clear();
         _ballsGoneThrough = false;
         _timer = 0;
@@ -122,14 +124,16 @@ public class HourGlassStopper : MonoBehaviour
     IEnumerator SpawnBalls(List<GameObject> ballList) {
         if (ballList == null || ballList.Count == 0) { yield break; }
 
-        foreach (var ball in ballList) {
+        var ballsCopy = new List<GameObject>(ballList);
+
+        foreach (var ball in ballsCopy) {
+
             if (ball == null) { continue; }
-            if (_hourglass.IsRightSideUp) {
-                ball.transform.position = _hourglass.BottomPoint.position;
-            }
-            else {
-                ball.transform.position = _hourglass.TopPoint.position;
-            }
+
+            if (_hourglass.IsRightSideUp) { ball.transform.position = _hourglass.BottomPoint.position; }
+            else { ball.transform.position = _hourglass.TopPoint.position; }
+
+
             _hourglass.InvokeBallWentThrough(1);
             yield return new WaitForSeconds(_hourglass.Settings.BallFlowInterval);
         }

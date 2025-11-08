@@ -60,7 +60,7 @@ public class Hourglass : MonoBehaviour
         StartedRotating?.Invoke();
 
         float targetRotation = _rb.rotation + 180;
-        DOTween.To(() => _rb.rotation, x => _rb.MoveRotation(x), targetRotation, 2f).SetEase(Ease.InOutQuad).OnComplete(FinnishRotation);
+        DOTween.To(() => _rb.rotation, x => _rb.MoveRotation(x), targetRotation, Settings.TimeForRotation).SetEase(Ease.InOutQuad).OnComplete(FinnishRotation);
     }
 
     void FinnishRotation() {

@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Hourglass/Settings", fileName = "Hourglass Settings")]
 public class HourGlassSettingsSO : ScriptableObject
 {
+    [Header("Hourglass Rotation")]
+    [Min(0)] public float TimeForRotation = 5;
+
     [Header("Normal Flow")]
     [Min(0)] public int BallsToFlowThrough = 5;
     [Min(0)] public float BallFlowInterval = 0.2f;
