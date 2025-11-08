@@ -28,6 +28,11 @@ public class Grain : MonoBehaviour
     {
         if (collision.CompareTag("BottomArea") && !hasGoneThrough)
         {
+            if (sandManager.AllSandGoneThrough)
+            {
+                sandManager.AllSandGoneThrough = false;
+                sandManager.howManyGoneThrough = 0;
+            }
             hasGoneThrough = true;
             sandManager.SandWentThrough();
         }

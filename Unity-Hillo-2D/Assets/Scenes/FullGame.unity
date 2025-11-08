@@ -639,6 +639,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8092217736079831810, guid: af033649467e16746ab72c2b00a9f55b, type: 3}
   m_PrefabInstance: {fileID: 5824123230943579653}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1561924563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5636624505137111675, guid: af033649467e16746ab72c2b00a9f55b, type: 3}
+  m_PrefabInstance: {fileID: 5824123230943579653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfbc1196ae71ba4ba503e12d893c77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SandManager
 --- !u!1001 &4239738170372541114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -650,6 +661,14 @@ PrefabInstance:
     - target: {fileID: 949180405162455782, guid: c79062ba079435f4c8b33348e224970e, type: 3}
       propertyPath: m_Name
       value: Hourglass
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826719983913001068, guid: c79062ba079435f4c8b33348e224970e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826719983913001068, guid: c79062ba079435f4c8b33348e224970e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2574864392180314834, guid: c79062ba079435f4c8b33348e224970e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -699,6 +718,10 @@ PrefabInstance:
       propertyPath: SandParent
       value: 
       objectReference: {fileID: 1561924562}
+    - target: {fileID: 3179989947342024802, guid: c79062ba079435f4c8b33348e224970e, type: 3}
+      propertyPath: SandManager
+      value: 
+      objectReference: {fileID: 1561924563}
     - target: {fileID: 4090924135876395981, guid: c79062ba079435f4c8b33348e224970e, type: 3}
       propertyPath: m_Camera
       value: 
