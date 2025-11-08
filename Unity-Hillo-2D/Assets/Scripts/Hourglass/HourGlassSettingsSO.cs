@@ -6,6 +6,8 @@ public class HourGlassSettingsSO : ScriptableObject
     [Header("Hourglass Rotation")]
     [Min(0)] public float RotationFailSafeTimer = 5f; // Not An Upgrade
     [Min(0)] public float TimeForRotation = 5;
+    public bool AutomaticRotationUnlocked = true;
+    [Min(0)] public float AutomaticRotationTime = 2f;
 
     [Header("Normal Flow")]
     [Min(0)] public int BallsToFlowThrough = 5;

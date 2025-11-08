@@ -467,6 +467,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hourglass
       objectReference: {fileID: 0}
+    - target: {fileID: 1826719983913001068, guid: c79062ba079435f4c8b33348e224970e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2574864392180314834, guid: c79062ba079435f4c8b33348e224970e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -519,6 +523,10 @@ PrefabInstance:
       propertyPath: SandManager
       value: 
       objectReference: {fileID: 1817978802}
+    - target: {fileID: 3697033206113904793, guid: c79062ba079435f4c8b33348e224970e, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4090924135876395981, guid: c79062ba079435f4c8b33348e224970e, type: 3}
       propertyPath: m_Camera
       value: 

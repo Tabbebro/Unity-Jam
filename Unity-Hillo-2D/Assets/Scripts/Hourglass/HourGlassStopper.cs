@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class HourGlassStopper : MonoBehaviour
 {
@@ -19,8 +17,12 @@ public class HourGlassStopper : MonoBehaviour
     HashSet<GameObject> _usedBalls = new();
     [SerializeField] bool _ballsCanGoThrough = true;
     bool _ballsGoneThrough = false;
-
     float _timer = 0f;
+
+    [Header("Auto Rotation Timer")]
+    [SerializeField] GameObject _rotationTimerMaskImage;
+    [SerializeField] Image _RotationTimerFill;
+
     Coroutine _ballFlowRoutine;
     void Start() {
         _hourglass.StartedRotating += ResetStatus;
@@ -46,8 +48,21 @@ public class HourGlassStopper : MonoBehaviour
             _timer = 0;
             _ballFlowRoutine = StartCoroutine(BallFlow());
         }
-        else if (_timer >= _hourglass.Settings.RotationFailSafeTimer) {
+        else if (_timer >= _hourglass.Settings.RotationFailSafeTimer && !_hourglass.CanRotate) {
+            _timer = 0;
             _hourglass.InvokeCanRotate();
+        }
+        else if (_hourglass.CanRotate && _hourglass.Settings.AutomaticRotationUnlocked) {
+            if (!_rotationTimerMaskImage.activeInHierarchy) { _rotationTimerMaskImage.SetActive(true); }
+
+            _RotationTimerFill.fillAmount = _timer / _hourglass.Settings.AutomaticRotationTime;
+
+            if (_timer >= _hourglass.Settings.AutomaticRotationTime) {
+                _timer = 0;
+                _hourglass.RotateHourGlass();
+                _RotationTimerFill.fillAmount = 0;
+                _rotationTimerMaskImage.SetActive(false);
+            }
         }
     }
 

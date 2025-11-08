@@ -11,6 +11,7 @@ public class Hourglass : MonoBehaviour
     public HourGlassSettingsSO Settings;
 
     [Header("Rotation")]
+    public bool CanRotate = false;
     public Button RotateButton;
     public Rigidbody2D VisualRB;
 
@@ -28,7 +29,7 @@ public class Hourglass : MonoBehaviour
     [HideInInspector] public bool IsRightSideUp = true;
 
     // Events If Needed
-    public event Action CanRotate;
+    public event Action EnableRotation;
     public event Action StartedRotating;
     public event Action FinishedRotating;
     public event Action<int> BallWentThrough;
@@ -42,7 +43,7 @@ public class Hourglass : MonoBehaviour
         }
 
         BallWentThrough += CheckForBalls;
-        CanRotate += EnableButton;
+        EnableRotation += EnableButton;
         StartedRotating += DisableButton;
         SandManager.OnAllSandWentThrough += InvokeCanRotate;
     }
@@ -58,7 +59,7 @@ public class Hourglass : MonoBehaviour
     private void OnDestroy() {
         KillRotationTween();
         BallWentThrough -= CheckForBalls;
-        CanRotate -= EnableButton;
+        EnableRotation -= EnableButton;
         StartedRotating -= DisableButton;
         SandManager.OnAllSandWentThrough -= InvokeCanRotate;
     }
@@ -93,7 +94,7 @@ public class Hourglass : MonoBehaviour
     }
 
     public void InvokeCanRotate() {
-        CanRotate?.Invoke();
+        EnableRotation?.Invoke();
     }
 
     void CheckForBalls(int value) {
@@ -101,10 +102,12 @@ public class Hourglass : MonoBehaviour
     }
 
     public void EnableButton() {
+        CanRotate = true;
         RotateButton.interactable = true;
     }
 
     public void DisableButton() {
+        CanRotate = false;
         RotateButton.interactable = false;
     }
 }
