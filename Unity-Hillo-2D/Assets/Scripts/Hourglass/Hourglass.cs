@@ -114,8 +114,8 @@ public class Hourglass : MonoBehaviour
     #endregion
 
     public void SpawnSand() {
-        if (!Settings.SpawnSandOnRotate) { return; }
-        SandManager.SpawnRandomSand();
+        Debug.Log("Test");
+        SandManager.SpawnRandomSand(Settings.AmountOfSandSpawnedOnRotation);
     }
 
     public void InvokeBallWentThrough(int value) {
@@ -180,8 +180,8 @@ public class Hourglass : MonoBehaviour
         if (name.ToString() == "NudgeFlow") {
             Settings.BallsNudgeLetThrough += item.UpgradeAmount;
         }
-        if (name.ToString() == "SpawnSandOnRotationUnlocked") {
-            Settings.SpawnSandOnRotate = item.UpgradeBool;
+        if (name.ToString() == "AmountOfSandToSpawnPerRotation") {
+            Settings.AmountOfSandSpawnedOnRotation += item.UpgradeAmount;
         }
         
     }

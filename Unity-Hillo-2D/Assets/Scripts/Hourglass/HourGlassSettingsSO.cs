@@ -9,7 +9,7 @@ public class HourGlassSettingsSO : ScriptableObject
     [Min(0)] public float RotationSpeed = 5;
     public bool AutomaticRotationUnlocked = true;
     [Min(0)] public float AutomaticRotationTime = 2f;
-    public bool SpawnSandOnRotate = true;
+    public int AmountOfSandSpawnedOnRotation = 0;
 
     [Header("Normal Flow")]
     [Min(0)] public int BallsToFlowThrough = 5;

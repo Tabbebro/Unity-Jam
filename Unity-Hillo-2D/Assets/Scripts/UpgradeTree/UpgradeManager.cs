@@ -39,10 +39,10 @@ public class UpgradeManager : MonoBehaviour
     public float LetThroughCheckInterval = 2f;
     public float GrainValue = 1f;
     public int SandCount = 1;
+    public int AmountOfSandToSpawnPerRotation = 0;
 
     public bool LetThroughUnlocked = false;
     public bool AutomaticRotationUnlocked = false;
-    public bool SpawnSandOnRotationUnlocked = false;
     public bool RedSandUnlocked = false;
     public bool BlueSandUnlocked = false;
     public bool AutomaticHourGlassFlipUnlocked = false;

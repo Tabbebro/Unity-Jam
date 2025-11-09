@@ -140,7 +140,7 @@ public class SandManager : MonoBehaviour
             {
                 randomSand = NormalSandPrefab;
             }
-            StartCoroutine(SpawnSand(randomSand, amount));
+            StartCoroutine(SpawnSand(randomSand, 1));
         }
     }
     public void SpawnSandGrains(GameObject gameObject, int amount)
