@@ -77,6 +77,7 @@ public class SkillButton : MonoBehaviour
         _startScale = transform.localScale;
 
         _upgradeManager = UpgradeManager.Instance;
+        
         _upgradeManager.BalanceModified += CheckBalance;
         _line.gameObject.SetActive(false);
 
@@ -240,7 +241,7 @@ public class SkillButton : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogWarning($"Field '{item.VariableName}' on {type.Name} is not a numeric type.");
+                        //Debug.LogWarning($"Field '{item.VariableName}' on {type.Name} is not a numeric type.");
                     }
                     continue;
                 }
@@ -261,7 +262,7 @@ public class SkillButton : MonoBehaviour
     }
     public void CheckBalance()
     {
-        if (!_upgradeManager.EnoughResource(_levelUpResourceCost) || !_upgradeManager.EnoughFlipResource(_levelUpFlipCost))
+        if (!UpgradeManager.Instance.EnoughResource(_levelUpResourceCost) || !UpgradeManager.Instance.EnoughFlipResource(_levelUpFlipCost))
         {
             _fadeImg.gameObject.SetActive(true);
         }

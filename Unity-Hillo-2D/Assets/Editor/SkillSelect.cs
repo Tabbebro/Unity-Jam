@@ -72,7 +72,7 @@ public class VariableMonitorEditor : Editor
                         else
                         {
 
-                            Debug.LogError("Was somethg else");
+                            //Debug.LogError("Was somethg else");
                         }
                         //continue;
                     }

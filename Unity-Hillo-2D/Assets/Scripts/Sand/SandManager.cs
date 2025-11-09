@@ -60,7 +60,7 @@ public class SandManager : MonoBehaviour
             SpawnRandomSand(upgrade.UpgradeAmount);
             if (AllSandGoneThrough)
             {
-                print("CancelAllSandWentThrough");
+                //print("CancelAllSandWentThrough");
                 AllSandGoneThrough = false;
                 CancelAllSandWentThrough?.Invoke();
             }
