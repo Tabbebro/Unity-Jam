@@ -53,7 +53,14 @@ public class Hourglass : MonoBehaviour
         OnRotationStarted += PlayeRotateAudio;
         SandManager.OnAllSandWentThrough += InvokeCanRotate;
         SandManager.CancelAllSandWentThrough += InvokeCancelRotate;
+        
+    }
+    void Start()
+    {
         UpgradeManager.Instance.UpgradeHappened += NewUpgrade;
+
+        Settings = Instantiate(Settings);
+        
     }
 
 
@@ -134,11 +141,16 @@ public class Hourglass : MonoBehaviour
     }
     
     
-    private void NewUpgrade(object name, object item)
+    private void NewUpgrade(object name, VariableInfo item)
     {
         if (name.ToString() == "LetThroughUnlocked")
         {
+            print("ballflowthrough unlocked");
             Settings.BallsToFlowThrough = 1;
+        }
+        if (name.ToString() == "LetThroughPerSecond")
+        {
+            Settings.BallsToFlowThrough = Mathf.RoundToInt(Settings.BallsToFlowThrough * item.UpgradeMultiplier);
         }
     }
 

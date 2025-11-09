@@ -35,11 +35,11 @@ public class SandManager : MonoBehaviour
         SpawnSandGrains(NormalSandPrefab, 1);
     }
 
-    private void NewUpgrade(object name, object item)
+    private void NewUpgrade(object name, VariableInfo upgrade)
     {
         if (name.ToString() == "SandCount")
         {
-            SpawnSandGrains(NormalSandPrefab, 1);
+            SpawnSandGrains(NormalSandPrefab, upgrade.UpgradeAmount);
 
             if (AllSandGoneThrough) 
             {

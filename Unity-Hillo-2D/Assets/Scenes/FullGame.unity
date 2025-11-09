@@ -1077,6 +1077,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 542863868926183637, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 542863868926183637, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].Script
+      value: 
+      objectReference: {fileID: 1001641310}
+    - target: {fileID: 542863868926183637, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].VariableName
+      value: SandCount
+      objectReference: {fileID: 0}
+    - target: {fileID: 542863868926183637, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeAmount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 863214654741671560, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: _variablesToUpdate.Array.size
       value: 1
@@ -1096,6 +1112,26 @@ PrefabInstance:
     - target: {fileID: 863214654741671560, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: _variablesToUpdate.Array.data[0].UpgradeMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323145178757845594, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _maxLevel
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323145178757845594, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _description
+      value: MORE Sand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323145178757845594, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _levelUpFlipCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323145178757845594, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _levelUpMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323145178757845594, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _levelUpResourceCost
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2174855372409762823, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: _maxLevel
@@ -1161,6 +1197,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4990024133928735430, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _maxLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990024133928735430, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _description
+      value: '2X Smoother Flow '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990024133928735430, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _levelUpFlipCost
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990024133928735430, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _levelUpMultiplier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990024133928735430, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _levelUpResourceCost
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5468866308882726656, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: _maxLevel
       value: 4
@@ -1180,6 +1236,22 @@ PrefabInstance:
     - target: {fileID: 5468866308882726656, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: _levelUpResourceCost
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806339303960102985, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806339303960102985, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].Script
+      value: 
+      objectReference: {fileID: 1001641310}
+    - target: {fileID: 5806339303960102985, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].VariableName
+      value: LetThroughPerSecond
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806339303960102985, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeMultiplier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5843756976998254633, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: m_Pivot.x
@@ -1277,6 +1349,10 @@ PrefabInstance:
       propertyPath: SandResource
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6890482096661938656, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: HourGlassSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 741dccbd25d262d4da9c0f60849f5ee7, type: 2}
     - target: {fileID: 7869598426688396006, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: _description
       value: Nudge Cooldown -10%

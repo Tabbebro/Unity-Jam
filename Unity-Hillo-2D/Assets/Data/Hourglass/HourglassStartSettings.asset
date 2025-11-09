@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HourglassStartSettings
   m_EditorClassIdentifier: Assembly-CSharp::HourGlassSettingsSO
   RotationFailSafeTimer: 5
-  TimeForRotation: 3
+  RotationSpeed: 5
   AutomaticRotationUnlocked: 0
   AutomaticRotationTime: 5
   BallsToFlowThrough: 0

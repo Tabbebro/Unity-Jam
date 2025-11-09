@@ -49,10 +49,10 @@ public class UpgradeManager : MonoBehaviour
     Tween _sandCountTween;
     Tween _flipCountTween;
 
-    public event Action<object, object> UpgradeHappened;
-    public void RaiseUpgradeHappened(string name, object item)
+    public event Action<object, VariableInfo> UpgradeHappened;
+    public void RaiseUpgradeHappened(string name, VariableInfo upgrade)
     {
-        UpgradeHappened?.Invoke(name, item);
+        UpgradeHappened?.Invoke(name, upgrade);
     }
     public event Action BalanceModified;
     public void RaiseBalanceModified()
@@ -67,7 +67,7 @@ public class UpgradeManager : MonoBehaviour
         UpgradeHappened += Testing;
     }
 
-    private void Testing(object obj, object obj2)
+    private void Testing(object obj, VariableInfo obj2)
     {
         print(obj);
     }
