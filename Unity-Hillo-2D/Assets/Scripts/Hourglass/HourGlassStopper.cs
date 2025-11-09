@@ -18,6 +18,7 @@ public class HourGlassStopper : MonoBehaviour
     [SerializeField] bool _ballsCanGoThrough = true;
     bool _ballsGoneThrough = false;
     float _timer = 0f;
+    [SerializeField] bool _floodGatesOpen = false;
 
     [Header("Auto Rotation Timer")]
     [SerializeField] GameObject _rotationTimerMaskImage;
@@ -27,6 +28,7 @@ public class HourGlassStopper : MonoBehaviour
     [SerializeField] List<AudioClip> _sandClips;
     [SerializeField] AudioSource _audioSource;
 
+    Coroutine _floodRoutine;
     Coroutine _ballFlowRoutine;
     void Start() {
         _hourglass.OnRotationStarted += ResetStatus;
@@ -42,6 +44,19 @@ public class HourGlassStopper : MonoBehaviour
 
     void Update() {
         if (!_ballsCanGoThrough || _hourglass.IsRotating) { return; }
+        AutoRotate();
+
+        if (_ballFlowRoutine != null || _ballsGoneThrough) { return; }
+        _timer += Time.deltaTime;
+        if (_timer < _hourglass.Settings.FlowCheckInterval && !_floodGatesOpen) { return; }
+
+        if (_possibleBalls.Count > 0) {
+            _timer = 0;
+            _ballFlowRoutine = StartCoroutine(BallFlow());
+        }
+    }
+
+    private void AutoRotate() {
         if (_hourglass.Settings.AutomaticRotationUnlocked && _hourglass.CanRotate && !_hourglass.IsRotating) {
             if (!_rotationTimerMaskImage.activeInHierarchy) { _rotationTimerMaskImage.SetActive(true); }
 
@@ -51,18 +66,6 @@ public class HourGlassStopper : MonoBehaviour
                 _hourglass.RotateHourGlass();
             }
         }
-        if (_ballFlowRoutine != null || _ballsGoneThrough) { return; }
-        _timer += Time.deltaTime;
-        if (_timer < _hourglass.Settings.FlowCheckInterval) { return; }
-
-        if (_possibleBalls.Count > 0) {
-            _timer = 0;
-            _ballFlowRoutine = StartCoroutine(BallFlow());
-        }
-        // else if (_timer >= _hourglass.Settings.RotationFailSafeTimer && !_hourglass.CanRotate && !_hourglass.IsRotating) {
-        //     _timer = 0;
-        //     _hourglass.InvokeCanRotate();
-        // }
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -153,8 +156,22 @@ public class HourGlassStopper : MonoBehaviour
             else { ball.transform.position = _hourglass.TopPoint.position; }
 
             PlaySandAudio();
-            _hourglass.InvokeBallWentThrough(1);
-            yield return new WaitForSeconds(_hourglass.Settings.BallFlowInterval);
+
+            if (ball.GetComponent<BlueGrain>() != null) {
+                if (_floodRoutine != null) {
+                    StopCoroutine(_floodRoutine);
+                }
+                _floodRoutine = StartCoroutine(OpenFloodGates());
+            }
+
+            float waitTime;
+            if (_floodGatesOpen) {
+                waitTime = 0.001f;
+            }
+            else {
+                waitTime = _hourglass.Settings.BallFlowInterval;
+            }
+            yield return new WaitForSeconds(waitTime);
         }
     }
 
@@ -168,5 +185,11 @@ public class HourGlassStopper : MonoBehaviour
         _timer = 0;
         _RotationTimerFill.fillAmount = 0;
         _rotationTimerMaskImage.SetActive(false);
+    }
+
+    IEnumerator OpenFloodGates() {
+        _floodGatesOpen = true;
+        yield return new WaitForSeconds(0.5f);
+        _floodGatesOpen = false;
     }
 }
