@@ -42,6 +42,15 @@ public class HourGlassStopper : MonoBehaviour
 
     void Update() {
         if (!_ballsCanGoThrough || _hourglass.IsRotating) { return; }
+        if (_hourglass.Settings.AutomaticRotationUnlocked && _hourglass.CanRotate && !_hourglass.IsRotating) {
+            if (!_rotationTimerMaskImage.activeInHierarchy) { _rotationTimerMaskImage.SetActive(true); }
+
+            _RotationTimerFill.fillAmount = _timer / _hourglass.Settings.AutomaticRotationTime;
+
+            if (_timer >= _hourglass.Settings.AutomaticRotationTime) {
+                _hourglass.RotateHourGlass();
+            }
+        }
         if (_ballFlowRoutine != null || _ballsGoneThrough) { return; }
         _timer += Time.deltaTime;
         if (_timer < _hourglass.Settings.FlowCheckInterval) { return; }
@@ -54,15 +63,6 @@ public class HourGlassStopper : MonoBehaviour
         //     _timer = 0;
         //     _hourglass.InvokeCanRotate();
         // }
-        else if (_hourglass.Settings.AutomaticRotationUnlocked && _hourglass.CanRotate && !_hourglass.IsRotating) {
-            if (!_rotationTimerMaskImage.activeInHierarchy) { _rotationTimerMaskImage.SetActive(true); }
-
-            _RotationTimerFill.fillAmount = _timer / _hourglass.Settings.AutomaticRotationTime;
-
-            if (_timer >= _hourglass.Settings.AutomaticRotationTime) {
-                _hourglass.RotateHourGlass();
-            }
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other) {

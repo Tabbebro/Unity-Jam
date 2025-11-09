@@ -3,6 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using UnityEngine.UI;
+using ScrutableObjects;
 public class Hourglass : MonoBehaviour
 {
     public static Hourglass Instance;
@@ -10,7 +11,8 @@ public class Hourglass : MonoBehaviour
     [HideInInspector] public bool IsRightSideUp = true;
     
     [Header("Settings")]
-    public HourGlassSettingsSO Settings;
+    [ShowProperties] public HourGlassSettingsSO Settings;
+
 
     [Header("Points")]
     public int Points = 0;
@@ -151,6 +153,17 @@ public class Hourglass : MonoBehaviour
         if (name.ToString() == "LetThroughPerSecond")
         {
             Settings.BallsToFlowThrough = Mathf.RoundToInt(Settings.BallsToFlowThrough * item.UpgradeMultiplier);
+        }
+        if (name.ToString() == "RotationSpeed") {
+            Settings.RotationSpeed *= item.UpgradeMultiplier;
+        }
+        if (name.ToString() == "AutomaticRotationUnlocked") {
+            if (!Settings.AutomaticRotationUnlocked) {
+                Settings.AutomaticRotationUnlocked = item.UpgradeBool;
+            }
+        }
+        if (name.ToString() == "AutomaticRotationCooldown") {
+            Settings.AutomaticRotationTime *= item.UpgradeMultiplier;
         }
     }
 

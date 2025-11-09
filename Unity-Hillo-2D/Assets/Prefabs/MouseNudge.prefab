@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseClickNudge
   radius: 2
-  forceAmount: 20
+  forceAmount: 5
   cooldown: 1
   canNudge: 0

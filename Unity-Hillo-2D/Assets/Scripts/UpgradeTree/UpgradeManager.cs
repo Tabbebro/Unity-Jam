@@ -30,6 +30,8 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    public float AutomaticRotationCooldown = 10f;
+    public float RotationSpeed = 10f;
     public float NudgeCooldown = 1f;
     public float LetThroughPerSecond = 1f;
     public float LetThroughInterval = 1f;
@@ -37,6 +39,7 @@ public class UpgradeManager : MonoBehaviour
     public int SandCount = 1;
 
     public bool LetThroughUnlocked = false;
+    public bool AutomaticRotationUnlocked = false;
     public bool RedSandUnlocked = false;
     public bool BlueSandUnlocked = false;
     public bool AutomaticHourGlassFlipUnlocked = false;
