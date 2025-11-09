@@ -189,7 +189,7 @@ public class SkillButton : MonoBehaviour
 
                 var type = item.Script.GetType();
                 var field = type.GetField(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                PropertyInfo prop = type.GetProperty(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                //PropertyInfo prop = type.GetProperty(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 UpgradeManager.Instance.RaiseUpgradeHappened(item.VariableName, item);
                 if (field != null)
                 {
@@ -213,7 +213,7 @@ public class SkillButton : MonoBehaviour
                     }
                     continue;
                 }
-                else if(prop != null)
+                /* else if(prop != null)
                 {
                     object currentValue = prop.GetValue(item.Script);
                     if (currentValue is float f)
@@ -233,7 +233,7 @@ public class SkillButton : MonoBehaviour
                         Debug.LogWarning($"Field '{item.VariableName}' on {type.Name} is not a numeric type.");
                     }
                     continue;
-                }
+                } */
                 
             }
         }
