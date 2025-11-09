@@ -35,6 +35,7 @@ public class UpgradeManager : MonoBehaviour
     public float NudgeCooldown = 1f;
     public float LetThroughPerSecond = 1f;
     public float LetThroughInterval = 1f;
+    public float LetThroughCheckInterval = 2f;
     public float GrainValue = 1f;
     public int SandCount = 1;
 

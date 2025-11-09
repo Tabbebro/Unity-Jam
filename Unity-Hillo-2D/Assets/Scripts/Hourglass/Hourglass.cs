@@ -147,12 +147,14 @@ public class Hourglass : MonoBehaviour
     {
         if (name.ToString() == "LetThroughUnlocked")
         {
-            print("ballflowthrough unlocked");
             Settings.BallsToFlowThrough = 1;
         }
         if (name.ToString() == "LetThroughPerSecond")
         {
             Settings.BallsToFlowThrough = Mathf.RoundToInt(Settings.BallsToFlowThrough * item.UpgradeMultiplier);
+        }
+        if (name.ToString() == "LetThroughCheckInterval") {
+            Settings.FlowCheckInterval *= item.UpgradeMultiplier;
         }
         if (name.ToString() == "RotationSpeed") {
             Settings.RotationSpeed *= item.UpgradeMultiplier;
