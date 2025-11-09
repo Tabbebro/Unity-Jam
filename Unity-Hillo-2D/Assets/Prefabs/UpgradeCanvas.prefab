@@ -4283,11 +4283,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 0f5f5e35d271e72419726aa05433311b, type: 3}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: More Sand
+      value: Sand +1
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpCost
@@ -4632,6 +4632,14 @@ PrefabInstance:
       propertyPath: _description
       value: Faster Flow Interval
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpFlipCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpResourceCost
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _variablesToUpdate.Array.size
       value: 1
@@ -4720,14 +4728,6 @@ PrefabInstance:
     - target: {fileID: 5781555686132074998, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
-      propertyPath: FlipResource
-      value: 100000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
-      propertyPath: SandResource
-      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: _coinAmountText
@@ -5742,7 +5742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpMultiplier
@@ -5750,7 +5750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpResourceCost
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _variablesToUpdate.Array.size
@@ -5907,7 +5907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpMultiplier
@@ -5915,7 +5915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpResourceCost
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _connections.Array.size
@@ -6209,7 +6209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: MORE Sand
+      value: Sand +1
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost

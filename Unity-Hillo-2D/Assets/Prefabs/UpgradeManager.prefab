@@ -44,14 +44,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecd44500a1e2f5a4fa5f056790135036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
+  _coinAmountText: {fileID: 0}
+  _flipAmountText: {fileID: 0}
   HourGlassSettings: {fileID: 11400000, guid: aa0ba0dc74f01c8458daf454a648cb1a, type: 2}
   _nudgeForce: 1
+  AutomaticRotationCooldown: 10
+  RotationSpeed: 10
   NudgeCooldown: 1
+  NudgeFlow: 1
   LetThroughPerSecond: 1
   LetThroughInterval: 1
+  LetThroughCheckInterval: 2
   GrainValue: 1
+  SandCount: 1
+  AmountOfSandToSpawnPerRotation: 0
+  LetThroughUnlocked: 0
+  AutomaticRotationUnlocked: 0
   RedSandUnlocked: 0
   BlueSandUnlocked: 0
   AutomaticHourGlassFlipUnlocked: 0
-  TotalLevel: 0
-  ResourceAmount: 200
+  SandResource: 0
+  FlipResource: 0
+  SandMultiplier: 1
