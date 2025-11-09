@@ -357,6 +357,8 @@ MonoBehaviour:
   _offsetX: 200
   _yDeadZone: 80
   _xDeadZone: 150
+  _fadedBorderColor: {r: 0.1792453, g: 0.16148986, b: 0.16148986, a: 1}
+  _fullBorderColor: {r: 0, g: 0, b: 0, a: 1}
   _scaleIncrease: {x: 1.2, y: 1.2}
   _animationDuration: 0.1
   _audioClips:
@@ -571,7 +573,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3849869381418982261}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

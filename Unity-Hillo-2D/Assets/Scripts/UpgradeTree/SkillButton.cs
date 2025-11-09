@@ -40,6 +40,8 @@ public class SkillButton : MonoBehaviour
     [SerializeField] float _offsetX = 200;
     [SerializeField] float _yDeadZone = 150;
     [SerializeField] float _xDeadZone = 150;
+    [SerializeField] Color _fadedBorderColor;
+    [SerializeField] Color _fullBorderColor;
 
     [Space]
     [Header("Animation settings")]
@@ -66,6 +68,11 @@ public class SkillButton : MonoBehaviour
         {
             _middleIcon.sprite = _icon;
         }
+        if (_currentLevel <= 0)
+        {
+            _hoverImg.color = _fadedBorderColor;
+        }
+
         _startScale = transform.localScale;
 
         _upgradeManager = UpgradeManager.Instance;
@@ -145,7 +152,7 @@ public class SkillButton : MonoBehaviour
             _audio.Play();
             return;
         }
-
+        
 
         _upgradeManager.ModifySandResource(-_levelUpResourceCost);
         _upgradeManager.ModifyFlipResource(-_levelUpFlipCost);
@@ -163,6 +170,10 @@ public class SkillButton : MonoBehaviour
         _levelUpFlipCost = Mathf.Round(_levelUpFlipCost * 10.0f) * 0.1f;
 
         _currentLevel++;
+        if (_currentLevel >= 1)
+        {
+            _hoverImg.color = _fullBorderColor;
+        }
         if (_currentLevel >= _maxLevel)
         {
             _audio.clip = _audioClips[2];
