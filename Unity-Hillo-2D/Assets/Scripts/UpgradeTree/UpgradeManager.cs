@@ -82,7 +82,14 @@ public class UpgradeManager : MonoBehaviour
     public bool EnoughFlipResource(float amount) => FlipResource >= amount;
     public void ModifySandResource(float amount)
     {
-        SandResource += amount * SandMultiplier;
+        if (amount <= 0)
+        {
+            SandResource += amount;
+        }
+        else
+        {
+            SandResource += amount * SandMultiplier;
+        }
         StartSandTween();
         RaiseBalanceModified();
     }
