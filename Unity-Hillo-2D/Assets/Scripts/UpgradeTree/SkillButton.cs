@@ -102,7 +102,7 @@ public class SkillButton : MonoBehaviour
             _hoverCoroutine = null;
         }
         _hoverCoroutine = StartCoroutine(Scale(_endScale, _hoverImg.gameObject));
-
+        _hoverImg.color = _fullBorderColor;
         Vector2 myPos = transform.position;
         myPos += new Vector2(0, _offsetY /* + _rect.rect.height / 2 + _rect.localPosition.y */);
         Vector2 bounds = _borders.rect.size;
@@ -132,7 +132,14 @@ public class SkillButton : MonoBehaviour
             _hoverCoroutine = null;
         }
         _hoverCoroutine = StartCoroutine(Scale(new Vector3(1, 1, 1), _hoverImg.gameObject));
-        
+        if (_currentLevel >= 1)
+        {
+            _hoverImg.color = _fullBorderColor;
+        }
+        else
+        {
+            _hoverImg.color = _fadedBorderColor;
+        }
         InfoBox.Instance.gameObject.SetActive(false);
     }
     public void OnClicked()
