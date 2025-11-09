@@ -52,7 +52,10 @@ public class Hourglass : MonoBehaviour
         OnRotationStarted += DisableButton;
         OnRotationStarted += PlayeRotateAudio;
         SandManager.OnAllSandWentThrough += InvokeCanRotate;
+        SandManager.CancelAllSandWentThrough += InvokeCancelRotate;
+        UpgradeManager.Instance.UpgradeHappened += NewUpgrade;
     }
+
 
     private void OnEnable() {
         KillRotationTween();
@@ -86,6 +89,7 @@ public class Hourglass : MonoBehaviour
     void FinnishRotation() {
         IsRotating = false;
         OnRotationFinished?.Invoke();
+        UpgradeManager.Instance.ModifyFlipResource(1);
     }
 
     void KillRotationTween() {
@@ -103,6 +107,11 @@ public class Hourglass : MonoBehaviour
     public void InvokeCanRotate() {
         OnRotationEnabled?.Invoke();
     }
+    private void InvokeCancelRotate()
+    {
+        DisableButton();
+    }
+    
 
     void CheckForBalls(int value) {
         Points += value;
@@ -114,6 +123,7 @@ public class Hourglass : MonoBehaviour
     }
 
     public void DisableButton() {
+        print("Disable rotate button");
         CanRotate = false;
         RotateButton.interactable = false;
     }
@@ -122,4 +132,16 @@ public class Hourglass : MonoBehaviour
         _audioSource.pitch = _rotateClip.length / Settings.RotationSpeed;
         _audioSource.PlayOneShot(_rotateClip);
     }
+    
+    
+    private void NewUpgrade(object name, object item)
+    {
+        if (name.ToString() == "LetThroughUnlocked")
+        {
+            Settings.BallsToFlowThrough = 1;
+        }
+    }
+
+    
+    
 }

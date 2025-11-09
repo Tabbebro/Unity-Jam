@@ -744,6 +744,17 @@ Transform:
   - {fileID: 128767025}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1001641310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6890482096661938656, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+  m_PrefabInstance: {fileID: 1806860686}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd44500a1e2f5a4fa5f056790135036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
 --- !u!1001 &1014255184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1066,6 +1077,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 863214654741671560, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 863214654741671560, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].Script
+      value: 
+      objectReference: {fileID: 1001641310}
+    - target: {fileID: 863214654741671560, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeBool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 863214654741671560, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].VariableName
+      value: LetThroughUnlocked
+      objectReference: {fileID: 0}
+    - target: {fileID: 863214654741671560, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174855372409762823, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _maxLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174855372409762823, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _description
+      value: Bigger gap
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174855372409762823, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _levelUpFlipCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174855372409762823, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _levelUpResourceCost
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2190332526242358358, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1113,6 +1160,10 @@ PrefabInstance:
     - target: {fileID: 3540286132212823265, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468866308882726656, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _maxLevel
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5468866308882726656, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: _description
@@ -1226,9 +1277,37 @@ PrefabInstance:
       propertyPath: SandResource
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7869598426688396006, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _description
+      value: Nudge Cooldown -10%
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869598426688396006, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _levelUpFlipCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869598426688396006, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _levelUpResourceCost
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7985088562233530831, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: m_Name
       value: UpgradeCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710538121409757289, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710538121409757289, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].Script
+      value: 
+      objectReference: {fileID: 1001641310}
+    - target: {fileID: 8710538121409757289, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].VariableName
+      value: NudgeCooldown
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710538121409757289, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeMultiplier
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

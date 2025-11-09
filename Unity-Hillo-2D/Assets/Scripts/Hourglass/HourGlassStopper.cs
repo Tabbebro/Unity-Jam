@@ -50,10 +50,10 @@ public class HourGlassStopper : MonoBehaviour
             _timer = 0;
             _ballFlowRoutine = StartCoroutine(BallFlow());
         }
-        else if (_timer >= _hourglass.Settings.RotationFailSafeTimer && !_hourglass.CanRotate && !_hourglass.IsRotating) {
-            _timer = 0;
-            _hourglass.InvokeCanRotate();
-        }
+        // else if (_timer >= _hourglass.Settings.RotationFailSafeTimer && !_hourglass.CanRotate && !_hourglass.IsRotating) {
+        //     _timer = 0;
+        //     _hourglass.InvokeCanRotate();
+        // }
         else if (_hourglass.Settings.AutomaticRotationUnlocked && _hourglass.CanRotate && !_hourglass.IsRotating) {
             if (!_rotationTimerMaskImage.activeInHierarchy) { _rotationTimerMaskImage.SetActive(true); }
 

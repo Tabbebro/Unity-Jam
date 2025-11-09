@@ -36,6 +36,7 @@ public class UpgradeManager : MonoBehaviour
     public float GrainValue = 1f;
     public int SandCount = 1;
 
+    public bool LetThroughUnlocked = false;
     public bool RedSandUnlocked = false;
     public bool BlueSandUnlocked = false;
     public bool AutomaticHourGlassFlipUnlocked = false;
@@ -49,9 +50,9 @@ public class UpgradeManager : MonoBehaviour
     Tween _flipCountTween;
 
     public event Action<object, object> UpgradeHappened;
-    public void RaiseUpgradeHappened(string obj, object obj2)
+    public void RaiseUpgradeHappened(string name, object item)
     {
-        UpgradeHappened?.Invoke(obj, obj2);
+        UpgradeHappened?.Invoke(name, item);
     }
     void Start()
     {

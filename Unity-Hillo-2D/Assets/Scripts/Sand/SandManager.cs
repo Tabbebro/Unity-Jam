@@ -18,7 +18,9 @@ public class SandManager : MonoBehaviour
     #endregion
     public bool AllSandGoneThrough;
     public int howManyGoneThrough;
+    public int howManySands;
     public event Action OnAllSandWentThrough;
+    public event Action CancelAllSandWentThrough;
 
     public GameObject NormalSandPrefab;
     public GameObject RedSandPrefab;
@@ -35,11 +37,17 @@ public class SandManager : MonoBehaviour
 
     private void NewUpgrade(object name, object item)
     {
-        print(name);
         if (name.ToString() == "SandCount")
         {
-            print("Sandcount upgrade came through");
             SpawnSandGrains(NormalSandPrefab, 1);
+
+            if (AllSandGoneThrough) 
+            {
+                print("CancelAllSandWentThrough");
+                AllSandGoneThrough = false;
+                CancelAllSandWentThrough?.Invoke();
+            }
+            
         }
     }
 
@@ -53,6 +61,7 @@ public class SandManager : MonoBehaviour
         {
             GameObject sand = Instantiate(NormalSandPrefab, spawnPoint, quaternion.identity, transform);
             Grain grain = sand.GetComponent<Grain>();
+            howManySands++;
             yield return new WaitForSeconds(0.1f);
         }
     }
