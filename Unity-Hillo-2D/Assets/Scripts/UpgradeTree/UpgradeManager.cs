@@ -33,6 +33,7 @@ public class UpgradeManager : MonoBehaviour
     public float AutomaticRotationCooldown = 10f;
     public float RotationSpeed = 10f;
     public float NudgeCooldown = 1f;
+    public int NudgeFlow = 1;
     public float LetThroughPerSecond = 1f;
     public float LetThroughInterval = 1f;
     public float LetThroughCheckInterval = 2f;

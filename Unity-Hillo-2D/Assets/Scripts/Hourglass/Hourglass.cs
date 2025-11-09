@@ -167,6 +167,9 @@ public class Hourglass : MonoBehaviour
         if (name.ToString() == "AutomaticRotationCooldown") {
             Settings.AutomaticRotationTime *= item.UpgradeMultiplier;
         }
+        if (name.ToString() == "NudgeFlow") {
+            Settings.BallsNudgeLetThrough += item.UpgradeAmount;
+        }
     }
 
     

@@ -4671,6 +4671,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _description
+      value: Nudge lets more sand through
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpFlipCost
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpResourceCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].Script
+      value: 
+      objectReference: {fileID: 6890482096661938656}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].VariableName
+      value: NudgeFlow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
