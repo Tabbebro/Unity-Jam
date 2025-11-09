@@ -55,6 +55,7 @@ public class Hourglass : MonoBehaviour
         OnRotationStarted += PlayeRotateAudio;
         SandManager.OnAllSandWentThrough += InvokeCanRotate;
         SandManager.CancelAllSandWentThrough += InvokeCancelRotate;
+        OnRotationFinished += SpawnSand;
         
     }
     void Start()
@@ -81,6 +82,9 @@ public class Hourglass : MonoBehaviour
         OnRotationStarted -= DisableButton;
         OnRotationStarted -= PlayeRotateAudio;
         SandManager.OnAllSandWentThrough -= InvokeCanRotate;
+        SandManager.CancelAllSandWentThrough -= InvokeCancelRotate;
+        OnRotationFinished -= SpawnSand;
+
     }
 
     #region Rotation
@@ -108,6 +112,11 @@ public class Hourglass : MonoBehaviour
         }
     }
     #endregion
+
+    public void SpawnSand() {
+        if (!Settings.SpawnSandOnRotate) { return; }
+        SandManager.SpawnRandomSand();
+    }
 
     public void InvokeBallWentThrough(int value) {
         OnBallWentThrough?.Invoke(value);
@@ -155,6 +164,7 @@ public class Hourglass : MonoBehaviour
         }
         if (name.ToString() == "LetThroughCheckInterval") {
             Settings.FlowCheckInterval *= item.UpgradeMultiplier;
+            Settings.BallFlowInterval *= item.UpgradeMultiplier;
         }
         if (name.ToString() == "RotationSpeed") {
             Settings.RotationSpeed *= item.UpgradeMultiplier;
@@ -170,6 +180,10 @@ public class Hourglass : MonoBehaviour
         if (name.ToString() == "NudgeFlow") {
             Settings.BallsNudgeLetThrough += item.UpgradeAmount;
         }
+        if (name.ToString() == "SpawnSandOnRotationUnlocked") {
+            Settings.SpawnSandOnRotate = item.UpgradeBool;
+        }
+        
     }
 
     

@@ -4068,6 +4068,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _maxLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: UnlockLevel
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _description
+      value: Gain +1 sand on rotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpFlipCost
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpResourceCost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].Script
+      value: 
+      objectReference: {fileID: 6890482096661938656}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeBool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].VariableName
+      value: SpawnSandOnRotationUnlocked
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4389,7 +4425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
@@ -4545,6 +4581,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _maxLevel
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
       value: Faster Flow Interval
       objectReference: {fileID: 0}
@@ -4639,11 +4679,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: FlipResource
-      value: 1000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: SandResource
-      value: 1000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: _coinAmountText

@@ -42,6 +42,7 @@ public class UpgradeManager : MonoBehaviour
 
     public bool LetThroughUnlocked = false;
     public bool AutomaticRotationUnlocked = false;
+    public bool SpawnSandOnRotationUnlocked = false;
     public bool RedSandUnlocked = false;
     public bool BlueSandUnlocked = false;
     public bool AutomaticHourGlassFlipUnlocked = false;

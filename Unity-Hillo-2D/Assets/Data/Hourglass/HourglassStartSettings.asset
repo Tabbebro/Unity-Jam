@@ -16,8 +16,9 @@ MonoBehaviour:
   RotationSpeed: 5
   AutomaticRotationUnlocked: 0
   AutomaticRotationTime: 5
+  SpawnSandOnRotate: 0
   BallsToFlowThrough: 0
-  BallFlowInterval: 0.1
+  BallFlowInterval: 1.9
   FlowCheckInterval: 2
   BallsNudgeLetThrough: 1
   NudgeForce: 1
