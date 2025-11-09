@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
-using NUnit.Framework.Constraints;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
-
+using ScrutableObjects;
+using Unity.VisualScripting;
 public class SandManager : MonoBehaviour
 {
     #region Instance
@@ -19,6 +20,7 @@ public class SandManager : MonoBehaviour
     public bool AllSandGoneThrough;
     public int howManyGoneThrough;
     public int howManySands;
+    public int MaxSandAmount = 120;
     public event Action OnAllSandWentThrough;
     public event Action CancelAllSandWentThrough;
 
@@ -26,10 +28,15 @@ public class SandManager : MonoBehaviour
     public GameObject RedSandPrefab;
     public GameObject BlueSandPrefab;
     public Vector2 spawnPoint;
-    
+    public bool RedSandUnlocked = false;
+    public bool BlueSandUnlocked = false;
+    [ShowProperties]public SO_SandList SandList;
 
     void Start()
     {
+        SandList.InitializeLootTable();
+        SandList = Instantiate(SandList);
+
         UpgradeManager.Instance.UpgradeHappened += NewUpgrade;
     
         SpawnSandGrains(NormalSandPrefab, 1);
@@ -47,25 +54,68 @@ public class SandManager : MonoBehaviour
         {
             SpawnSandGrains(NormalSandPrefab, upgrade.UpgradeAmount);
 
-            if (AllSandGoneThrough) 
+            if (AllSandGoneThrough)
             {
                 print("CancelAllSandWentThrough");
                 AllSandGoneThrough = false;
                 CancelAllSandWentThrough?.Invoke();
             }
-            
+
+        }
+        if (name.ToString() == "RedSandUnlocked")
+        {
+            if (RedSandUnlocked) return;
+            RedSandUnlocked = true;
+
+            foreach (var item in SandList.ObjectSpawn)
+            {
+                if (item.Prefab.name.Contains("Red"))
+                {
+                    SpawnSandGrains(item.Prefab, 1);
+                    item.SpawnChance = 10;
+                }
+            }
+            SandList.InitializeLootTable();
+        }
+        if (name.ToString()== "BlueSandUnlocked")
+        {
+            if (BlueSandUnlocked) return;
+            BlueSandUnlocked = true;
+
+            foreach (var item in SandList.ObjectSpawn)
+            {
+                if (item.Prefab.name.Contains("Blue"))
+                {
+                    SpawnSandGrains(item.Prefab, 1);
+                    item.SpawnChance = 10;
+                }
+            }
+            SandList.InitializeLootTable();
         }
     }
-
+    public void SpawnRandomSand(int amount = 1)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject randomSand = SandList.GetRandomObject();
+            if (randomSand == null)
+            {
+                randomSand = NormalSandPrefab;
+            }
+            StartCoroutine(SpawnSand(randomSand, amount));
+        }
+    }
     public void SpawnSandGrains(GameObject gameObject, int amount)
     {
         StartCoroutine(SpawnSand(gameObject, amount));
     }
     IEnumerator SpawnSand(GameObject gameObject, int amount)
     {
+        if (howManySands >= MaxSandAmount) yield break;
+        
         for (int i = 0; i < amount; i++)
         {
-            GameObject sand = Instantiate(NormalSandPrefab, spawnPoint, quaternion.identity, transform);
+            GameObject sand = Instantiate(gameObject, spawnPoint, quaternion.identity, transform);
             Grain grain = sand.GetComponent<Grain>();
             howManySands++;
             yield return new WaitForSeconds(0.1f);

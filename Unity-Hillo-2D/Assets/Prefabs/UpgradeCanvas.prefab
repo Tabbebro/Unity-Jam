@@ -34,6 +34,7 @@ RectTransform:
   - {fileID: 3390119117795012385}
   - {fileID: 8955665351267028274}
   - {fileID: 5999616434220532335}
+  - {fileID: 3665951207330521763}
   m_Father: {fileID: 5492303226595500199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
@@ -1278,6 +1279,7 @@ RectTransform:
   m_Children:
   - {fileID: 3067693039422792261}
   - {fileID: 95596878530725836}
+  - {fileID: 4652167405846157537}
   - {fileID: 3338291295453387193}
   - {fileID: 5917823178190325486}
   - {fileID: 6438544740198919837}
@@ -1517,6 +1519,142 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4977509334090807374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4652167405846157537}
+  - component: {fileID: 2667622219060096672}
+  - component: {fileID: 8374774953672550468}
+  m_Layer: 2
+  m_Name: MaxedOutText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &4652167405846157537
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977509334090807374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5716123257419158861}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 22.226}
+  m_SizeDelta: {x: 0, y: 44.452}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2667622219060096672
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977509334090807374}
+  m_CullTransparentMesh: 1
+--- !u!114 &8374774953672550468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977509334090807374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: MAX
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 0.068331, g: 1, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 32
+  m_fontSizeBase: 32
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5042630933339027386
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,7 +2899,7 @@ MonoBehaviour:
   _levelText: {fileID: 3171625869235352582}
   _costText: {fileID: 8937962428190781968}
   _flipCostText: {fileID: 6710715902631926063}
-  _maxedText: {fileID: 1764051643744084984}
+  _maxedText: {fileID: 8374774953672550468}
   _coinImage: {fileID: 1870361968171243106}
   _flipImage: {fileID: 6589716193940072584}
 --- !u!1 &7167986115433446474
@@ -2900,6 +3038,81 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7211861768741580061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3665951207330521763}
+  - component: {fileID: 9076414678017673897}
+  - component: {fileID: 4551285160080574529}
+  m_Layer: 5
+  m_Name: ShopBorder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3665951207330521763
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7211861768741580061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2600570848225399310}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9076414678017673897
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7211861768741580061}
+  m_CullTransparentMesh: 1
+--- !u!114 &4551285160080574529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7211861768741580061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.60628605, g: 0, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 86bd38587ed08914f8f2b327cb00de82, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1.61
 --- !u!1 &7246527910808976000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4173,7 +4386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
@@ -4423,11 +4636,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: FlipResource
-      value: 0
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: SandResource
-      value: 0
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: _coinAmountText
@@ -4558,6 +4771,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _description
+      value: Increase Red sand spawn  chance
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4673,7 +4890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Nudge lets more sand through
+      value: Nudge flow ++
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -4815,6 +5032,26 @@ PrefabInstance:
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _maxLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _description
+      value: Unlock Blue Sand
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeBool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].VariableName
+      value: BlueSandUnlocked
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5534,6 +5771,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _maxLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _description
+      value: Unlock Red sand
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _connections.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -5544,7 +5789,19 @@ PrefabInstance:
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: '_connections.Array.data[1]'
       value: 
-      objectReference: {fileID: 8772124422394270465}
+      objectReference: {fileID: 3641144896644747915}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeBool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].VariableName
+      value: RedSandUnlocked
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

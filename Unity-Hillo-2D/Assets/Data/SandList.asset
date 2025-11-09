@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a13455b9ce61424d831cf075f8dd124, type: 3}
+  m_Name: SandList
+  m_EditorClassIdentifier: Assembly-CSharp::SO_SandList
+  ObjectSpawn:
+  - Prefab: {fileID: 1249077544589799513, guid: 7c1dee7825316974082b6aa8d6940d4f, type: 3}
+    SpawnChance: 100
+  - Prefab: {fileID: 8004548757930750540, guid: 5049e722dffab354582267b474f49f59, type: 3}
+    SpawnChance: 0
+  - Prefab: {fileID: 3009203491376493236, guid: 3307c52dcd89fa441b1d952d79ee377e, type: 3}
+    SpawnChance: 0
