@@ -171,6 +171,8 @@ public class HourGlassStopper : MonoBehaviour
             else {
                 waitTime = _hourglass.Settings.BallFlowInterval;
             }
+
+            _hourglass.InvokeBallWentThrough();
             yield return new WaitForSeconds(waitTime);
         }
     }

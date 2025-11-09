@@ -13,9 +13,9 @@ public class Hourglass : MonoBehaviour
     [Header("Settings")]
     [ShowProperties] public HourGlassSettingsSO Settings;
 
-
-    [Header("Points")]
-    public int Points = 0;
+    [Header("Sign")]
+    [SerializeField] GameObject _sign;
+    Tween _signTween;
 
     [Header("Rotation")]
     public bool IsRotating = false;
@@ -39,7 +39,7 @@ public class Hourglass : MonoBehaviour
     public event Action OnRotationEnabled;
     public event Action OnRotationStarted;
     public event Action OnRotationFinished;
-    public event Action<int> OnBallWentThrough;
+    public event Action OnBallWentThrough;
 
     private void Awake() {
         if (Instance == null) {
@@ -49,7 +49,7 @@ public class Hourglass : MonoBehaviour
             Destroy(gameObject);
         }
 
-        OnBallWentThrough += CheckForBalls;
+        OnBallWentThrough += CheckForSign;
         OnRotationEnabled += EnableButton;
         OnRotationStarted += DisableButton;
         OnRotationStarted += PlayeRotateAudio;
@@ -77,7 +77,7 @@ public class Hourglass : MonoBehaviour
 
     private void OnDestroy() {
         KillRotationTween();
-        OnBallWentThrough -= CheckForBalls;
+        OnBallWentThrough -= CheckForSign;
         OnRotationEnabled -= EnableButton;
         OnRotationStarted -= DisableButton;
         OnRotationStarted -= PlayeRotateAudio;
@@ -118,8 +118,8 @@ public class Hourglass : MonoBehaviour
         SandManager.SpawnRandomSand(Settings.AmountOfSandSpawnedOnRotation);
     }
 
-    public void InvokeBallWentThrough(int value) {
-        OnBallWentThrough?.Invoke(value);
+    public void InvokeBallWentThrough() {
+        OnBallWentThrough?.Invoke();
     }
 
     public void InvokeCanRotate() {
@@ -131,8 +131,17 @@ public class Hourglass : MonoBehaviour
     }
     
 
-    void CheckForBalls(int value) {
-        Points += value;
+    void CheckForSign() {
+        if (!_sign.activeInHierarchy || _signTween != null) { return; }
+
+        _signTween.Kill();
+        _signTween = null;
+        Vector3 endPosition = _sign.transform.position + new Vector3(-400, -400, 0);
+        _signTween = _sign.transform.DOMove(endPosition, 5f).SetEase(Ease.OutQuad).OnComplete(CloseSign);
+    }
+
+    void CloseSign() {
+        _sign.SetActive(false);
     }
 
     public void EnableButton() {
