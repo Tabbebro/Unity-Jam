@@ -134,13 +134,22 @@ public class Hourglass : MonoBehaviour
     void CheckForSign() {
         if (!_sign.activeInHierarchy || _signTween != null) { return; }
 
-        _signTween.Kill();
-        _signTween = null;
         Vector3 endPosition = _sign.transform.position + new Vector3(-400, -400, 0);
-        _signTween = _sign.transform.DOMove(endPosition, 5f).SetEase(Ease.OutQuad).OnComplete(CloseSign);
+        _sign.transform.DOMove(new Vector3(480, 540, 0), 1f).SetEase(Ease.OutQuad).OnComplete(RotateDude);
     }
 
-    void CloseSign() {
+    void RotateDude() {
+        Vector3 endPosition = _sign.transform.position + new Vector3(2000, 2000, 0);
+        _sign.transform.DOScale(Vector3.zero, 2f).SetEase(Ease.OutQuad);
+        _sign.transform.DORotate(new Vector3(0,0,180), 1f).SetEase(Ease.OutQuad).OnComplete(RotateAgain);
+        //_sign.SetActive(false);
+    }
+
+    void RotateAgain() {
+        _sign.transform.DORotate(new Vector3(0,0,360), 1f).SetEase(Ease.OutQuad).OnComplete(CloseDude);
+    }
+
+    void CloseDude() {
         _sign.SetActive(false);
     }
 
