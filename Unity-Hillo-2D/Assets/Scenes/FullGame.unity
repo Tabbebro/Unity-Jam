@@ -1276,6 +1276,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2833770950890096644, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].Script
+      value: 
+      objectReference: {fileID: 1561924563}
     - target: {fileID: 3232989399172070661, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1332,6 +1336,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5594818604566222557, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].Script
+      value: 
+      objectReference: {fileID: 1561924563}
     - target: {fileID: 5843756976998254633, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1410,14 +1418,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5843756976998254633, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6890482096661938656, guid: 16ed2197b79953548adeff5138190bef, type: 3}
-      propertyPath: FlipResource
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6890482096661938656, guid: 16ed2197b79953548adeff5138190bef, type: 3}
-      propertyPath: SandResource
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7826569004457822322, guid: 16ed2197b79953548adeff5138190bef, type: 3}

@@ -30,11 +30,13 @@ public class SandManager : MonoBehaviour
     public Vector2 spawnPoint;
     public bool RedSandUnlocked = false;
     public bool BlueSandUnlocked = false;
+    public int RedSandSpawnChance = 0;
+    public int BlueSandSpawnChance = 0;
     [ShowProperties]public SO_SandList SandList;
 
     void Start()
     {
-        SandList.InitializeLootTable();
+        //SandList.InitializeLootTable();
         SandList = Instantiate(SandList);
 
         UpgradeManager.Instance.UpgradeHappened += NewUpgrade;
@@ -62,6 +64,26 @@ public class SandManager : MonoBehaviour
             }
 
         }
+        if (name.ToString() == "RedSandSpawnChance")
+        {
+            foreach (var item in SandList.ObjectSpawn)
+            {
+                if (item.Prefab.name.Contains("Red"))
+                {
+                    item.SpawnChance += upgrade.UpgradeAmount;
+                }
+            }
+        }
+        if (name.ToString() == "BlueSandSpawnChance")
+        {
+            foreach (var item in SandList.ObjectSpawn)
+            {
+                if (item.Prefab.name.Contains("Blue"))
+                {
+                    item.SpawnChance += upgrade.UpgradeAmount;
+                }
+            }
+        }
         if (name.ToString() == "RedSandUnlocked")
         {
             if (RedSandUnlocked) return;
@@ -72,10 +94,10 @@ public class SandManager : MonoBehaviour
                 if (item.Prefab.name.Contains("Red"))
                 {
                     SpawnSandGrains(item.Prefab, 1);
+                    RedSandSpawnChance = 10;
                     item.SpawnChance = 10;
                 }
             }
-            SandList.InitializeLootTable();
         }
         if (name.ToString()== "BlueSandUnlocked")
         {
@@ -87,10 +109,10 @@ public class SandManager : MonoBehaviour
                 if (item.Prefab.name.Contains("Blue"))
                 {
                     SpawnSandGrains(item.Prefab, 1);
+                    BlueSandSpawnChance = 10;
                     item.SpawnChance = 10;
                 }
             }
-            SandList.InitializeLootTable();
         }
     }
     public void SpawnRandomSand(int amount = 1)
@@ -112,7 +134,7 @@ public class SandManager : MonoBehaviour
     IEnumerator SpawnSand(GameObject gameObject, int amount)
     {
         if (howManySands >= MaxSandAmount) yield break;
-        
+
         for (int i = 0; i < amount; i++)
         {
             GameObject sand = Instantiate(gameObject, spawnPoint, quaternion.identity, transform);

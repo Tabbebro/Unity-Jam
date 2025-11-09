@@ -2671,6 +2671,8 @@ MonoBehaviour:
     - {fileID: 4990024133928735430}
   - Row:
     - {fileID: 329582237446349285}
+  - Row:
+    - {fileID: 6372782276429089874}
   _downRows:
   - Row:
     - {fileID: 1323145178757845594}
@@ -3348,6 +3350,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8640268832279205213}
   - {fileID: 3101331162469185770}
   - {fileID: 8021416823180884301}
   - {fileID: 7699164749445286857}
@@ -4636,11 +4639,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: FlipResource
-      value: 10000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: SandResource
-      value: 10000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: _coinAmountText
@@ -4678,6 +4681,151 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5781555686132074998, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
   m_PrefabInstance: {fileID: 3797882009675007963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3877561624504482860
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3854738146403051658}
+    m_Modifications:
+    - target: {fileID: 3184244427895946410, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_Name
+      value: Right_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 339
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 465
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _maxLevel
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _description
+      value: Increase Blue Sand Spawn Chance
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpFlipCost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpResourceCost
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeBool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].VariableName
+      value: BlueSandSpawnChance
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeAmount
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+--- !u!114 &6372782276429089874 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+  m_PrefabInstance: {fileID: 3877561624504482860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea7cfbfcb7b4af4bbe5c39dbada1417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillButton
+--- !u!224 &8640268832279205213 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+  m_PrefabInstance: {fileID: 3877561624504482860}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6861383060987585269
 PrefabInstance:
@@ -4774,6 +4922,26 @@ PrefabInstance:
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
       value: Increase Red sand spawn  chance
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpFlipCost
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpResourceCost
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].VariableName
+      value: RedSandSpawnChance
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeAmount
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5041,6 +5209,14 @@ PrefabInstance:
       propertyPath: _description
       value: Unlock Blue Sand
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _connections.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: '_connections.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6372782276429089874}
     - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _variablesToUpdate.Array.size
       value: 1
