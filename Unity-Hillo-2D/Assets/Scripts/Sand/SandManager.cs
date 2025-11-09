@@ -54,8 +54,8 @@ public class SandManager : MonoBehaviour
     {
         if (name.ToString() == "SandCount")
         {
-            SpawnSandGrains(NormalSandPrefab, upgrade.UpgradeAmount);
-
+            //SpawnSandGrains(NormalSandPrefab, upgrade.UpgradeAmount);
+            SpawnRandomSand(upgrade.UpgradeAmount);
             if (AllSandGoneThrough)
             {
                 print("CancelAllSandWentThrough");
