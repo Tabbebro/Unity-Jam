@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/UpgradeTree.unity
     guid: 413e84362d49910458716d0ff362dcd4
+  - enabled: 1
+    path: Assets/Scenes/FullGame.unity
+    guid: d86b9e4af5b008c4da8d2aee66a65600
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -25,6 +25,7 @@ public class SkillButton : MonoBehaviour
     [SerializeField] Image img;
     [SerializeField] Image _hoverImg;
     [SerializeField] Image _fadeImg;
+    [SerializeField] TextMeshProUGUI _maxText;
     [SerializeField] List<SkillButton> _connections = new();
 
     [Space]
@@ -83,7 +84,7 @@ public class SkillButton : MonoBehaviour
 
         _button = GetComponent<Button>();
         _rect = GetComponent<RectTransform>();
-        _audio = GetComponent<AudioSource>();
+        //_audio = GetComponent<AudioSource>();
         _upgradeTree = FindAnyObjectByType<UpgradeTree>();
         _borders = _upgradeTree.GetComponent<RectTransform>();
         _upgrade = GetComponent<Upgrade>();
@@ -194,6 +195,7 @@ public class SkillButton : MonoBehaviour
         }
         if (_currentLevel >= _maxLevel)
         {
+            _maxText.gameObject.SetActive(true);
             _fadeImg.gameObject.SetActive(false);
             _audio.clip = _audioClips[2];
             _audio.Play();
@@ -287,7 +289,7 @@ public class SkillButton : MonoBehaviour
     public void SetLine(Vector3 endPos)
     {
         if (_line.gameObject.activeInHierarchy) return;
-
+        
         _line.gameObject.SetActive(true);
 
         Vector3 midPoint = (gameObject.transform.position + endPos) * 0.5f;
