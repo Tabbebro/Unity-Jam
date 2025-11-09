@@ -51,14 +51,15 @@ public class SkillButton : MonoBehaviour
 
     [Space]
     [Header("Audio")]
-    [SerializeField] List<AudioClip> _audioClips = new();
+    [SerializeField] public List<AudioClip> _audioClips = new();
 
     bool _unlocked = false;
+    bool _hovering = false;
     Button _button;
     UpgradeManager _upgradeManager;
     UpgradeTree _upgradeTree;
     RectTransform _borders;
-    AudioSource _audio;
+    public AudioSource _audio;
     Upgrade _upgrade;
     RectTransform _rect;
     Vector3 _startScale;    
@@ -96,6 +97,9 @@ public class SkillButton : MonoBehaviour
     {
         if (Zoom.Instance.IsDragging) return;
 
+        _audio.clip = _audioClips[4];
+        _audio.Play();
+        _hovering = true;
         if (_hoverCoroutine != null)
         {
             StopCoroutine(_hoverCoroutine);
@@ -126,6 +130,7 @@ public class SkillButton : MonoBehaviour
     }
     public void PointerExit()
     {
+        _hovering = false;
         if (_hoverCoroutine != null)
         {
             StopCoroutine(_hoverCoroutine);
@@ -159,7 +164,12 @@ public class SkillButton : MonoBehaviour
             _audio.Play();
             return;
         }
-        
+        if (Hourglass.Instance.IsRotating)
+        {
+            _audio.clip = _audioClips[3];
+            _audio.Play();
+            return;
+        }
 
         _upgradeManager.ModifySandResource(-_levelUpResourceCost);
         _upgradeManager.ModifyFlipResource(-_levelUpFlipCost);
@@ -183,6 +193,7 @@ public class SkillButton : MonoBehaviour
         }
         if (_currentLevel >= _maxLevel)
         {
+            _fadeImg.gameObject.SetActive(false);
             _audio.clip = _audioClips[2];
             _audio.Play();
             _levelUpResourceCost = 0;
@@ -239,9 +250,12 @@ public class SkillButton : MonoBehaviour
         {
             if (button.UnlockLevel == _currentLevel)
             {
+                
                 button.CheckBalance();
                 button.Unlock();
                 button.SetLine(transform.position);
+                button._audio.clip = _audioClips[5];
+                button._audio.Play();
             }
         }
     }
@@ -254,6 +268,11 @@ public class SkillButton : MonoBehaviour
         else
         {
             _fadeImg.gameObject.SetActive(false);
+        }
+
+        if (InfoBox.Instance.gameObject.activeInHierarchy && _hovering)
+        {
+            InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpResourceCost, _levelUpFlipCost);
         }
     }
     public void Unlock()

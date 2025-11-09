@@ -19,6 +19,7 @@ public class InfoBox : MonoBehaviour
     [SerializeField] TextMeshProUGUI _levelText;
     [SerializeField] TextMeshProUGUI _costText;
     [SerializeField] TextMeshProUGUI _flipCostText;
+    [SerializeField] TextMeshProUGUI _maxedText;
     [SerializeField] Image _coinImage;
     [SerializeField] Image _flipImage;
 
@@ -26,6 +27,14 @@ public class InfoBox : MonoBehaviour
     public void MoveInfo(string description, int currLevel, int maxLevel, float costSand, float costFlip)
     {
         _descriptionText.text = $"{description}";
+        if (currLevel >= maxLevel)
+        {
+            _maxedText.gameObject.SetActive(true);
+        }
+        else
+        {
+            _maxedText.gameObject.SetActive(false);
+        }
         _levelText.text = $"{currLevel} / {maxLevel}";
         if (costSand == 0)
         {
