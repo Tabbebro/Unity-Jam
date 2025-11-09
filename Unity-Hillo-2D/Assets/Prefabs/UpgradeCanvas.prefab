@@ -3684,6 +3684,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 2514988542215765323, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
       value: Nudge cooldown -10%
       objectReference: {fileID: 0}
@@ -3832,6 +3836,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: -2319476694228375547, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 2
@@ -3989,6 +3997,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 7576617242518483205, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 5
@@ -4165,7 +4177,7 @@ PrefabInstance:
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _icon
       value: 
-      objectReference: {fileID: 21300000, guid: 0f5f5e35d271e72419726aa05433311b, type: 3}
+      objectReference: {fileID: 1161201145128540330, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 5
@@ -4216,15 +4228,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 0f5f5e35d271e72419726aa05433311b, type: 3}
     - target: {fileID: 8459751482041524642, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_Color.b
-      value: 0.5657707
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8459751482041524642, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_Color.g
-      value: 0.6829248
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8459751482041524642, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_Color.r
-      value: 0.735849
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _variablesToUpdate.Array.size
@@ -4353,12 +4365,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 1341854236672496375, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: '2X smoother flow '
+      value: More Flow
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -4522,12 +4538,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 2486193441875991756, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Faster flow interval
+      value: Faster flow
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -4628,11 +4648,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: FlipResource
-      value: 2000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: SandResource
-      value: 2000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: _coinAmountText
@@ -4764,6 +4784,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: -1654776687134263141, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 5
       objectReference: {fileID: 0}
@@ -4773,11 +4797,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
-      value: 20
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpMultiplier
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpResourceCost
-      value: 30
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _variablesToUpdate.Array.size
@@ -4909,6 +4937,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: -6876449859285394341, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 5
       objectReference: {fileID: 0}
@@ -4918,11 +4950,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
-      value: 15
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _levelUpMultiplier
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpResourceCost
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _connections.Array.size
@@ -5061,6 +5097,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 7374845061861626600, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
       value: Nudge flow ++
@@ -5206,6 +5246,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 184950751378207249, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 1
@@ -5356,12 +5400,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: -7539582390867499684, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Bigger gap
+      value: Automatic flow
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -5517,6 +5565,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 1202984965197363600, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 1
       objectReference: {fileID: 0}
@@ -5530,7 +5582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpResourceCost
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _variablesToUpdate.Array.size
@@ -5658,6 +5710,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 3718842862631874603, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 10
       objectReference: {fileID: 0}
@@ -5671,7 +5727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpMultiplier
@@ -5827,6 +5883,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 21300000, guid: da58297026886eb448db8cd843d795a5, type: 3}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 10
       objectReference: {fileID: 0}
@@ -5836,11 +5896,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpMultiplier
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpResourceCost
@@ -5988,6 +6048,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 2130535880278150251, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _maxLevel
       value: 1
       objectReference: {fileID: 0}
@@ -6128,6 +6192,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: -8179040606652740800, guid: 1a777386f535bfa4abf76b0fe94543d3, type: 3}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: UnlockLevel
       value: 3
