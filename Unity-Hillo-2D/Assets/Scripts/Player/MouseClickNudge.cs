@@ -52,6 +52,12 @@ public class MouseClickNudge : MonoBehaviour
                     Vector2 direction = (rb.position - mouseWorldPos).normalized;
                     rb.AddForce(direction * forceAmount, ForceMode2D.Impulse);
                 }
+                if (rb != null && col.GetComponent<RedGrain>() != null)
+                {
+                    //print("found rb");
+                    Vector2 direction = (rb.position - mouseWorldPos).normalized;
+                    rb.AddForce(direction * forceAmount * 2, ForceMode2D.Impulse);
+                }
             }
             
         } 

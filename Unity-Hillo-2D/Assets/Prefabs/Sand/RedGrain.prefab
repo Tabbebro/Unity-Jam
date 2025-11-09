@@ -64,8 +64,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2227444243408450379, guid: 7c1dee7825316974082b6aa8d6940d4f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1249077544589799513, guid: 7c1dee7825316974082b6aa8d6940d4f, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 381955758612677596}
   m_SourcePrefab: {fileID: 100100000, guid: 7c1dee7825316974082b6aa8d6940d4f, type: 3}
+--- !u!1 &8004548757930750540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1249077544589799513, guid: 7c1dee7825316974082b6aa8d6940d4f, type: 3}
+  m_PrefabInstance: {fileID: 9097345772922372629}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &381955758612677596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004548757930750540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6866710d2f35fd544ab738922d1f84bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RedGrain
+  hasGoneThrough: 0
+  worth: 2
