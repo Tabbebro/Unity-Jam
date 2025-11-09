@@ -33,6 +33,12 @@ public class SandManager : MonoBehaviour
         UpgradeManager.Instance.UpgradeHappened += NewUpgrade;
     
         SpawnSandGrains(NormalSandPrefab, 1);
+
+        Hourglass.Instance.OnRotationFinished += OnRotationFinished;
+    }
+
+    private void OnDestroy() {
+        Hourglass.Instance.OnRotationFinished -= OnRotationFinished;
     }
 
     private void NewUpgrade(object name, VariableInfo upgrade)
@@ -74,5 +80,10 @@ public class SandManager : MonoBehaviour
             AllSandGoneThrough = true;
             OnAllSandWentThrough?.Invoke();
         }
+    }
+
+    public void OnRotationFinished() {
+        howManyGoneThrough = 0;
+        AllSandGoneThrough = false;
     }
 }
