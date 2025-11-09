@@ -17,7 +17,8 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
     [Header("Settings")]
     [SerializeField] protected TSettings _settings;
 
-    [Header("Texts")]
+    [Header("Refs")]
+    [SerializeField] GameObject _objectToTween;
     [SerializeField] protected List<TextMeshProUGUI> _texts;
 
     protected TSelectable _selectable;
@@ -88,7 +89,7 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
     #region Transform Tweening
 
     public virtual void SetTweenableSelectable() {
-        if (_selectable.TryGetComponent<RectTransform>(out RectTransform rect)) {
+        if (_objectToTween.TryGetComponent<RectTransform>(out RectTransform rect)) {
             _tweenableRect = rect;
         }
         else {
