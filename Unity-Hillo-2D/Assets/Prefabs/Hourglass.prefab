@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 3697033206113904793}
   - component: {fileID: 5282255945035155919}
   - component: {fileID: 7425648137579767099}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,10 +171,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2339573430830549896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &407061546565483609
 CanvasRenderer:
@@ -506,7 +506,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2339573430830549896}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,10 +529,10 @@ RectTransform:
   - {fileID: 1826719983913001068}
   m_Father: {fileID: 870245893336718600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -20, y: 12}
-  m_SizeDelta: {x: 10, y: 10}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -150, y: 150}
+  m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &902939462394955803
 GameObject:
@@ -607,8 +607,8 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 8099516988152683719}
   - {fileID: 870245893336718600}
+  - {fileID: 8099516988152683719}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3179989947342024802
@@ -1865,7 +1865,7 @@ GameObject:
   - component: {fileID: 7479244461604957558}
   - component: {fileID: 1513623183905325634}
   - component: {fileID: 1432153849966094721}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AutoRotateTimerFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2078,7 +2078,7 @@ GameObject:
   - component: {fileID: 5350799213495515182}
   - component: {fileID: 7017877730262105344}
   - component: {fileID: 878909363112877444}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AutoRotateTimerMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2100,10 +2100,10 @@ RectTransform:
   - {fileID: 7479244461604957558}
   m_Father: {fileID: 2339573430830549896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -5.2000027, y: 0}
-  m_SizeDelta: {x: 9.2, y: 10}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -4.4499664, y: -1.300003}
+  m_SizeDelta: {x: -8.8999, y: -96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5350799213495515182
 CanvasRenderer:
@@ -3384,7 +3384,7 @@ GameObject:
   - component: {fileID: 2508258971821193822}
   - component: {fileID: 184112484075877561}
   - component: {fileID: 8582646851205218081}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3903,7 +3903,7 @@ GameObject:
   - component: {fileID: 6503061290539471650}
   - component: {fileID: 847520999512539438}
   - component: {fileID: 8441699912296732445}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3975,7 +3975,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7782450066600627039}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: de6b5bc6e99d46b49b5a0225055df447, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 318ec8337b400ef4ba2214524f596c1c, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -4013,7 +4013,7 @@ GameObject:
   - component: {fileID: 4090924135876395981}
   - component: {fileID: 2350424296309948663}
   - component: {fileID: 5934665675148601616}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4027,9 +4027,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7882950883080592835}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2508258971821193822}
@@ -4039,8 +4039,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!223 &4090924135876395981
 Canvas:
   m_ObjectHideFlags: 0
@@ -4050,7 +4050,7 @@ Canvas:
   m_GameObject: {fileID: 7882950883080592835}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -4076,17 +4076,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5934665675148601616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4156,7 +4156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2979450555909738455}
   - component: {fileID: 2233143846077679386}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HourglassSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4224,7 +4224,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: e0a1db277d6a8aa4b809afa8b9a36a6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
