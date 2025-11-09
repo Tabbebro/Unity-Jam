@@ -32,7 +32,7 @@ public class SandManager : MonoBehaviour
     public bool BlueSandUnlocked = false;
     public int RedSandSpawnChance = 0;
     public int BlueSandSpawnChance = 0;
-    [ShowProperties]public SO_SandList SandList;
+    [ShowProperties] public SO_SandList SandList;
 
     void Start()
     {
@@ -40,13 +40,14 @@ public class SandManager : MonoBehaviour
         SandList = Instantiate(SandList);
 
         UpgradeManager.Instance.UpgradeHappened += NewUpgrade;
-    
+
         SpawnSandGrains(NormalSandPrefab, 1);
 
         Hourglass.Instance.OnRotationFinished += OnRotationFinished;
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         Hourglass.Instance.OnRotationFinished -= OnRotationFinished;
     }
 
@@ -99,7 +100,7 @@ public class SandManager : MonoBehaviour
                 }
             }
         }
-        if (name.ToString()== "BlueSandUnlocked")
+        if (name.ToString() == "BlueSandUnlocked")
         {
             if (BlueSandUnlocked) return;
             BlueSandUnlocked = true;
@@ -154,8 +155,29 @@ public class SandManager : MonoBehaviour
         }
     }
 
-    public void OnRotationFinished() {
+    public void OnRotationFinished()
+    {
         howManyGoneThrough = 0;
         AllSandGoneThrough = false;
+    }
+}
+public static class ListExtension
+{
+    /// <summary>
+    /// List shuffler
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list"></param>
+    public static void Shuffle<T>(this IList<T> list)
+    {
+        System.Random rng = new System.Random();
+        int n = list.Count;  
+        while (n > 1) {  
+            n--;  
+            int k = rng.Next(n + 1);  
+            T value = list[k];  
+            list[k] = list[n];  
+            list[n] = value;  
+        }  
     }
 }
