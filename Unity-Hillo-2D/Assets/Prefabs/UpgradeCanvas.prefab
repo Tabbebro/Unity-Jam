@@ -547,7 +547,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2318673949086184545}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2148,7 +2148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: da58297026886eb448db8cd843d795a5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2352,14 +2352,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -716209772540418102, guid: 6ccc6e5056d2aea429a7e05bcfc07d93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da58297026886eb448db8cd843d795a5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2661,8 +2661,7 @@ MonoBehaviour:
     - {fileID: 1353009365531071040}
     - {fileID: 626653946338307645}
   - Row:
-    - {fileID: 3641144896644747915}
-    - {fileID: 8772124422394270465}
+    - {fileID: 1085760332356500711}
   _rightRows:
   - Row:
     - {fileID: 2174855372409762823}
@@ -3143,8 +3142,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2098462966468512644}
-  - {fileID: 6207109970824088078}
+  - {fileID: 2344590124584936936}
   - {fileID: 4421998099343739727}
   - {fileID: 2822243486089148210}
   - {fileID: 4804957194131571689}
@@ -3687,7 +3685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Nudge Cooldown -10%
+      value: Nudge cooldown -10%
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -3840,7 +3838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: 2x Sand Value
+      value: 2x more resources
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -3892,119 +3890,6 @@ RectTransform:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
   m_PrefabInstance: {fileID: 1019248472976457804}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ea7cfbfcb7b4af4bbe5c39dbada1417, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkillButton
---- !u!1001 &1442188552256775039
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6223036691740157596}
-    m_Modifications:
-    - target: {fileID: 3184244427895946410, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_Name
-      value: Left_3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -223
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 439
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
---- !u!224 &6207109970824088078 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-  m_PrefabInstance: {fileID: 1442188552256775039}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8772124422394270465 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-  m_PrefabInstance: {fileID: 1442188552256775039}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -4473,7 +4358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: '2X Smoother Flow '
+      value: '2X smoother flow '
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -4630,7 +4515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Faster Flow Interval
+      value: Faster flow interval
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -4728,6 +4613,14 @@ PrefabInstance:
     - target: {fileID: 5781555686132074998, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
+      propertyPath: FlipResource
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
+      propertyPath: SandResource
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: _coinAmountText
@@ -4864,7 +4757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Increase Blue Sand Spawn Chance
+      value: Increase blue sand spawn chance
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -4911,7 +4804,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
   m_PrefabInstance: {fileID: 3877561624504482860}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6861383060987585269
+--- !u!1001 &7110641969673604249
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -4985,11 +4878,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -365
+      value: -336
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 347
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5004,8 +4897,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _maxLevel
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Increase Red sand spawn  chance
+      value: Increase red sand spawn chance
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -5015,8 +4912,20 @@ PrefabInstance:
       propertyPath: _levelUpResourceCost
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _connections.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: '_connections.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _variablesToUpdate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].UpgradeBool
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
@@ -5032,15 +4941,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
---- !u!224 &2098462966468512644 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-  m_PrefabInstance: {fileID: 6861383060987585269}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3641144896644747915 stripped
+--- !u!114 &1085760332356500711 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-  m_PrefabInstance: {fileID: 6861383060987585269}
+  m_PrefabInstance: {fileID: 7110641969673604249}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -5048,6 +4952,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea7cfbfcb7b4af4bbe5c39dbada1417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillButton
+--- !u!224 &2344590124584936936 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4766984860447746417, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
+  m_PrefabInstance: {fileID: 7110641969673604249}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7281515781566225987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5291,7 +5200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Unlock Blue Sand
+      value: Unlock blue sand
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -5601,7 +5510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Unlock Golden Sand
+      value: Unlock golden sand
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -5746,7 +5655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Automatic Rotation
+      value: Automatic rotation
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _levelUpFlipCost
@@ -6072,20 +5981,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _description
-      value: Unlock Red sand
+      value: Unlock red sand
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _connections.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: '_connections.Array.data[0]'
       value: 
-      objectReference: {fileID: 8772124422394270465}
-    - target: {fileID: 7908169726813057150, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
-      propertyPath: '_connections.Array.data[1]'
-      value: 
-      objectReference: {fileID: 3641144896644747915}
+      objectReference: {fileID: 1085760332356500711}
     - target: {fileID: 8677051234809293553, guid: 79ccd97925c0bbf43adbdf841518e57b, type: 3}
       propertyPath: _variablesToUpdate.Array.size
       value: 1

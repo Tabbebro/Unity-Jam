@@ -69,13 +69,6 @@ public class UpgradeManager : MonoBehaviour
     {
         StartSandTween();
         StartFlipTween();
-
-        UpgradeHappened += Testing;
-    }
-
-    private void Testing(object obj, VariableInfo obj2)
-    {
-        print(obj);
     }
 
     public bool EnoughResource(float amount) => SandResource >= amount;
@@ -95,7 +88,15 @@ public class UpgradeManager : MonoBehaviour
     }
     public void ModifyFlipResource(float amount)
     {
-        FlipResource += amount;
+        if (amount <= 0)
+        {
+            FlipResource += amount;
+        }
+        else
+        {
+            FlipResource += amount * SandMultiplier;
+        }
+
         StartFlipTween();
         RaiseBalanceModified();
     }

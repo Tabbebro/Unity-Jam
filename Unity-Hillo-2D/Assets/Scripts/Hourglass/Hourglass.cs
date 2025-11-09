@@ -114,7 +114,7 @@ public class Hourglass : MonoBehaviour
     #endregion
 
     public void SpawnSand() {
-        Debug.Log("Test");
+        //Debug.Log("Test");
         SandManager.SpawnRandomSand(Settings.AmountOfSandSpawnedOnRotation);
     }
 
@@ -141,7 +141,7 @@ public class Hourglass : MonoBehaviour
     }
 
     public void DisableButton() {
-        print("Disable rotate button");
+        //print("Disable rotate button");
         CanRotate = false;
         RotateButton.interactable = false;
     }
