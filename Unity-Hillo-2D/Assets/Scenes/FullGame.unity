@@ -1180,6 +1180,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 106218782434670317, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: _variablesToUpdate.Array.data[0].Script
+      value: 
+      objectReference: {fileID: 1561924563}
     - target: {fileID: 509672631777953999, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: _variablesToUpdate.Array.data[0].Script
       value: 

@@ -91,4 +91,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldGrain
   hasGoneThrough: 0
-  worth: 1
+  worth: 100

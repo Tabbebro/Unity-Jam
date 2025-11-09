@@ -30,6 +30,7 @@ public class SandManager : MonoBehaviour
     public Vector2 spawnPoint;
     public bool RedSandUnlocked = false;
     public bool BlueSandUnlocked = false;
+    public bool GoldSandUnlocked = false;
     public int RedSandSpawnChance = 0;
     public int BlueSandSpawnChance = 0;
     [ShowProperties] public SO_SandList SandList;
@@ -111,6 +112,20 @@ public class SandManager : MonoBehaviour
                 {
                     SpawnSandGrains(item.Prefab, 1);
                     BlueSandSpawnChance = 10;
+                    item.SpawnChance = 10;
+                }
+            }
+        }
+        if (name.ToString() == "GoldSandUnlocked")
+        {
+            if (GoldSandUnlocked) return;
+            GoldSandUnlocked = true;
+
+            foreach (var item in SandList.ObjectSpawn)
+            {
+                if (item.Prefab.name.Contains("Gold"))
+                {
+                    SpawnSandGrains(item.Prefab, 1);
                     item.SpawnChance = 10;
                 }
             }
