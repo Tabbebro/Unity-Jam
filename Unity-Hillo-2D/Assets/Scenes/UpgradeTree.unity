@@ -537,6 +537,18 @@ PrefabInstance:
       propertyPath: _variablesToUpdate.Array.data[0].UpgradeMultiplier
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6890482096661938656, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: FlipResource
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890482096661938656, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: SandResource
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869598426688396006, guid: 16ed2197b79953548adeff5138190bef, type: 3}
+      propertyPath: UnlockLevel
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7985088562233530831, guid: 16ed2197b79953548adeff5138190bef, type: 3}
       propertyPath: m_Name
       value: UpgradeCanvas

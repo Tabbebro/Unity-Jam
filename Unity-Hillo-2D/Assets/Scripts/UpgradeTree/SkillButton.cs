@@ -13,7 +13,7 @@ public class SkillButton : MonoBehaviour
     [SerializeField] string _description;
     [SerializeField] int _currentLevel = 0;
     [SerializeField] int _maxLevel = 5;
-    [SerializeField] int _unlockNext = 1;
+    [SerializeField] public int UnlockLevel = 1;
     [SerializeField] float _levelUpResourceCost = 5;
     [SerializeField] float _levelUpFlipCost = 5;
     [SerializeField] float _levelUpMultiplier = 1.2f;
@@ -24,6 +24,7 @@ public class SkillButton : MonoBehaviour
     [SerializeField] Image _middleIcon;
     [SerializeField] Image img;
     [SerializeField] Image _hoverImg;
+    [SerializeField] Image _fadeImg;
     [SerializeField] List<SkillButton> _connections = new();
 
     [Space]
@@ -68,7 +69,7 @@ public class SkillButton : MonoBehaviour
         _startScale = transform.localScale;
 
         _upgradeManager = UpgradeManager.Instance;
-
+        _upgradeManager.BalanceModified += CheckBalance;
         _line.gameObject.SetActive(false);
 
         _button = GetComponent<Button>();
@@ -79,9 +80,10 @@ public class SkillButton : MonoBehaviour
         _upgrade = GetComponent<Upgrade>();
         _button.onClick.AddListener(delegate { OnClicked(); });
 
-        Color color = img.color;
+        /* Color color = img.color;
         color.a = 0.2f;
-        img.color = color;
+        img.color = color; */
+        CheckBalance();
     }
     public void PointerEnter()
     {
@@ -128,7 +130,7 @@ public class SkillButton : MonoBehaviour
     }
     public void OnClicked()
     {
-        
+
 
         // Exit if max level
         if (_currentLevel >= _maxLevel)
@@ -143,7 +145,7 @@ public class SkillButton : MonoBehaviour
             _audio.Play();
             return;
         }
-        
+
 
         _upgradeManager.ModifySandResource(-_levelUpResourceCost);
         _upgradeManager.ModifyFlipResource(-_levelUpFlipCost);
@@ -176,9 +178,9 @@ public class SkillButton : MonoBehaviour
         InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpResourceCost, _levelUpFlipCost);
 
         // Increase level and albedo
-        Color color = img.color;
+        /* Color color = img.color;
         color.a += 0.2f;
-        img.color = color;
+        img.color = color; */
 
         if (_upgrade != null)
         {
@@ -213,39 +215,27 @@ public class SkillButton : MonoBehaviour
                     }
                     continue;
                 }
-                /* else if(prop != null)
-                {
-                    object currentValue = prop.GetValue(item.Script);
-                    if (currentValue is float f)
-                    {
-                        prop.SetValue(item.Script, f *= item.UpgradeMultiplier);
-                    }
-                    else if (currentValue is int i)
-                    {
-                        prop.SetValue(item.Script, i + Mathf.RoundToInt(item.UpgradeAmount));
-                    }
-                    else if (currentValue is bool b)
-                    {
-                        prop.SetValue(item.Script, item.UpgradeBool);
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"Field '{item.VariableName}' on {type.Name} is not a numeric type.");
-                    }
-                    continue;
-                } */
-                
             }
         }
-        
-        // Unlock next connections
-        if (_currentLevel == _unlockNext)
+        foreach (SkillButton button in _connections)
         {
-            foreach (SkillButton button in _connections)
+            if (button.UnlockLevel == _currentLevel)
             {
+                button.CheckBalance();
                 button.Unlock();
                 button.SetLine(transform.position);
             }
+        }
+    }
+    public void CheckBalance()
+    {
+        if (!_upgradeManager.EnoughResource(_levelUpResourceCost) || !_upgradeManager.EnoughFlipResource(_levelUpFlipCost))
+        {
+            _fadeImg.gameObject.SetActive(true);
+        }
+        else
+        {
+            _fadeImg.gameObject.SetActive(false);
         }
     }
     public void Unlock()

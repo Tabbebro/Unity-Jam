@@ -54,6 +54,11 @@ public class UpgradeManager : MonoBehaviour
     {
         UpgradeHappened?.Invoke(name, item);
     }
+    public event Action BalanceModified;
+    public void RaiseBalanceModified()
+    {
+        BalanceModified?.Invoke();
+    }
     void Start()
     {
         StartSandTween();
@@ -73,11 +78,13 @@ public class UpgradeManager : MonoBehaviour
     {
         SandResource += amount;
         StartSandTween();
+        RaiseBalanceModified();
     }
     public void ModifyFlipResource(float amount)
     {
         FlipResource += amount;
         StartFlipTween();
+        RaiseBalanceModified();
     }
 
     #region Tweening
