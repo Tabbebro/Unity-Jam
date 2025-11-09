@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class SkillButton : MonoBehaviour
 {
@@ -80,7 +81,7 @@ public class SkillButton : MonoBehaviour
         _upgradeManager = UpgradeManager.Instance;
         
         _upgradeManager.BalanceModified += CheckBalance;
-        _line.gameObject.SetActive(false);
+        //_line.gameObject.SetActive(false);
 
         _button = GetComponent<Button>();
         _rect = GetComponent<RectTransform>();
@@ -109,24 +110,34 @@ public class SkillButton : MonoBehaviour
         }
         _hoverCoroutine = StartCoroutine(Scale(_endScale, _hoverImg.gameObject));
         _hoverImg.color = _fullBorderColor;
-        Vector2 myPos = transform.position;
-        myPos += new Vector2(0, _offsetY /* + _rect.rect.height / 2 + _rect.localPosition.y */);
-        Vector2 bounds = _borders.rect.size;
 
-        if (myPos.y > bounds.y - _yDeadZone) // Top
+        // Apply offsets in UI space
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, transform.position);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _borders.parent as RectTransform,
+            screenPoint,
+            null,
+            out Vector2 localPoint
+        );
+        localPoint += new Vector2(0, _offsetY);
+
+        //Vector2 bounds = _borders.rect.size;
+        if (localPoint.y > 400) // Top
         {
-            myPos += new Vector2(0, -_offsetY * 2);
+            localPoint += new Vector2(0, -_offsetY * 2);
         }
-        if (myPos.x < bounds.x + _xDeadZone) // Left
+        if (localPoint.x < -300) // Left
         {
-            myPos += new Vector2(_offsetX, 0);
+            localPoint += new Vector2(_offsetX, 0);
         }
-        if (myPos.x > bounds.x * 2 - _xDeadZone) // Right
+        if (localPoint.x > 300) // Right
         {
-            myPos += new Vector2(-_offsetX, 0);
+            localPoint += new Vector2(-_offsetX, 0);
         }
 
-        InfoBox.Instance.transform.position = myPos;
+        // Assign the local position
+        InfoBox.Instance.GetComponent<RectTransform>().anchoredPosition = localPoint;
+
         InfoBox.Instance.gameObject.SetActive(true);
         InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpResourceCost, _levelUpFlipCost);
     }
@@ -254,9 +265,9 @@ public class SkillButton : MonoBehaviour
             if (button.UnlockLevel == _currentLevel)
             {
                 
+                button.Unlock(transform.position);
+                //button.SetLine(transform.position);
                 button.CheckBalance();
-                button.Unlock();
-                button.SetLine(transform.position);
                 button._audio.clip = _audioClips[5];
                 button._audio.Play();
             }
@@ -278,19 +289,23 @@ public class SkillButton : MonoBehaviour
             InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpResourceCost, _levelUpFlipCost);
         }
     }
-    public void Unlock()
+    public void Unlock(Vector3 posForLine)
     {
         if (_unlocked) return;
         _unlocked = true;
 
         gameObject.SetActive(true);
-
+        SetLine(posForLine);
     }
+    public bool LineActive = false;
     public void SetLine(Vector3 endPos)
     {
-        if (_line.gameObject.activeInHierarchy) return;
-        
+        //if (_line.gameObject.activeInHierarchy) return;
+        if (LineActive) return;
+        LineActive = true;
+
         _line.gameObject.SetActive(true);
+        transform.GetChild(0).gameObject.SetActive(true);
 
         Vector3 midPoint = (gameObject.transform.position + endPos) * 0.5f;
         Vector3 direction = endPos - transform.position;
