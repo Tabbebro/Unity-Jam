@@ -50,7 +50,7 @@ public class UpgradeManager : MonoBehaviour
     public float SandResource = 100;
     public float FlipResource = 0;
 
-
+    public float SandMultiplier = 1;
     // Score Increase Tweening
     Tween _sandCountTween;
     Tween _flipCountTween;
@@ -82,7 +82,7 @@ public class UpgradeManager : MonoBehaviour
     public bool EnoughFlipResource(float amount) => FlipResource >= amount;
     public void ModifySandResource(float amount)
     {
-        SandResource += amount;
+        SandResource += amount * SandMultiplier;
         StartSandTween();
         RaiseBalanceModified();
     }

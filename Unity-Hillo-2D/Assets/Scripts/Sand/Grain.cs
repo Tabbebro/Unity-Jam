@@ -40,7 +40,7 @@ public class Grain : MonoBehaviour
             }
             hasGoneThrough = true;
             sandManager.SandWentThrough();
-            UpgradeManager.Instance.ModifySandResource(1);
+            UpgradeManager.Instance.ModifySandResource(worth);
         }
     }
 }
