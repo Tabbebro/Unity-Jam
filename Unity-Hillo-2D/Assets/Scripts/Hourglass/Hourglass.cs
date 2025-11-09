@@ -162,9 +162,11 @@ public class Hourglass : MonoBehaviour
         {
             Settings.BallsToFlowThrough = Mathf.RoundToInt(Settings.BallsToFlowThrough * item.UpgradeMultiplier);
         }
+        if (name.ToString() == "LetThroughInterval") {
+            Settings.BallFlowInterval *= item.UpgradeMultiplier;
+        }
         if (name.ToString() == "LetThroughCheckInterval") {
             Settings.FlowCheckInterval *= item.UpgradeMultiplier;
-            Settings.BallFlowInterval *= item.UpgradeMultiplier;
         }
         if (name.ToString() == "RotationSpeed") {
             Settings.RotationSpeed *= item.UpgradeMultiplier;

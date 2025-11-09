@@ -165,6 +165,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SandManager
   AllSandGoneThrough: 0
+  howManyGoneThrough: 0
+  howManySands: 0
+  MaxSandAmount: 250
+  NormalSandPrefab: {fileID: 0}
+  RedSandPrefab: {fileID: 0}
+  BlueSandPrefab: {fileID: 0}
+  spawnPoint: {x: 0, y: 0}
+  RedSandUnlocked: 0
+  BlueSandUnlocked: 0
+  GoldSandUnlocked: 0
+  RedSandSpawnChance: 0
+  BlueSandSpawnChance: 0
+  SandList: {fileID: 0}
 --- !u!1001 &130803663565842313
 PrefabInstance:
   m_ObjectHideFlags: 0
