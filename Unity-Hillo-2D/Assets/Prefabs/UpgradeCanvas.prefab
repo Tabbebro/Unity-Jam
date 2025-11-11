@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 481015883ea8a53418c21c8fb4a19bff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d43a8bec871583c4abe835a84669395a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1232,8 +1232,8 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: b392c046da8882e4ab2f60d610c9624c, type: 2}
   _volumeType: MusicVol
   _img: {fileID: 3392289125188524092}
-  _unmutedIcon: {fileID: 21300000, guid: 481015883ea8a53418c21c8fb4a19bff, type: 3}
-  _mutedIcon: {fileID: 21300000, guid: 7ecce2609de0c364c959ec7229a3595f, type: 3}
+  _unmutedIcon: {fileID: 21300000, guid: d43a8bec871583c4abe835a84669395a, type: 3}
+  _mutedIcon: {fileID: 21300000, guid: 4c7d94e6aa2143149a579761f2cfc86c, type: 3}
 --- !u!114 &3113236727662089141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d43a8bec871583c4abe835a84669395a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 481015883ea8a53418c21c8fb4a19bff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1551,8 +1551,8 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: b392c046da8882e4ab2f60d610c9624c, type: 2}
   _volumeType: VFXVol
   _img: {fileID: 2139724530291017853}
-  _unmutedIcon: {fileID: 21300000, guid: d43a8bec871583c4abe835a84669395a, type: 3}
-  _mutedIcon: {fileID: 21300000, guid: 4c7d94e6aa2143149a579761f2cfc86c, type: 3}
+  _unmutedIcon: {fileID: 21300000, guid: 481015883ea8a53418c21c8fb4a19bff, type: 3}
+  _mutedIcon: {fileID: 21300000, guid: 7ecce2609de0c364c959ec7229a3595f, type: 3}
 --- !u!114 &1073029728575253688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5045,11 +5045,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: FlipResource
-      value: 0
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: SandResource
-      value: 0
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 7722302705665820219, guid: 1b094bbfdd761b34f91f8bfab4c860a8, type: 3}
       propertyPath: _coinAmountText

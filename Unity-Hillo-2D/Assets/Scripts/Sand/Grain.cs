@@ -27,6 +27,7 @@ public class Grain : MonoBehaviour
         if (collision.gameObject.CompareTag("DeathArea"))
         {
             transform.position = Vector2.up * 5;
+            hasGoneThrough = false;
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
