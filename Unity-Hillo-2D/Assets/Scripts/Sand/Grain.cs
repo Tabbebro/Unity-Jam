@@ -1,12 +1,18 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-
+public enum E_SandType
+{
+    Normal,
+    Red,
+    Blue,
+    Golden
+}
 public class Grain : MonoBehaviour
 {
     public bool hasGoneThrough;
     SandManager sandManager;
     public float worth = 1;
+    public E_SandType SandType;
     void Start()
     {
         Hourglass.Instance.OnRotationFinished += HourglassRotated;

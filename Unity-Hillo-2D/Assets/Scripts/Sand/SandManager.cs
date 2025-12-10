@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using ScrutableObjects;
-using Unity.VisualScripting;
+public class SandAmounts
+{
+    public GameObject SandPrefab;
+    public int SandCount;
+}
 public class SandManager : MonoBehaviour
 {
     #region Instance
@@ -17,16 +21,22 @@ public class SandManager : MonoBehaviour
             Instance = this;
     }
     #endregion
+    SandManagerData _sandManagerData;
     public bool AllSandGoneThrough;
     public int howManyGoneThrough;
     public int howManySands;
     public int MaxSandAmount = 120;
+    int _normalSandAmount = 0;
+    int _redSandAmount = 0;
+    int _blueSandAmount = 0;
+    int _goldenSandAmount = 0;
     public event Action OnAllSandWentThrough;
     public event Action CancelAllSandWentThrough;
 
     public GameObject NormalSandPrefab;
     public GameObject RedSandPrefab;
     public GameObject BlueSandPrefab;
+    public GameObject GoldenSandPrefab;
     public Vector2 spawnPoint;
     public bool RedSandUnlocked = false;
     public bool BlueSandUnlocked = false;
@@ -42,16 +52,27 @@ public class SandManager : MonoBehaviour
 
         UpgradeManager.Instance.UpgradeHappened += NewUpgrade;
 
-        SpawnSandGrains(NormalSandPrefab, 1);
 
         Hourglass.Instance.OnRotationFinished += OnRotationFinished;
+        _sandManagerData = SaveSystem.Instance.LoadSandManagedData();
+        Debug.Log("Normal: " + _sandManagerData.NormalSandAmount);
+        Debug.Log("Red: " + _sandManagerData.RedSandAmount);
+        Debug.Log("Blue: " + _sandManagerData.BlueSandAmount);
+        //StartCoroutine(SpawnLoadedSands());
+        SpawnSandGrains(NormalSandPrefab, _sandManagerData.NormalSandAmount);
+        SpawnSandGrains(RedSandPrefab, _sandManagerData.RedSandAmount);
+        SpawnSandGrains(BlueSandPrefab, _sandManagerData.BlueSandAmount);
+        SpawnSandGrains(GoldenSandPrefab, _sandManagerData.GoldenSandAmount);
     }
 
     private void OnDestroy()
     {
         Hourglass.Instance.OnRotationFinished -= OnRotationFinished;
     }
-
+    void OnApplicationQuit()
+    {
+        SaveSystem.Instance.SaveSandManagerData(_sandManagerData);
+    }
     private void NewUpgrade(object name, VariableInfo upgrade)
     {
         if (name.ToString() == "SandCount")
@@ -131,6 +152,14 @@ public class SandManager : MonoBehaviour
             }
         }
     }
+    List<SandAmounts> _sandList = new();
+    IEnumerator SpawnLoadedSands(List<SandAmounts> _sandList)
+    {
+        for (int i = 0; i < _sandList.Count; i++)
+        {
+            yield return SpawnSand(_sandList[i].SandPrefab, _sandList[i].SandCount);
+        }
+    }
     public void SpawnRandomSand(int amount = 1)
     {
         for (int i = 0; i < amount; i++)
@@ -155,6 +184,17 @@ public class SandManager : MonoBehaviour
         {
             GameObject sand = Instantiate(gameObject, spawnPoint, quaternion.identity, transform);
             Grain grain = sand.GetComponent<Grain>();
+
+            if (grain.SandType == E_SandType.Normal) _normalSandAmount ++;
+            else if (grain.SandType == E_SandType.Red) _redSandAmount ++; 
+            else if (grain.SandType == E_SandType.Blue) _blueSandAmount ++; 
+            else if (grain.SandType == E_SandType.Golden) _goldenSandAmount ++;
+
+            _sandManagerData.NormalSandAmount = _normalSandAmount;
+            _sandManagerData.RedSandAmount = _redSandAmount;
+            _sandManagerData.BlueSandAmount = _blueSandAmount;
+            _sandManagerData.GoldenSandAmount = _goldenSandAmount;
+
             howManySands++;
             yield return new WaitForSeconds(0.1f);
         }

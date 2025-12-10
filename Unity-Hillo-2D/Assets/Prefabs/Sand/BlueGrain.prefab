@@ -92,3 +92,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlueGrain
   hasGoneThrough: 0
   worth: 2
+  SandType: 2

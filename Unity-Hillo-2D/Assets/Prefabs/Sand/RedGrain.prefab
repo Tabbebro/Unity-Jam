@@ -92,3 +92,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RedGrain
   hasGoneThrough: 0
   worth: 20
+  SandType: 1

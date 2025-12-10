@@ -92,3 +92,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GoldGrain
   hasGoneThrough: 0
   worth: 100
+  SandType: 3

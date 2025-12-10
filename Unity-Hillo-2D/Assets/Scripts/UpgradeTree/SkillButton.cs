@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class SkillButton : MonoBehaviour
 {
@@ -64,7 +65,9 @@ public class SkillButton : MonoBehaviour
     public AudioSource _audio;
     Upgrade _upgrade;
     RectTransform _rect;
-    Vector3 _startScale;    
+    Vector3 _startScale;
+    Queue<Action> _upgradeActionQueue = new();
+    Action _currentUpgradeAction = null;
     void Start()
     {
         if (_icon != null)
@@ -90,12 +93,26 @@ public class SkillButton : MonoBehaviour
         _borders = _upgradeTree.GetComponent<RectTransform>();
         _upgrade = GetComponent<Upgrade>();
         _button.onClick.AddListener(delegate { OnClicked(); });
-
+        Hourglass.Instance.OnRotationFinished += CheckActionQueue;
         /* Color color = img.color;
         color.a = 0.2f;
         img.color = color; */
         CheckBalance();
     }
+
+    private void CheckActionQueue()
+    {
+        if (_upgradeActionQueue.Count <= 0) return;
+        int actionAmount = _upgradeActionQueue.Count;
+
+        for (int i = 0; i < actionAmount; i++)
+        {
+            _currentUpgradeAction = _upgradeActionQueue.Dequeue();
+            _currentUpgradeAction?.Invoke();
+        }
+        
+    }
+
     public void PointerEnter()
     {
         if (Zoom.Instance.IsDragging) return;
@@ -179,11 +196,28 @@ public class SkillButton : MonoBehaviour
         }
         if (Hourglass.Instance.IsRotating)
         {
-            _audio.clip = _audioClips[3];
-            _audio.Play();
+            Upgrade(false);
+            if (_upgrade != null)
+            {
+                foreach (var item in _upgrade.GetUpgrades())
+                {
+                    if (item.Script == null || string.IsNullOrEmpty(item.VariableName))
+                        continue;
+
+                    var type = item.Script.GetType();
+                    var field = type.GetField(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                    //PropertyInfo prop = type.GetProperty(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+                    _upgradeActionQueue.Enqueue(() => InvokeUgrade(field, item));
+                }
+            }
             return;
         }
 
+        Upgrade();
+    }
+    void Upgrade(bool invokeUpgrade = true)
+    {
         _upgradeManager.ModifySandResource(-_levelUpResourceCost);
         _upgradeManager.ModifyFlipResource(-_levelUpFlipCost);
 
@@ -220,12 +254,7 @@ public class SkillButton : MonoBehaviour
         }
         InfoBox.Instance.MoveInfo(_description, _currentLevel, _maxLevel, _levelUpResourceCost, _levelUpFlipCost);
 
-        // Increase level and albedo
-        /* Color color = img.color;
-        color.a += 0.2f;
-        img.color = color; */
-
-        if (_upgrade != null)
+        if (_upgrade != null && invokeUpgrade)
         {
             foreach (var item in _upgrade.GetUpgrades())
             {
@@ -235,29 +264,9 @@ public class SkillButton : MonoBehaviour
                 var type = item.Script.GetType();
                 var field = type.GetField(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 //PropertyInfo prop = type.GetProperty(item.VariableName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                UpgradeManager.Instance.RaiseUpgradeHappened(item.VariableName, item);
-                if (field != null)
-                {
-                    //Debug.LogWarning($"Field '{item.VariableName}' not found on {type.Name}");
-                    object currentValue = field.GetValue(item.Script);
-                    if (currentValue is float f)
-                    {
-                        field.SetValue(item.Script, f *= item.UpgradeMultiplier);
-                    }
-                    else if (currentValue is int i)
-                    {
-                        field.SetValue(item.Script, i + Mathf.RoundToInt(item.UpgradeAmount));
-                    }
-                    else if (currentValue is bool b)
-                    {
-                        field.SetValue(item.Script, item.UpgradeBool);
-                    }
-                    else
-                    {
-                        //Debug.LogWarning($"Field '{item.VariableName}' on {type.Name} is not a numeric type.");
-                    }
-                    continue;
-                }
+
+                //if (invokeUpgrade)
+                InvokeUgrade(field, item);
             }
         }
         foreach (SkillButton button in _connections)
@@ -271,6 +280,32 @@ public class SkillButton : MonoBehaviour
                 button._audio.clip = _audioClips[5];
                 button._audio.Play();
             }
+        }
+    }
+    void InvokeUgrade(FieldInfo field, VariableInfo item)
+    {
+        UpgradeManager.Instance.RaiseUpgradeHappened(item.VariableName, item);
+        if (field != null)
+        {
+            //Debug.LogWarning($"Field '{item.VariableName}' not found on {type.Name}");
+            object currentValue = field.GetValue(item.Script);
+            if (currentValue is float f)
+            {
+                field.SetValue(item.Script, f *= item.UpgradeMultiplier);
+            }
+            else if (currentValue is int i)
+            {
+                field.SetValue(item.Script, i + Mathf.RoundToInt(item.UpgradeAmount));
+            }
+            else if (currentValue is bool b)
+            {
+                field.SetValue(item.Script, item.UpgradeBool);
+            }
+            else
+            {
+                //Debug.LogWarning($"Field '{item.VariableName}' on {type.Name} is not a numeric type.");
+            }
+            //continue;
         }
     }
     public void CheckBalance()
