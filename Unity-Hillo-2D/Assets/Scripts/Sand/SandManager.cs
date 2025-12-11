@@ -44,7 +44,7 @@ public class SandManager : MonoBehaviour
     public int RedSandSpawnChance = 0;
     public int BlueSandSpawnChance = 0;
     [ShowProperties] public SO_SandList SandList;
-
+    List<SandAmounts> _sandList = new();
     void Start()
     {
         //SandList.InitializeLootTable();
@@ -54,24 +54,24 @@ public class SandManager : MonoBehaviour
 
 
         Hourglass.Instance.OnRotationFinished += OnRotationFinished;
-        _sandManagerData = SaveSystem.Instance.LoadSandManagedData();
-        Debug.Log("Normal: " + _sandManagerData.NormalSandAmount);
-        Debug.Log("Red: " + _sandManagerData.RedSandAmount);
-        Debug.Log("Blue: " + _sandManagerData.BlueSandAmount);
-        //StartCoroutine(SpawnLoadedSands());
-        SpawnSandGrains(NormalSandPrefab, _sandManagerData.NormalSandAmount);
-        SpawnSandGrains(RedSandPrefab, _sandManagerData.RedSandAmount);
-        SpawnSandGrains(BlueSandPrefab, _sandManagerData.BlueSandAmount);
-        SpawnSandGrains(GoldenSandPrefab, _sandManagerData.GoldenSandAmount);
-    }
 
+        _sandList.Add(new SandAmounts(){SandPrefab = NormalSandPrefab, SandCount = _sandManagerData.NormalSandAmount});
+        _sandList.Add(new SandAmounts(){SandPrefab = RedSandPrefab, SandCount = _sandManagerData.RedSandAmount});
+        _sandList.Add(new SandAmounts(){SandPrefab = BlueSandPrefab, SandCount = _sandManagerData.BlueSandAmount});
+        _sandList.Add(new SandAmounts(){SandPrefab = GoldenSandPrefab, SandCount = _sandManagerData.GoldenSandAmount});
+        StartCoroutine(SpawnLoadedSands(_sandList));
+    }
     private void OnDestroy()
     {
         Hourglass.Instance.OnRotationFinished -= OnRotationFinished;
     }
-    void OnApplicationQuit()
+    public SandManagerData GetSandData()
     {
-        SaveSystem.Instance.SaveSandManagerData(_sandManagerData);
+        return _sandManagerData;
+    }
+    public void SetSandData(SandManagerData data)
+    {
+        _sandManagerData = data;
     }
     private void NewUpgrade(object name, VariableInfo upgrade)
     {
@@ -152,12 +152,11 @@ public class SandManager : MonoBehaviour
             }
         }
     }
-    List<SandAmounts> _sandList = new();
     IEnumerator SpawnLoadedSands(List<SandAmounts> _sandList)
     {
         for (int i = 0; i < _sandList.Count; i++)
         {
-            yield return SpawnSand(_sandList[i].SandPrefab, _sandList[i].SandCount);
+            yield return SpawnSand(_sandList[i].SandPrefab, _sandList[i].SandCount, 0);
         }
     }
     public void SpawnRandomSand(int amount = 1)
@@ -176,7 +175,7 @@ public class SandManager : MonoBehaviour
     {
         StartCoroutine(SpawnSand(gameObject, amount));
     }
-    IEnumerator SpawnSand(GameObject gameObject, int amount)
+    IEnumerator SpawnSand(GameObject gameObject, int amount, float waitTime = 0.1f)
     {
         if (howManySands >= MaxSandAmount) yield break;
 
@@ -196,7 +195,7 @@ public class SandManager : MonoBehaviour
             _sandManagerData.GoldenSandAmount = _goldenSandAmount;
 
             howManySands++;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(waitTime);
         }
     }
 

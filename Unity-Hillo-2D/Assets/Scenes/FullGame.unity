@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be98df94ceeb68249819f46d1f5badf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveSystem
+  _loadDataOnStart: 1
+  _saveDataOnQuit: 1
 --- !u!4 &89455598
 Transform:
   m_ObjectHideFlags: 0
