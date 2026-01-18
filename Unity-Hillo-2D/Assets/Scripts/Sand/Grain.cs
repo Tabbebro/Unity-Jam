@@ -15,7 +15,7 @@ public class Grain : MonoBehaviour
     public E_SandType SandType;
     void Start()
     {
-        Hourglass.Instance.OnRotationFinished += HourglassRotated;
+        //Hourglass.Instance.OnRotationFinished += HourglassRotated;
         sandManager = transform.parent.GetComponent<SandManager>();
     }
     public void IncreaseWorth(float multiplier = 1)

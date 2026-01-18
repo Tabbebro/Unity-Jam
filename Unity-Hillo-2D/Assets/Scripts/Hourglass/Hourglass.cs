@@ -114,7 +114,6 @@ public class Hourglass : MonoBehaviour
     #endregion
 
     public void SpawnSand() {
-        //Debug.Log("Test");
         SandManager.SpawnRandomSand(Settings.AmountOfSandSpawnedOnRotation);
     }
 
