@@ -3,6 +3,8 @@ using System.Collections;
 using System;
 using UnityEngine;
 using ScrutableObjects;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class Timeglass : MonoBehaviour
 {
@@ -31,16 +33,115 @@ public class Timeglass : MonoBehaviour
         // Makes An Copy Of Settings That Can Be Freely Modified Without Changing The Original Values
         Settings = Instantiate(Settings);
 
+        RotationOnAwake();
         FlowOnAwake();
     }
 
     private void Update() {
         UpdateFlow();
+        RotationOnUpdate();
     }
 
     private void OnDestroy() {
+        RotationOnDestroy();
         FlowOnDestroy();
     }
+    #region Rotation
+
+    void RotationOnAwake() {
+        Rotation.OnRotationStarted += PlayRotateAudio;
+        Rotation.OnRotationStarted += DisableRotationButton;
+        Rotation.OnRotationFinished += EnableRotationButton;
+
+        Rotation.OnRotationStarted += ResetAutoRotation;
+
+    }
+
+    void RotationOnDestroy() {
+        Rotation.OnRotationStarted -= PlayRotateAudio;
+        Rotation.OnRotationStarted -= DisableRotationButton;
+        Rotation.OnRotationFinished -= EnableRotationButton;
+
+        Rotation.OnRotationStarted -= ResetAutoRotation;
+
+    }
+
+    void RotationOnUpdate() {
+        if (!Flow.CanFlow) { return; }
+        if (Rotation.IsRotating) { return; }
+        AutoRotate();
+    }
+
+    public void RotateTimeglass() {
+        if (Rotation.IsRotating) { return; }
+        KillRotationTween();
+
+        // Flip bool around
+        Rotation.IsRightSideUp = !Rotation.IsRightSideUp;
+        Rotation.IsRotating = true;
+        Rotation.InvokeOnRotationStarted();
+
+        float targetRotation = Rotation.VisualRB.rotation + 180;
+        DOTween.To(() => Rotation.VisualRB.rotation, x => Rotation.VisualRB.MoveRotation(x), targetRotation, Settings.RotationSpeed).SetEase(Ease.InOutQuad).OnComplete(FinishTimeglassRotation);
+    }
+
+    void FinishTimeglassRotation() {
+        Rotation.IsRotating = false;
+        Rotation.InvokeOnRotationFinished();
+    }
+
+    void AutoRotate() {
+        if (!Settings.IsAutoRotationUnlocked || !Rotation.CanRotate || Rotation.IsRotating) { return; }
+        Rotation.Timer += Time.deltaTime;
+
+        if (!Rotation.AutoRotationTimerMask.activeInHierarchy) { 
+            Rotation.AutoRotationTimerMask.SetActive(true); 
+        }
+
+        Rotation.AutoRotationTimerFill.fillAmount = Rotation.Timer / Settings.AutoRotationTime;
+
+        if (Rotation.Timer >= Settings.AutoRotationTime) {
+            RotateTimeglass();
+        }
+    }
+
+    void ResetAutoRotation() {
+        Rotation.Timer = 0;
+        Rotation.AutoRotationTimerFill.fillAmount = 0;
+        Rotation.AutoRotationTimerMask.SetActive(false);
+    }
+
+    #region Rotation Tweens
+
+    void KillRotationTween() {
+        if (Rotation.RotationTween != null && Rotation.RotationTween.IsActive()) {
+            Rotation.RotationTween.Kill();
+            Rotation.RotationTween = null;
+        }
+    }
+
+    #endregion
+
+    #region Rotation Button
+
+    public void EnableRotationButton() {
+        Rotation.CanRotate = true;
+        Rotation.RotationButton.interactable = true;
+    }
+
+    public void DisableRotationButton() {
+        Rotation.CanRotate = false;
+        Rotation.RotationButton.interactable = false;
+    }
+
+    public void PlayRotateAudio() {
+        Rotation.AudioSource.pitch = Rotation.AudioClip.length / Settings.RotationSpeed;
+        Rotation.AudioSource.PlayOneShot(Rotation.AudioClip);
+    }
+
+    #endregion
+
+    #endregion
 
     #region Flow
 
@@ -188,8 +289,8 @@ public class Timeglass : MonoBehaviour
 
     void PlaySandAudio() {
         float randomVolume = UnityEngine.Random.Range(0.5f, 1f);
-        AudioClip randomClip = Flow.SandAudioClips[UnityEngine.Random.Range(0, Flow.SandAudioClips.Count)];
-        Flow.SandAudioSource.PlayOneShot(randomClip, randomVolume);
+        AudioClip randomClip = Flow.AudioClips[UnityEngine.Random.Range(0, Flow.AudioClips.Count)];
+        Flow.AudioSource.PlayOneShot(randomClip, randomVolume);
     }
 
     #endregion
@@ -197,7 +298,43 @@ public class Timeglass : MonoBehaviour
 
 [System.Serializable]
 public class TimeglassRotationValues {
-    [SerializeField] public bool IsRightSideUp = true;
+    [Header("Refs")]
+    public Button RotationButton;
+    public Rigidbody2D VisualRB;
+    public GameObject AutoRotationTimerMask;
+    public Image AutoRotationTimerFill;
+
+    [Header("Audio")]
+    public AudioClip AudioClip;
+    public AudioSource AudioSource;
+
+    [Header("Checks")]
+    [ReadOnly] public bool IsRotating = false;
+    [ReadOnly] public bool CanRotate = false;
+    [ReadOnly] public bool IsRightSideUp = true;
+
+    [Header("Auto Rotation Timer")]
+    [ReadOnly] public float Timer;
+
+    // Tweens
+    public Tween RotationTween;
+
+    // Events
+    public event Action OnCanRotate;
+    public event Action OnRotationStarted;
+    public event Action OnRotationFinished;
+    
+    public void InvokeOnCanRotate() {
+        OnCanRotate?.Invoke();
+    }
+
+    public void InvokeOnRotationStarted() {
+        OnRotationStarted?.Invoke(); 
+    }
+
+    public void InvokeOnRotationFinished() {
+        OnRotationFinished?.Invoke(); 
+    }
 }
 
 [System.Serializable]
@@ -207,8 +344,8 @@ public class TimeglassFlowValues {
     public Transform BottomPoint;
 
     [Header("Audio")]
-    public List<AudioClip> SandAudioClips;
-    public AudioSource SandAudioSource;
+    public List<AudioClip> AudioClips;
+    public AudioSource AudioSource;
 
     [Header("Layer Mask")]
     public LayerMask SandLayer;

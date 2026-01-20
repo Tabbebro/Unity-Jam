@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
+using ScrutableObjects;
 
 public class UISelectableUtility : UISelectableUtility<UISelectableSettings, Selectable> { }
 
@@ -15,7 +16,7 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
 {
 
     [Header("Settings")]
-    [SerializeField] protected TSettings _settings;
+    [SerializeField] [ShowProperties] protected TSettings _settings;
 
     [Header("Refs")]
     [SerializeField] GameObject _objectToTween;

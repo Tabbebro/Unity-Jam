@@ -619,6 +619,17 @@ Transform:
   - {fileID: 7394832046938852007}
   m_Father: {fileID: 8099516989596269108}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1199148059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8362824316136646700, guid: 5e252f42b3d5b974da98d055ee02f25f, type: 3}
+  m_PrefabInstance: {fileID: 1518658771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ca7221e4f85c64ea9a5e38ba415d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseClickNudge
 --- !u!1001 &1518658771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1037,7 +1048,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.4}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &270654595983657493
 GameObject:
@@ -1048,9 +1059,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5833318087358150553}
+  - component: {fileID: 5833318087358150554}
   - component: {fileID: 212054290662527046}
   - component: {fileID: 5814243397251072203}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: HourGlassStopperDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1231,7 +1243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2339573430127275387}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: RotationButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1430,8 +1442,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2574864391539315745}
-  - component: {fileID: 7424126626205128115}
   - component: {fileID: 7424126626205128116}
+  - component: {fileID: 7424126626205128115}
   m_Layer: 0
   m_Name: TimeGlass
   m_TagString: Untagged
@@ -1754,19 +1766,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9622642, g: 0.7001489, b: 0.38581347, a: 0.6156863}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 0.78097045, b: 0.3160377, a: 0.3764706}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 08ccfb3d1abecf2428a2b7457d791679, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f5f5e35d271e72419726aa05433311b, type: 3}
   m_Type: 3
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.936
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1970,7 +1982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7259306837050946391}
   - component: {fileID: 7018506968271507991}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: HourGlassStopper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2143,9 +2155,9 @@ RectTransform:
   - {fileID: 1826719985419454111}
   m_Father: {fileID: 870245891828005883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -150, y: 150}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 810, y: -365}
   m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2350424295675913732
@@ -3070,8 +3082,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4.4499664, y: -1.300003}
-  m_SizeDelta: {x: -8.8999, y: -96}
+  m_AnchoredPosition: {x: -3.5, y: -1.1499939}
+  m_SizeDelta: {x: -11, y: -95.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3471624146732751821
 CanvasRenderer:
@@ -3392,7 +3404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4680851251998849876}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: BottomPoint
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -3682,7 +3694,7 @@ Transform:
   m_GameObject: {fileID: 3947515822067255778}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.060000002, z: 0}
+  m_LocalPosition: {x: 0, y: -0.065, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3898,7 +3910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7978788388008883468}
   - component: {fileID: 37246622986306739}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: HourGlassStopper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4060,14 +4072,14 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 3697033204667731562}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Hourglass, Assembly-CSharp
-        m_MethodName: RotateHourGlass
+      - m_Target: {fileID: 7424126626205128116}
+        m_TargetAssemblyTypeName: Timeglass, Assembly-CSharp
+        m_MethodName: RotateTimeglass
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4200,7 +4212,7 @@ Transform:
   m_GameObject: {fileID: 5932324832874082348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.060000002, z: 0}
+  m_LocalPosition: {x: 0, y: 0.065, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4372,6 +4384,19 @@ Transform:
   - {fileID: 4680851251998849876}
   m_Father: {fileID: 8099516989596269108}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5833318087358150554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270654595983657493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12eb683a184e14468289dab3512435d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeglassFlowTrigger
+  Parent: {fileID: 7424126626205128116}
 --- !u!1 &5932324832874082348
 GameObject:
   m_ObjectHideFlags: 0
@@ -4381,7 +4406,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5422273474468142281}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: TopPoint
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -5293,19 +5318,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d1fb84aa3180c4d94f0f84c3824993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timeglass
-  Settings: {fileID: 0}
-  _flowCollider: {fileID: 212054290662527046}
+  Settings: {fileID: 11400000, guid: 6256e4d843c213045af19174364660da, type: 2}
+  Rotation:
+    RotationButton: {fileID: 5282255946548080444}
+    VisualRB: {fileID: 6859305806274357123}
+    AutoRotationTimerMask: {fileID: 3563368489968467746}
+    AutoRotationTimerFill: {fileID: 1432153850870665074}
+    AudioClip: {fileID: 8300000, guid: ff3975f082d23394ebc7a8d9ef85d392, type: 3}
+    AudioSource: {fileID: 7424126626205128115}
+    IsRotating: 0
+    CanRotate: 0
+    IsRightSideUp: 1
+    Timer: 0
   Flow:
+    TopPoint: {fileID: 5422273474468142281}
+    BottomPoint: {fileID: 4680851251998849876}
+    AudioClips: []
+    AudioSource: {fileID: 0}
     SandLayer:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 256
+    FloodGatesOpen: 0
     CanFlow: 1
     AllHasPassed: 0
     Timer: 0
-    FloodGatesOpen: 0
     PossibleSand: []
     SelectedSand: []
     NudgedSand: []
+  _nudge: {fileID: 1199148059}
 --- !u!114 &7425648136603747272
 MonoBehaviour:
   m_ObjectHideFlags: 0

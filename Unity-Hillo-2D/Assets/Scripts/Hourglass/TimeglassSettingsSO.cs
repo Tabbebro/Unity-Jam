@@ -4,11 +4,11 @@ using UnityEngine;
 public class TimeglassSettingsSO : ScriptableObject
 {
     [Header("Hourglass Rotation")]
-    [Min(0)] public float RotFailSafeTimer = 5f; // Not An Upgrade
-    [Min(0)] public float RotSpeed = 5;
-    public bool IsAutoRotUnlocked = true;
-    [Min(0)] public float AutoRotTime = 2f;
-    public int SandSpawnedPerRot = 0;
+    [Min(0)] public float RotationFailSafeTimer = 5f; // Not An Upgrade
+    [Min(0)] public float RotationSpeed = 5;
+    public bool IsAutoRotationUnlocked = true;
+    [Min(0)] public float AutoRotationTime = 2f;
+    public int SandSpawnedPerRotation = 0;
 
     [Header("Normal Flow")]
     [Min(0)] public float FlowCheckInterval = 2f;

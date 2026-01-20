@@ -124,6 +124,7 @@ public class Hourglass : MonoBehaviour
     public void InvokeCanRotate() {
         OnRotationEnabled?.Invoke();
     }
+
     private void InvokeCancelRotate()
     {
         DisableButton();
