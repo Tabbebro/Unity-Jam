@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Timeglass/Settings", fileName = "Timeglass Settings")]
+[CreateAssetMenu(menuName = "Hourglass/Physics Settings", fileName = "Timeglass Settings")]
 public class TimeglassSettingsSO : ScriptableObject
 {
     [Header("Hourglass Rotation")]

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2eca264c6ab7d5d4aa74df5557db84df, type: 3}
-  m_Name: HourglassStartSettings
+  m_Name: OLD HourglassStartSettings
   m_EditorClassIdentifier: Assembly-CSharp::HourGlassSettingsSO
   RotationFailSafeTimer: 5
   RotationSpeed: 5

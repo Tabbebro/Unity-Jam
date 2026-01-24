@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 74838d0208055174e81d36634cb3ffdd
+guid: 3935339283871c44c8524764106a203b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6095045588698557839
-    second: testNormal_0
+      213: -7551938095956005168
+    second: Hourglass_Mask_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: testNormal_0
+      name: Hourglass_Mask_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 225
-        height: 225
+        x: 68
+        y: 22
+        width: 120
+        height: 213
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f8d60348ba3f59450800000000000000
-      internalID: 6095045588698557839
+      spriteID: 0de6dc84050223790800000000000000
+      internalID: -7551938095956005168
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      testNormal_0: 6095045588698557839
+      Hourglass_Mask_0: -7551938095956005168
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

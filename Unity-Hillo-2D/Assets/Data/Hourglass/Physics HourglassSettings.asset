@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c1ccc6daf069f242a8f8df8ba8d4ed4, type: 3}
-  m_Name: Timeglass Settings
+  m_Name: Physics HourglassSettings
   m_EditorClassIdentifier: Assembly-CSharp::TimeglassSettingsSO
   RotationFailSafeTimer: 5
   RotationSpeed: 5

@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Hourglass/Settings", fileName = "Hourglass Settings")]
+[CreateAssetMenu(menuName = "Hourglass/Old Settings", fileName = "OLD Hourglass Settings")]
 public class HourGlassSettingsSO : ScriptableObject
 {
     [Header("Hourglass Rotation")]

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3935339283871c44c8524764106a203b
+guid: 4467dc95e74e9d640b646e8aea185319
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 728513407051953854
-    second: Hourglass_mask_0
+      213: 9126803496682975753
+    second: Hourglass_Mask_Top_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hourglass_mask_0
+      name: Hourglass_Mask_Top_0
       rect:
         serializedVersion: 2
         x: 68
-        y: 21
+        y: 127
         width: 120
-        height: 216
+        height: 108
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eb6f07975133c1a00800000000000000
-      internalID: 728513407051953854
+      spriteID: 902f492ac6be8ae70800000000000000
+      internalID: 9126803496682975753
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Hourglass_mask_0: 728513407051953854
+      Hourglass_Mask_Top_0: 9126803496682975753
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
