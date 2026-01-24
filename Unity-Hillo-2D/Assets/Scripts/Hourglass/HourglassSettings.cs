@@ -5,7 +5,7 @@ using UnityEngine;
 public class HourglassSettings : ScriptableObject
 {
     [Header("Flow Values")]
-    public float FlowPerSecond = 20;
+    public double FlowPerSecond = 20;
 
     [Header("Rotation Values")]
     public float RotationDuration = 2;
@@ -14,4 +14,7 @@ public class HourglassSettings : ScriptableObject
     [Header("Auto Rotation")]
     public bool AutoRotationUnlocked = false;
     public float AutoRotateInterval = 2;
+
+    [Header("Nudge")]
+    public double NudgeAmount = 1;
 }

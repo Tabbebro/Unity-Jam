@@ -30,8 +30,12 @@ public class HourglassLogic : MonoBehaviour
 
         if (maxTransfer <= 0) { return; }
 
+        MoveSand(maxTransfer);
+    }
+
+    void MoveSand(double amount) {
         if (State.Direction == FlowDirection.TopToBottom) {
-            double moved = Math.Min(State.SandTop, maxTransfer);
+            double moved = Math.Min(State.SandTop, amount);
             if (moved <= 0) { return; }
 
             State.SandTop -= moved;
@@ -40,7 +44,7 @@ public class HourglassLogic : MonoBehaviour
             OnSandFlowed?.Invoke(moved, State.Direction);
         }
         else {
-            double moved = Math.Min(State.SandBottom, maxTransfer);
+            double moved = Math.Min(State.SandBottom, amount);
             if (moved <= 0) { return; }
 
             State.SandBottom -= moved;
@@ -78,6 +82,18 @@ public class HourglassLogic : MonoBehaviour
 
     #endregion
 
+    #region Nudge
+
+    public void Nudge() {
+        if (State.IsFlowPaused) { return; }
+
+        MoveSand(State.Settings.NudgeAmount);
+    }
+
+
+
+    #endregion
+
     #region Add Sand
 
     public void AddSand(double amount) {
@@ -99,12 +115,20 @@ public class HourglassLogic : MonoBehaviour
 
     #endregion
 
-    #region Helper Functions
+    #region Helper Functions / Coroutines
 
     IEnumerator PauseFlow(float duration) {
         State.IsFlowPaused = true;
         yield return new WaitForSeconds(duration);
         State.IsFlowPaused = false;
+    }
+
+    IEnumerator ApplyTemporaryFlow(double bonus, float time, Action? onStart = null, Action? onEnd = null) {
+        onStart?.Invoke();
+        State.Settings.FlowPerSecond += bonus;
+        yield return new WaitForSeconds(time);
+        State.Settings.FlowPerSecond -= bonus;
+        onEnd?.Invoke();
     }
 
     #endregion
@@ -144,4 +168,7 @@ public class HourglassState {
         }
     }
     [ReadOnly] public float AutoRotateTimer;
+
+    // Nudge Flags
+
 }

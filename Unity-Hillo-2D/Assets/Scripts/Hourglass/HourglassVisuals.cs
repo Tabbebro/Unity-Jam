@@ -10,6 +10,8 @@ public class HourglassVisuals : MonoBehaviour
     [Header("\"Sand\" Fill")]
     [SerializeField] Image _topImage;
     [SerializeField] Image _bottomImage;
+    Tween _topImageFillTween;
+    Tween _bottomImageFillTween;
 
     [Header("Rotation")]
     [SerializeField] Transform _hourglassVisual;
@@ -23,6 +25,8 @@ public class HourglassVisuals : MonoBehaviour
     private void Awake() {
         _uprightRotation = Quaternion.identity;
         _invertedRotation = Quaternion.Euler(0,0,180);
+
+        UpdateSandFlowVisual(Logic.State.TotalSand, Logic.State.Direction);
     }
 
     private void Start() {
