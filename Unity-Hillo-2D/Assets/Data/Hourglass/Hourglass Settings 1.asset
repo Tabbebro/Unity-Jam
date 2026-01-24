@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Hourglass Settings 1
   m_EditorClassIdentifier: Assembly-CSharp::HourglassSettings
   FlowPerSecond: 0
-  RotationDuration: 0
+  RotationDuration: 0.25
+  RotationEase: 7
+  AutoRotationUnlocked: 0
+  AutoRotateInterval: 0.25
+  NudgeAmount: 20
