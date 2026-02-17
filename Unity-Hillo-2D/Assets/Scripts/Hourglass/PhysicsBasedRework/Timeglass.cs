@@ -5,6 +5,7 @@ using UnityEngine;
 using ScrutableObjects;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Pool;
 
 public class Timeglass : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class Timeglass : MonoBehaviour
     private void Update() {
         UpdateFlow();
         RotationOnUpdate();
+        SandOnUpdate();
     }
 
     private void OnDestroy() {
@@ -166,11 +168,15 @@ public class Timeglass : MonoBehaviour
     void FlowOnAwake() {
         _nudge.OnSandNudged += Nudge;
         Rotation.OnRotationStarted += ResetFlow;
+        Rotation.OnRotationStarted += DisableFlow;
+        Rotation.OnRotationFinished += EnableFlow;
     }
 
     void FlowOnDestroy() {
         _nudge.OnSandNudged -= Nudge;
-        Rotation.OnRotationStarted += ResetFlow;
+        Rotation.OnRotationStarted -= ResetFlow;
+        Rotation.OnRotationStarted -= DisableFlow;
+        Rotation.OnRotationFinished -= EnableFlow;
     }
 
     void UpdateFlow() {
@@ -187,17 +193,12 @@ public class Timeglass : MonoBehaviour
         Flow.SandFlowRoutine = StartCoroutine(SandFlow());
     }
 
-    public void OnFlowTriggerEnter(Collider2D other) {
-        if ((Flow.SandLayer & (1 << other.gameObject.layer)) == 0) { return; }
-        if (Flow.PossibleSand.Contains(other.gameObject)) { return; }
-
-        Flow.PossibleSand.Add(other.gameObject);
+    void EnableFlow() {
+        Flow.CanFlow = true;
     }
 
-    public void OnFlowTriggerExit(Collider2D other) {
-        if ((Flow.SandLayer & (1 << other.gameObject.layer)) == 0) { return; }
-
-        if (Flow.PossibleSand.Contains(other.gameObject)) { Flow.PossibleSand.Remove(other.gameObject); }
+    void DisableFlow() {
+        Flow.CanFlow = false;
     }
 
     IEnumerator SandFlow() {
@@ -244,7 +245,7 @@ public class Timeglass : MonoBehaviour
     }
 
     IEnumerator ExecuteFlow(List<GameObject> sandList) {
-        foreach (var sand in sandList) {
+        foreach (var sand in new List<GameObject>(sandList)) {
             if (sand == null) { continue; }
 
             Transform target = Rotation.IsRightSideUp ? Flow.BottomPoint : Flow.TopPoint;
@@ -293,6 +294,12 @@ public class Timeglass : MonoBehaviour
     }
 
     public void ResetFlow() {
+
+        if (Flow.SandFlowRoutine != null) {
+            StopCoroutine(Flow.SandFlowRoutine);
+            Flow.SandFlowRoutine = null;
+        }
+
         Flow.PossibleSand.Clear();
         Flow.SelectedSand.Clear();
         Flow.NudgedSand.Clear();
@@ -318,13 +325,27 @@ public class Timeglass : MonoBehaviour
     #region Sand System
 
     void SandOnAwake() {
+        SetPossibleSand();
+
         Flow.OnSandPassed += TrackSand;
         Rotation.OnRotationFinished += CheckIfAllPassed;
+        Rotation.OnRotationFinished += SetPossibleSand;
+
+        SandPoolInit();
     }
 
     void SandOnDestroy() {
+
         Flow.OnSandPassed -= TrackSand;
         Rotation.OnRotationFinished -= CheckIfAllPassed;
+        Rotation.OnRotationFinished -= SetPossibleSand;
+    }
+
+    void SandOnUpdate() {
+        if (Sand.DebugSpawnSand) {
+            Sand.DebugSpawnSand = false;
+            SpawnSand(1);
+        }
     }
 
     void TrackSand(GameObject sand) {
@@ -354,6 +375,93 @@ public class Timeglass : MonoBehaviour
         }
         Rotation.InvokeOnCanRotate(Flow.AllHasPassed);
     }
+
+    void SetPossibleSand() {
+        if (Rotation.IsRightSideUp) {
+            Flow.PossibleSand = new List<GameObject>(Sand.TopSand);
+        }
+        else {
+            Flow.PossibleSand = new List<GameObject>(Sand.BottomSand);
+        }
+        CheckIfAllPassed();
+    }
+
+
+
+    void SpawnSand(int amount) {
+
+        StartCoroutine(SandSpawnRoutine(amount));
+    }
+
+    IEnumerator SandSpawnRoutine(int amount) {
+
+        yield return new WaitUntil(() => Rotation.IsRotating == false);
+
+        for (int i = 0; i < amount; i++) {
+            GameObject sandObject = Sand.SandPool.Get();
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    #region Sand Pooling
+
+    public void SandPoolInit() {
+        Sand.SandPool = new ObjectPool<GameObject>(
+            createFunc: CreateSand,
+            actionOnGet: OnGetSand,
+            actionOnRelease: OnReleaseSand,
+            actionOnDestroy: OnDestroySand,
+            collectionCheck: true,
+            defaultCapacity: 10,
+            maxSize: Sand.SandPoolMaxCount
+            );
+    }
+
+    GameObject CreateSand() {
+        GameObject sandObject = Instantiate(Sand.SandPrefab, Sand.SandSpawnPoint);
+        sandObject.transform.parent = Sand.PoolParent;
+        sandObject.transform.localScale = Vector3.one;
+        return sandObject;
+    }
+
+    void OnGetSand(GameObject gameObject) {
+
+        gameObject.transform.parent = Sand.SandParent;
+
+        if (Rotation.IsRightSideUp) {
+            Sand.TopSand.Add(gameObject);
+        }
+        else {
+            Sand.BottomSand.Add(gameObject);
+        }
+        SetPossibleSand();
+
+        gameObject.SetActive(true);
+    }
+
+    void OnReleaseSand(GameObject gameObject) {
+
+        if (Sand.TopSand.Contains(gameObject)) {
+            Sand.TopSand.Remove(gameObject);
+        }
+        else if (Sand.BottomSand.Contains(gameObject)) {
+            Sand.BottomSand.Remove(gameObject);
+        }
+        else {
+            Debug.LogError("<color=red> Released Sand Is Not In Either Top Or Bottom </color>");
+        }
+        SetPossibleSand();
+
+        gameObject.transform.parent = Sand.PoolParent;
+        gameObject.SetActive(false);
+    }
+
+    void OnDestroySand(GameObject gameObject) {
+        Destroy(gameObject);
+    }
+
+    #endregion
+
     #endregion
 }
 
@@ -435,6 +543,21 @@ public class TimeglassFlowValues {
 
 [System.Serializable]
 public class TimeglassSandValues {
+    [Header("DEBUG SPAWN SAND")]
+    public bool DebugSpawnSand = false;
+
+
+    [Header("Sand Spawn Settings")]
+    public Transform SandParent;
+    public GameObject SandPrefab;
+    public Transform SandSpawnPoint;
+
+    [Header("Sand Pool")]
+    public Transform PoolParent;
+    public int SandPoolMaxCount = 100;
+    public ObjectPool<GameObject> SandPool;
+
+    [Header("Sand Lists")]
     public List<GameObject> TopSand = new();
     public List<GameObject> BottomSand = new();
 }
