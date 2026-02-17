@@ -19,6 +19,9 @@ public class Timeglass : MonoBehaviour
     [Header("Flow Values")]
     public TimeglassFlowValues Flow;
 
+    [Header("Sand Values")]
+    public TimeglassSandValues Sand;
+
     [Header("References")]
     [SerializeField] MouseClickNudge _nudge;
 
@@ -35,6 +38,7 @@ public class Timeglass : MonoBehaviour
 
         RotationOnAwake();
         FlowOnAwake();
+        SandOnAwake();
     }
 
     private void Update() {
@@ -45,24 +49,24 @@ public class Timeglass : MonoBehaviour
     private void OnDestroy() {
         RotationOnDestroy();
         FlowOnDestroy();
+        SandOnDestroy();
     }
+
     #region Rotation
 
     void RotationOnAwake() {
         Rotation.OnRotationStarted += PlayRotateAudio;
         Rotation.OnRotationStarted += DisableRotationButton;
-        Rotation.OnRotationFinished += EnableRotationButton;
-
         Rotation.OnRotationStarted += ResetAutoRotation;
+        Rotation.OnCanRotate += OnCanRotate;
 
     }
 
     void RotationOnDestroy() {
         Rotation.OnRotationStarted -= PlayRotateAudio;
         Rotation.OnRotationStarted -= DisableRotationButton;
-        Rotation.OnRotationFinished -= EnableRotationButton;
-
         Rotation.OnRotationStarted -= ResetAutoRotation;
+        Rotation.OnCanRotate -= OnCanRotate;
 
     }
 
@@ -111,6 +115,20 @@ public class Timeglass : MonoBehaviour
         Rotation.AutoRotationTimerMask.SetActive(false);
     }
 
+    void OnCanRotate(bool status) {
+        
+        // Set Can Rotate Status
+        Rotation.CanRotate = status;
+        
+        // Set Button Status
+        if (status) {
+            EnableRotationButton();
+        }
+        else {
+            DisableRotationButton();
+        }
+    }
+
     #region Rotation Tweens
 
     void KillRotationTween() {
@@ -147,10 +165,12 @@ public class Timeglass : MonoBehaviour
 
     void FlowOnAwake() {
         _nudge.OnSandNudged += Nudge;
+        Rotation.OnRotationStarted += ResetFlow;
     }
 
     void FlowOnDestroy() {
         _nudge.OnSandNudged -= Nudge;
+        Rotation.OnRotationStarted += ResetFlow;
     }
 
     void UpdateFlow() {
@@ -294,6 +314,47 @@ public class Timeglass : MonoBehaviour
     }
 
     #endregion
+
+    #region Sand System
+
+    void SandOnAwake() {
+        Flow.OnSandPassed += TrackSand;
+        Rotation.OnRotationFinished += CheckIfAllPassed;
+    }
+
+    void SandOnDestroy() {
+        Flow.OnSandPassed -= TrackSand;
+        Rotation.OnRotationFinished -= CheckIfAllPassed;
+    }
+
+    void TrackSand(GameObject sand) {
+        if (sand == null) {
+            Debug.LogError("<color=red> Null Sand Passed </color>");
+            return; 
+        }
+
+        if (Rotation.IsRightSideUp) {
+            Sand.TopSand.Remove(sand);
+            Sand.BottomSand.Add(sand);
+        }
+        else {
+            Sand.BottomSand.Remove(sand);
+            Sand.TopSand.Add(sand);
+        }
+
+        CheckIfAllPassed();
+    }
+
+    void CheckIfAllPassed() {
+        if (Rotation.IsRightSideUp) {
+            Flow.AllHasPassed = Sand.TopSand.Count == 0;
+        }
+        else {
+            Flow.AllHasPassed = Sand.BottomSand.Count == 0;
+        }
+        Rotation.InvokeOnCanRotate(Flow.AllHasPassed);
+    }
+    #endregion
 }
 
 [System.Serializable]
@@ -320,12 +381,12 @@ public class TimeglassRotationValues {
     public Tween RotationTween;
 
     // Events
-    public event Action OnCanRotate;
+    public event Action<bool> OnCanRotate;
     public event Action OnRotationStarted;
     public event Action OnRotationFinished;
     
-    public void InvokeOnCanRotate() {
-        OnCanRotate?.Invoke();
+    public void InvokeOnCanRotate(bool status) {
+        OnCanRotate?.Invoke(status);
     }
 
     public void InvokeOnRotationStarted() {
@@ -370,4 +431,10 @@ public class TimeglassFlowValues {
     public void InvokeOnSandPassed(GameObject passedSand) {
         OnSandPassed?.Invoke(passedSand);
     }
+}
+
+[System.Serializable]
+public class TimeglassSandValues {
+    public List<GameObject> TopSand = new();
+    public List<GameObject> BottomSand = new();
 }
