@@ -254,6 +254,16 @@ public class Timeglass : MonoBehaviour
 
             PlaySandAudio();
 
+            SandGrain sandGrain;
+            if (sand.TryGetComponent<SandGrain>(out sandGrain)) {
+                if (sandGrain.Type == SandType.Blue) {
+                    if (Flow.FloodRoutine != null) {
+                        StopCoroutine(Flow.FloodRoutine);
+                    }
+                    Flow.FloodRoutine = StartCoroutine(OpenFloodGates());
+                }
+            }
+
             if (sand.TryGetComponent<BlueGrain>(out _)) {
                 if (Flow.FloodRoutine != null) {
                     StopCoroutine(Flow.FloodRoutine);
@@ -344,7 +354,7 @@ public class Timeglass : MonoBehaviour
     void SandOnUpdate() {
         if (Sand.DebugSpawnSand) {
             Sand.DebugSpawnSand = false;
-            SpawnSand(1);
+            SpawnSand(33);
         }
     }
 
@@ -398,15 +408,22 @@ public class Timeglass : MonoBehaviour
         yield return new WaitUntil(() => Rotation.IsRotating == false);
 
         for (int i = 0; i < amount; i++) {
-            GameObject sandObject = Sand.SandPool.Get();
+            // If Max Amount Of Sand Do Not Add More
+            if (Sand.SandNormalList.Count >= Settings.SandNormalMaxAmount) { break; }
+            GetFromNormalSandPool();
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    void GetFromNormalSandPool() {
+        GameObject sandObject = Sand.SandNormalPool.Get();
+        Sand.SandNormalList.Add(sandObject);
     }
 
     #region Sand Pooling
 
     public void SandPoolInit() {
-        Sand.SandPool = new ObjectPool<GameObject>(
+        Sand.SandNormalPool = new ObjectPool<GameObject>(
             createFunc: CreateSand,
             actionOnGet: OnGetSand,
             actionOnRelease: OnReleaseSand,
@@ -418,7 +435,7 @@ public class Timeglass : MonoBehaviour
     }
 
     GameObject CreateSand() {
-        GameObject sandObject = Instantiate(Sand.SandPrefab, Sand.SandSpawnPoint);
+        GameObject sandObject = Instantiate(Sand.SandNormalPrefab, Sand.SandSpawnPoint);
         sandObject.transform.parent = Sand.PoolParent;
         sandObject.transform.localScale = Vector3.one;
         return sandObject;
@@ -520,16 +537,16 @@ public class TimeglassFlowValues {
     public LayerMask SandLayer;
 
     [Header("Checks")]
-    public bool FloodGatesOpen = false;
-    public bool CanFlow = true;
+    [ReadOnly] public bool FloodGatesOpen = false;
+    [ReadOnly] public bool CanFlow = true;
     [ReadOnly] public bool AllHasPassed = false;
     [ReadOnly] public float Timer = 0f;
 
     [Header("Lists")]
-    public List<GameObject> PossibleSand = new();
-    public List<GameObject> SelectedSand = new();
-    public List<GameObject> NudgedSand = new();
-    public HashSet<GameObject> UsedSand = new();
+    [ReadOnly] public List<GameObject> PossibleSand = new();
+    [ReadOnly] public List<GameObject> SelectedSand = new();
+    [ReadOnly] public List<GameObject> NudgedSand = new();
+    [ReadOnly] public HashSet<GameObject> UsedSand = new();
 
     public Coroutine FloodRoutine;
     public Coroutine SandFlowRoutine;
@@ -549,15 +566,16 @@ public class TimeglassSandValues {
 
     [Header("Sand Spawn Settings")]
     public Transform SandParent;
-    public GameObject SandPrefab;
+    public GameObject SandNormalPrefab;
     public Transform SandSpawnPoint;
 
     [Header("Sand Pool")]
     public Transform PoolParent;
     public int SandPoolMaxCount = 100;
-    public ObjectPool<GameObject> SandPool;
+    public ObjectPool<GameObject> SandNormalPool;
 
     [Header("Sand Lists")]
-    public List<GameObject> TopSand = new();
-    public List<GameObject> BottomSand = new();
+    [ReadOnly] public List<GameObject> SandNormalList = new();
+    [ReadOnly] public List<GameObject> TopSand = new();
+    [ReadOnly] public List<GameObject> BottomSand = new();
 }

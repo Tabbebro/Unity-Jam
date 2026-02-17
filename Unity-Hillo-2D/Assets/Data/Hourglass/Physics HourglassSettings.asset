@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimeglassSettingsSO
   RotationFailSafeTimer: 5
   RotationSpeed: 5
-  IsAutoRotationUnlocked: 1
+  IsAutoRotationUnlocked: 0
   AutoRotationTime: 2
   SandSpawnedPerRotation: 0
   FlowCheckInterval: 2
   SandFlowAmount: 0
   SandFlowDelay: 1
   FloodFlowDelay: 0.001
-  NudgeLetThroughAmount: 0
+  NudgeLetThroughAmount: 1
   NudgeForce: 1
+  SandSpawnDelay: 0.1
+  SandNormalMaxAmount: 100

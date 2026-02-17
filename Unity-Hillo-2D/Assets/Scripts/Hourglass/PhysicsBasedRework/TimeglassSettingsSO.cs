@@ -22,5 +22,5 @@ public class TimeglassSettingsSO : ScriptableObject
 
     [Header("Sand Settings")]
     [Range(0, 1)] public float SandSpawnDelay = 0.1f;
-    [Min(0)] public int SandMaxAmount = 100;
+    [Min(0)] public int SandNormalMaxAmount = 100;
 }

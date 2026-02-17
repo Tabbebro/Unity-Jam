@@ -4,8 +4,9 @@ public enum FlowDirection {
     BottomToTop
 }
 
-public enum SandLocation {
-    Top,
-    Bottom,
-    InTransit
+public enum SandType {
+    Normal,
+    Blue,
+    Red,
+    Gold
 }
