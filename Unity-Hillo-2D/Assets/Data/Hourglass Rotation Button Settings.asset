@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4526929fc233f4f93a0a18f0c55eac, type: 3}
   m_Name: Hourglass Rotation Button Settings
   m_EditorClassIdentifier: Assembly-CSharp::UISelectableSettings
-  TweenRotation: {x: 0, y: 0, z: 0}
-  TweenScale: {x: 1.05, y: 1.05, z: 1.05}
-  TweenEase: 6
+  HoverTweenRotation: {x: 0, y: 0, z: 20}
+  HoverTweenScale: {x: 1.1, y: 1.1, z: 1.1}
+  HoverTweenEase: 6
+  PressTweenRotation: {x: 0, y: 0, z: 40}
+  PressTweenScale: {x: 0.95, y: 0.95, z: 0.95}
+  PressTweenDuration: 0.1
+  PressTweenEase: 6
   TextSelectedColor: {r: 1, g: 1, b: 1, a: 1}
   TextNormalColor: {r: 0, g: 0, b: 0, a: 0}

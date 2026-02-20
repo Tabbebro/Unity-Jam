@@ -18,9 +18,9 @@ MonoBehaviour:
   AutoRotationTime: 2
   SandSpawnedPerRotation: 0
   FlowCheckInterval: 0.1
-  SandFlowAmount: 0
+  SandFlowAmount: 1
   SandFlowDelay: 0.25
-  FloodFlowDelay: 0.001
+  FloodFlowDelay: 0.1
   NudgeLetThroughAmount: 1
   NudgeForce: 1
   NudgeRadius: 2

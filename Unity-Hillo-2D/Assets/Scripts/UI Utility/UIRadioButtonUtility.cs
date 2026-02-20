@@ -14,7 +14,7 @@ public class UIRadioButtonUtility : UISelectableUtility<UIRadioButtonSettings, B
         if (!_selectable.interactable) { return; }
 
         TweenColor(_settings.HighlightedTextColor);
-        TransformTween(_settings.TweenRotation, _settings.TweenScale);
+        TransformTween(_settings.HoverTweenRotation, _settings.HoverTweenScale);
     }
 
     public override void OnPointerExit(PointerEventData eventData) {
@@ -37,7 +37,7 @@ public class UIRadioButtonUtility : UISelectableUtility<UIRadioButtonSettings, B
             return; 
         }
         TweenColor(_settings.TextSelectedColor);
-        TransformTween(_settings.TweenRotation, _settings.TweenScale);
+        TransformTween(_settings.HoverTweenRotation, _settings.HoverTweenScale);
     }
 
     public void RadioButtonReleased() {

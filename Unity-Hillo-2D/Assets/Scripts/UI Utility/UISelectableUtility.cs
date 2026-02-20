@@ -10,7 +10,7 @@ using ScrutableObjects;
 public class UISelectableUtility : UISelectableUtility<UISelectableSettings, Selectable> { }
 
 public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviour, 
-    IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IMoveHandler
+    IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IMoveHandler, IPointerClickHandler
     where TSettings : UISelectableSettings
     where TSelectable : Selectable
 {
@@ -35,7 +35,7 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
     protected virtual void OnEnable() {
         if (EventSystem.current.currentSelectedGameObject == _selectable.gameObject) {
             SetTextColors(_settings.TextSelectedColor);
-            TransformTween(_settings.TweenRotation, _settings.TweenScale);
+            TransformTween(_settings.HoverTweenRotation, _settings.HoverTweenScale);
         }
         else {
             SetTextColors(_settings.TextNormalColor);
@@ -72,7 +72,7 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
         if (!_selectable.interactable) { return; }
 
         TweenColor(_settings.TextSelectedColor);
-        TransformTween(_settings.TweenRotation, _settings.TweenScale);
+        TransformTween(_settings.HoverTweenRotation, _settings.HoverTweenScale);
     }
 
     public virtual void OnDeselect(BaseEventData eventData) {
@@ -105,10 +105,10 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
         KillTransformTween();
 
         // Rotation
-        _transformTweens.Add(_tweenableRect.transform.DOLocalRotate(targetRotation, _selectable.colors.fadeDuration).SetEase(_settings.TweenEase).SetUpdate(true));
+        _transformTweens.Add(_tweenableRect.transform.DOLocalRotate(targetRotation, _selectable.colors.fadeDuration).SetEase(_settings.HoverTweenEase).SetUpdate(true));
 
         // Scale Tween
-        _transformTweens.Add(_tweenableRect.transform.DOScale(targetScale, _selectable.colors.fadeDuration).SetEase(_settings.TweenEase).SetUpdate(true));
+        _transformTweens.Add(_tweenableRect.transform.DOScale(targetScale, _selectable.colors.fadeDuration).SetEase(_settings.HoverTweenEase).SetUpdate(true));
     }
 
     protected virtual void ResetTransformTweenValues() {
@@ -136,7 +136,7 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
         KillColorTweens();
 
         foreach (var text in _texts) {
-            Tween t = text.DOColor(targetColor, _selectable.colors.fadeDuration).SetEase(_settings.TweenEase).SetUpdate(true);
+            Tween t = text.DOColor(targetColor, _selectable.colors.fadeDuration).SetEase(_settings.HoverTweenEase).SetUpdate(true);
             _colorTweens.Add(t);
         }
     }
@@ -155,5 +155,49 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
         _colorTweens.Clear();
     }
 
+
     #endregion
+
+    public virtual void OnPointerClick(PointerEventData eventData) {
+        if (!_selectable.interactable) { return; }
+
+        PlayPressTween();
+    }
+
+    protected virtual void PlayPressTween() {
+
+        if (_tweenableRect == null) { SetTweenableSelectable(); }
+
+        KillColorTweens();
+        KillTransformTween();
+
+        float halfDuration = _settings.PressTweenDuration * 0.5f;
+
+        // Transform Press Tween
+        Sequence seq = DOTween.Sequence().SetUpdate(true);
+
+        // Scale Down
+        seq.Append(_tweenableRect.transform.DOLocalRotate(_settings.PressTweenRotation, _settings.PressTweenDuration).SetEase(_settings.PressTweenEase));
+        
+        // Scale Up
+        seq.Append(_tweenableRect.transform.DOLocalRotate(Vector3.one, halfDuration).SetEase(Ease.OutBack));
+
+        seq.Join(_tweenableRect.transform.DOScale(_settings.PressTweenScale, _settings.PressTweenDuration).SetEase(_settings.PressTweenEase));
+
+        seq.OnComplete(() => { ResolveStateAfterClick(); });
+    }
+
+    protected virtual void ResolveStateAfterClick() {
+
+        bool isSelected = EventSystem.current != null && EventSystem.current.currentSelectedGameObject == _selectable.gameObject;
+
+        if (isSelected) {
+            TweenColor(_settings.TextSelectedColor);
+            TransformTween(_settings.HoverTweenRotation, _settings.HoverTweenScale);
+        }
+        else {
+            TweenColor(_settings.TextNormalColor);
+            TransformTween(Vector3.zero, Vector3.one);
+        }
+    }
 }

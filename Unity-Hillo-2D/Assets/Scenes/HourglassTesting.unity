@@ -590,6 +590,7 @@ GameObject:
   - component: {fileID: 258178002}
   - component: {fileID: 258178004}
   - component: {fileID: 258178003}
+  - component: {fileID: 258178005}
   m_Layer: 5
   m_Name: ButtonBG
   m_TagString: Untagged
@@ -654,6 +655,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258178001}
   m_CullTransparentMesh: 1
+--- !u!114 &258178005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258178001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.49019608}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &323886560
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +874,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1131,7 +1147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1164,6 +1180,7 @@ GameObject:
   - component: {fileID: 488465652}
   - component: {fileID: 488465651}
   - component: {fileID: 488465650}
+  - component: {fileID: 488465653}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1259,6 +1276,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488465648}
   m_CullTransparentMesh: 1
+--- !u!114 &488465653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488465648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.49019608}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &700500560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,7 +1504,6 @@ GameObject:
   m_Component:
   - component: {fileID: 794438589}
   - component: {fileID: 794438592}
-  - component: {fileID: 794438591}
   - component: {fileID: 794438590}
   m_Layer: 0
   m_Name: TimeGlassCamera
@@ -1540,14 +1571,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &794438591
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794438588}
-  m_Enabled: 1
 --- !u!20 &794438592
 Camera:
   m_ObjectHideFlags: 0
@@ -1996,6 +2019,7 @@ GameObject:
   - component: {fileID: 1179272992}
   - component: {fileID: 1179272994}
   - component: {fileID: 1179272993}
+  - component: {fileID: 1179272995}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -2061,6 +2085,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179272991}
   m_CullTransparentMesh: 1
+--- !u!114 &1179272995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179272991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.49019608}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1241456871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,6 +2181,7 @@ GameObject:
   - component: {fileID: 1404678764}
   - component: {fileID: 1404678763}
   - component: {fileID: 1404678766}
+  - component: {fileID: 1404678767}
   m_Layer: 5
   m_Name: Settings Tab Button
   m_TagString: Untagged
@@ -2182,7 +2222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2267,6 +2307,21 @@ MonoBehaviour:
   _objectToTween: {fileID: 1404678760}
   _texts: []
   _pressed: 0
+--- !u!114 &1404678767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404678760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.49019608}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1460881047
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,6 +2539,7 @@ GameObject:
   - component: {fileID: 1776574178}
   - component: {fileID: 1776574177}
   - component: {fileID: 1776574180}
+  - component: {fileID: 1776574181}
   m_Layer: 5
   m_Name: Upgrade Tab Button
   m_TagString: Untagged
@@ -2524,7 +2580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2609,6 +2665,21 @@ MonoBehaviour:
   _objectToTween: {fileID: 1776574174}
   _texts: []
   _pressed: 0
+--- !u!114 &1776574181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776574174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.49019608}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1791614355
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,6 +3119,7 @@ GameObject:
   - component: {fileID: 1979106722}
   - component: {fileID: 1979106721}
   - component: {fileID: 1979106724}
+  - component: {fileID: 1979106725}
   m_Layer: 5
   m_Name: Stats Tab Button
   m_TagString: Untagged
@@ -3088,7 +3160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -3173,6 +3245,21 @@ MonoBehaviour:
   _objectToTween: {fileID: 1979106718}
   _texts: []
   _pressed: 0
+--- !u!114 &1979106725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979106718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.49019608}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2040293584
 GameObject:
   m_ObjectHideFlags: 0
@@ -5525,11 +5612,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 329274153}
+  - {fileID: 480935721}
   - {fileID: 1559237255717290118}
   - {fileID: 6914563826075159318}
   - {fileID: 1329840477}
   - {fileID: 966530950}
-  - {fileID: 480935721}
   m_Father: {fileID: 1616671473990695388}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6410,6 +6497,7 @@ MonoBehaviour:
     IsRightSideUp: 1
     Timer: 0
   Flow:
+    YHeight: 5
     TopPoint: {fileID: 9145574276597444916}
     BottomPoint: {fileID: 8440285354114504361}
     AudioClips:
@@ -6463,7 +6551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42756c34bb3f4c34a97b0f2960c7b2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISelectableUtility
-  _settings: {fileID: 11400000, guid: f76724b398b1b044fa4b8b050b5de631, type: 2}
+  _settings: {fileID: 11400000, guid: de2e5f0cd98b17e4d9490008a24f1bb9, type: 2}
   _objectToTween: {fileID: 190013111}
   _texts: []
 --- !u!4 &6072881730689062767
@@ -7774,7 +7862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}

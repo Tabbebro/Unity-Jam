@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18dbb2080e1d44942b03313a07e5e69f, type: 3}
   m_Name: Radio Button Settings
   m_EditorClassIdentifier: Assembly-CSharp::UIRadioButtonSettings
-  TweenRotation: {x: 0, y: 0, z: 0}
-  TweenScale: {x: 1.05, y: 1.05, z: 1.05}
-  TweenEase: 6
+  HoverTweenRotation: {x: 0, y: 0, z: 0}
+  HoverTweenScale: {x: 0.95, y: 0.95, z: 0.95}
+  HoverTweenEase: 6
+  PressTweenRotation: {x: 0, y: 0, z: 0}
+  PressTweenScale: {x: 0.85, y: 0.85, z: 0.85}
+  PressTweenDuration: 0.1
+  PressTweenEase: 6
   TextSelectedColor: {r: 1, g: 1, b: 1, a: 1}
-  TextNormalColor: {r: 0, g: 0, b: 0, a: 0}
+  TextNormalColor: {r: 1, g: 1, b: 1, a: 1}
   HighlightedTextColor: {r: 0, g: 0, b: 0, a: 0}
   ButtonPressedColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   ButtonDefaultColor: {r: 0.7921569, g: 0.7921569, b: 0.7921569, a: 1}
