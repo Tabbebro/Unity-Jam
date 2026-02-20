@@ -14,6 +14,12 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
     where TSettings : UISelectableSettings
     where TSelectable : Selectable
 {
+    protected enum UIState {
+        Normal,
+        Hover,
+        Press
+    }
+    [ReadOnly][SerializeField] protected UIState _currentState = UIState.Normal;
 
     [Header("Settings")]
     [SerializeField] [ShowProperties] protected TSettings _settings;
@@ -30,6 +36,14 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
     protected virtual void Awake() {
         _selectable = GetComponent<TSelectable>();
         SetTweenableSelectable();
+    }
+
+    protected virtual void Update() {
+        if (_currentState == UIState.Normal) {
+            if (transform.localScale != Vector3.one || transform.localRotation != Quaternion.Euler(Vector3.zero)) {
+                SetState(UIState.Normal);
+            }
+        }
     }
 
     protected virtual void OnEnable() {
@@ -57,6 +71,7 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
     }
 
     #region Pointer Events
+
     public virtual void OnPointerEnter(PointerEventData eventData) {
         if (!Cursor.visible || Cursor.lockState == CursorLockMode.Locked) { return; }
         _selectable.Select();
@@ -65,26 +80,52 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
     public virtual void OnPointerExit(PointerEventData eventData) {
         EventSystem.current.SetSelectedGameObject(null);
     }
+
     #endregion
 
     #region Select Events
+
     public virtual void OnSelect(BaseEventData eventData) {
         if (!_selectable.interactable) { return; }
 
-        TweenColor(_settings.TextSelectedColor);
-        TransformTween(_settings.HoverTweenRotation, _settings.HoverTweenScale);
+        SetState(UIState.Hover);
     }
 
     public virtual void OnDeselect(BaseEventData eventData) {
-        TweenColor(_settings.TextNormalColor);
-        TransformTween(Vector3.zero, Vector3.one);
+        SetState(UIState.Normal);
     }
+
     #endregion
 
     #region OnMoveEvent
+
     public virtual void OnMove(AxisEventData eventData) {
         
     }
+
+    #endregion
+
+    #region State Change
+
+    protected virtual void SetState(UIState newState) {
+        _currentState = newState;
+
+        switch (newState) {
+            case UIState.Normal:
+                TweenColor(_settings.TextNormalColor);
+                TransformTween(Vector3.zero, Vector3.one);
+                break;
+            case UIState.Hover:
+                TweenColor(_settings.TextSelectedColor);
+                TransformTween(_settings.HoverTweenRotation, _settings.HoverTweenScale);
+                break;
+            case UIState.Press:
+                break;
+            default:
+                break;
+        }
+    }
+
     #endregion
 
     #region Transform Tweening
@@ -147,7 +188,7 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
         }
     }
 
-    void KillColorTweens() {
+    protected void KillColorTweens() {
         foreach (var t in _colorTweens) {
             t?.Kill();
         }
@@ -171,6 +212,8 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
         KillColorTweens();
         KillTransformTween();
 
+        SetState(UIState.Press);
+
         float halfDuration = _settings.PressTweenDuration * 0.5f;
 
         // Transform Press Tween
@@ -191,13 +234,6 @@ public abstract class UISelectableUtility<TSettings, TSelectable> : MonoBehaviou
 
         bool isSelected = EventSystem.current != null && EventSystem.current.currentSelectedGameObject == _selectable.gameObject;
 
-        if (isSelected) {
-            TweenColor(_settings.TextSelectedColor);
-            TransformTween(_settings.HoverTweenRotation, _settings.HoverTweenScale);
-        }
-        else {
-            TweenColor(_settings.TextNormalColor);
-            TransformTween(Vector3.zero, Vector3.one);
-        }
+        SetState(isSelected ? UIState.Hover : UIState.Hover);
     }
 }
