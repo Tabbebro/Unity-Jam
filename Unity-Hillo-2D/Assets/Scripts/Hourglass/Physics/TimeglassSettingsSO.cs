@@ -21,6 +21,9 @@ public class TimeglassSettingsSO : ScriptableObject
     [Header("Nudge")]
     [Min(0)] public int NudgeLetThroughAmount = 1;
     [Min(0)] public float NudgeForce = 1;
+    [Min(0)] public float NudgeRadius = 2f;
+    [Min(0)] public float NudgeImpulseForceAmount = 10f;
+    [Min(0)] public float NudgeCooldown = 1f;
 
     [Header("Sand Settings")]
     public List<SandSpawnEntry> SandTypes;

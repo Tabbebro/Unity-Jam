@@ -3422,15 +3422,15 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 323886562}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: -1
@@ -4229,7 +4229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4.116878, y: 0}
+  m_AnchoredPosition: {x: -4.1168747, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &2057425780389594329
@@ -5452,7 +5452,6 @@ GameObject:
   - component: {fileID: 1616671473990695388}
   - component: {fileID: 5968281549630732366}
   - component: {fileID: 5968281549630732368}
-  - component: {fileID: 5968281549630732367}
   m_Layer: 0
   m_Name: Timeglass
   m_TagString: Untagged
@@ -6161,7 +6160,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -6444,22 +6443,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5968281549630732367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4105164284604283368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ca7221e4f85c64ea9a5e38ba415d6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MouseClickNudge
-  radius: 2
-  forceAmount: 10
-  cooldown: 1
-  canNudge: 0
 --- !u!114 &5968281549630732368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6517,7 +6500,15 @@ MonoBehaviour:
     SandPoolMaxCount: 100
     TopSand: []
     BottomSand: []
-  _nudge: {fileID: 5968281549630732367}
+  Nudge:
+    CanNudge: 0
+    Timer: 0
+    YHeight: -0.5
+    CameraShakeDuration: 0.1
+    CameraShakeMagnitude: 1
+    Cam: {fileID: 0}
+    Buffer: []
+    Location: {x: 0, y: 0}
 --- !u!114 &5969908357634911797
 MonoBehaviour:
   m_ObjectHideFlags: 0

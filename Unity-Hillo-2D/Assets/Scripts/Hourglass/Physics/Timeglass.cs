@@ -6,6 +6,7 @@ using ScrutableObjects;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.Pool;
+using UnityEngine.InputSystem;
 
 public class Timeglass : MonoBehaviour
 {
@@ -23,8 +24,8 @@ public class Timeglass : MonoBehaviour
     [Header("Sand Values")]
     public TimeglassSandValues Sand;
 
-    [Header("References")]
-    [SerializeField] MouseClickNudge _nudge;
+    [Header("Nudge Values")]
+    public TimeglassNudgeValues Nudge;
 
     private void Awake() {
         if (Instance == null) {
@@ -43,9 +44,10 @@ public class Timeglass : MonoBehaviour
     }
 
     private void Update() {
-        UpdateFlow();
+        FlowOnUpdate();
         RotationOnUpdate();
         SandOnUpdate();
+        NudgeOnUpdate();
     }
 
     private void OnDestroy() {
@@ -166,20 +168,20 @@ public class Timeglass : MonoBehaviour
     #region Flow
 
     void FlowOnAwake() {
-        _nudge.OnSandNudged += Nudge;
+        Nudge.OnSandNudged += SandNudged;
         Rotation.OnRotationStarted += ResetFlow;
         Rotation.OnRotationStarted += DisableFlow;
         Rotation.OnRotationFinished += EnableFlow;
     }
 
     void FlowOnDestroy() {
-        _nudge.OnSandNudged -= Nudge;
+        Nudge.OnSandNudged -= SandNudged;
         Rotation.OnRotationStarted -= ResetFlow;
         Rotation.OnRotationStarted -= DisableFlow;
         Rotation.OnRotationFinished -= EnableFlow;
     }
 
-    void UpdateFlow() {
+    void FlowOnUpdate() {
         if (!Flow.CanFlow) { return; }
         if (Flow.SandFlowRoutine != null) { return; }
         if (Flow.AllHasPassed) { return; }
@@ -275,13 +277,6 @@ public class Timeglass : MonoBehaviour
         Flow.FloodGatesOpen = true;
         yield return new WaitForSeconds(0.5f);
         Flow.FloodGatesOpen = false;
-    }
-
-    public void Nudge() {
-        if (!Flow.CanFlow) { return; }
-        if (Flow.SandFlowRoutine != null) { return; }
-
-        StartCoroutine(NudgedFlow());
     }
 
     IEnumerator NudgedFlow() {
@@ -520,6 +515,56 @@ public class Timeglass : MonoBehaviour
     #endregion
 
     #endregion
+
+    #region Nudge
+
+    void NudgeOnUpdate() {
+        if (Mouse.current.leftButton.wasPressedThisFrame && Nudge.CanNudge) {
+            NudgeClick();
+            Nudge.CanNudge = false;
+        }
+        else if (!Nudge.CanNudge) {
+            Nudge.Timer += Time.deltaTime;
+            if (Nudge.Timer < Settings.NudgeCooldown) { return; }
+            Nudge.Timer = 0;
+            Nudge.CanNudge = true;
+        }
+    }
+
+    void NudgeClick() {
+        // Check For Nulls
+        if (Nudge.Cam == null) { Nudge.Cam = Camera.main; }
+        Nudge.CurrentMouse ??= Mouse.current; // This Is Weird
+
+        // Get Location For Nudge
+        Nudge.Location = Nudge.Cam.ScreenToWorldPoint(Nudge.CurrentMouse.position.ReadValue());
+
+        // Get Overlapped Grains
+        Nudge.Buffer = Physics2D.OverlapCircleAll(Nudge.Location, Settings.NudgeRadius);
+
+        if (Nudge.Buffer.Length > 0 && Nudge.Buffer[0].transform.position.y >= Nudge.YHeight) {
+            Nudge.InvokeOnSandNudged();
+            CameraShake.Instance.Shake(Nudge.CameraShakeDuration, Nudge.CameraShakeMagnitude);
+
+            foreach (Collider2D col in Nudge.Buffer) {
+                Rigidbody2D rb = col.attachedRigidbody;
+                if (rb == null) { continue; }
+
+                Vector2 direction = (rb.position - Nudge.Location).normalized;
+                rb.AddForce(direction * Settings.NudgeImpulseForceAmount, ForceMode2D.Impulse);
+            }
+        }
+    }
+
+    public void SandNudged() {
+        if (!Flow.CanFlow) { return; }
+        if (Flow.SandFlowRoutine != null) { return; }
+
+        StartCoroutine(NudgedFlow());
+    }
+
+    #endregion
+
 }
 
 #region Rotation Class
@@ -626,6 +671,34 @@ public class TimeglassSandValues {
     [Header("Sand Lists")]
     [ReadOnly] public List<GameObject> TopSand = new();
     [ReadOnly] public List<GameObject> BottomSand = new();
+}
+
+#endregion
+
+#region Nudge Class
+
+[System.Serializable]
+public class TimeglassNudgeValues {
+    [Header("Nudge Flags")]
+    [ReadOnly] public bool CanNudge;
+    [ReadOnly] public float Timer;
+
+    [Header("Nudge Settings")]
+    public float YHeight = -0.5f;
+    public float CameraShakeDuration = 0.1f;
+    public float CameraShakeMagnitude = 1f;
+
+    // Cache
+    [HideInInspector] public Camera Cam;
+    [HideInInspector] public Mouse CurrentMouse;
+    [HideInInspector] public Collider2D[] Buffer;
+    [HideInInspector] public Vector2 Location;
+    
+    public event Action OnSandNudged;
+
+    public void InvokeOnSandNudged() {
+        OnSandNudged?.Invoke();
+    }
 }
 
 #endregion
