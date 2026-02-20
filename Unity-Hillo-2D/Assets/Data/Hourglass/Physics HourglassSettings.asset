@@ -23,6 +23,9 @@ MonoBehaviour:
   FloodFlowDelay: 0.001
   NudgeLetThroughAmount: 1
   NudgeForce: 1
+  NudgeRadius: 2
+  NudgeImpulseForceAmount: 100
+  NudgeCooldown: 1
   SandTypes:
   - Type: 0
     Prefab: {fileID: 7920238750213878950, guid: 2a018a37b0615ee40b922247c3d4e792, type: 3}
