@@ -18,7 +18,7 @@ public class UpgradeManager : MonoBehaviour
     #endregion
     [SerializeField] TextMeshProUGUI _coinAmountText;
     [SerializeField] TextMeshProUGUI _flipAmountText;
-    public HourGlassSettingsSO HourGlassSettings;
+    //public HourGlassSettingsSO HourGlassSettings;
     [SerializeField] float _nudgeForce = 1;
     public float NudgeForce
     {
@@ -26,7 +26,7 @@ public class UpgradeManager : MonoBehaviour
         set
         {
             _nudgeForce = value;
-            HourGlassSettings.NudgeForce = _nudgeForce;
+            //HourGlassSettings.NudgeForce = _nudgeForce;
         }
     }
 

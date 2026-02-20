@@ -13,7 +13,7 @@ public class SO_SandList : ScriptableObject
     public List<ObjectToSpawn> ObjectSpawn = new();
     public GameObject GetRandomObject()
     {
-        ListExtension.Shuffle(ObjectSpawn);
+        //ListExtension.Shuffle(ObjectSpawn);
         
         float _randomValue = UnityEngine.Random.Range(0f, 100f);
         float _cumulativeChance = 0f;

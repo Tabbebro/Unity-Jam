@@ -93,7 +93,7 @@ public class SkillButton : MonoBehaviour
         _borders = _upgradeTree.GetComponent<RectTransform>();
         _upgrade = GetComponent<Upgrade>();
         _button.onClick.AddListener(delegate { OnClicked(); });
-        Hourglass.Instance.OnRotationFinished += CheckActionQueue;
+        //Hourglass.Instance.OnRotationFinished += CheckActionQueue;
         /* Color color = img.color;
         color.a = 0.2f;
         img.color = color; */
@@ -194,6 +194,7 @@ public class SkillButton : MonoBehaviour
             _audio.Play();
             return;
         }
+        /*
         if (Hourglass.Instance.IsRotating)
         {
             Upgrade(false);
@@ -213,7 +214,7 @@ public class SkillButton : MonoBehaviour
             }
             return;
         }
-
+        */
         Upgrade();
     }
     void Upgrade(bool invokeUpgrade = true)

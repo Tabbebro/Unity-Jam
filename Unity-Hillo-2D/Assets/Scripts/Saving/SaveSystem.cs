@@ -17,13 +17,17 @@ public class SaveSystem : MonoBehaviour
     #endregion
     void Start()
     {
+        /*
         if (_loadDataOnStart)
-            SandManager.Instance.SetSandData(LoadSandManagedData());
+            SandManager.Instance.SetSandData(LoadSandManagedData())
+        */
     }
     void OnApplicationQuit()
     {
+        /*
         if (_saveDataOnQuit)
             SaveSandManagerData(SandManager.Instance.GetSandData());
+        */
     }
     string _sandManagerSaveDataName = "/SandManagerData.json";
     [SerializeField] bool _loadDataOnStart = false;
