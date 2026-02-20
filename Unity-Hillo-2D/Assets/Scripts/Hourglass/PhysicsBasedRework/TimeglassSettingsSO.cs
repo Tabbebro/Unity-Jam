@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Hourglass/Physics Settings", fileName = "Timeglass Settings")]
@@ -21,6 +22,6 @@ public class TimeglassSettingsSO : ScriptableObject
     [Min(0)] public float NudgeForce = 1;
 
     [Header("Sand Settings")]
+    public List<SandSpawnEntry> SandTypes;
     [Range(0, 1)] public float SandSpawnDelay = 0.1f;
-    [Min(0)] public int SandNormalMaxAmount = 100;
 }

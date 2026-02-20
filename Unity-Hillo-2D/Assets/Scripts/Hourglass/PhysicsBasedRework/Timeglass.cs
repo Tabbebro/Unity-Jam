@@ -264,13 +264,6 @@ public class Timeglass : MonoBehaviour
                 }
             }
 
-            if (sand.TryGetComponent<BlueGrain>(out _)) {
-                if (Flow.FloodRoutine != null) {
-                    StopCoroutine(Flow.FloodRoutine);
-                }
-                Flow.FloodRoutine = StartCoroutine(OpenFloodGates());
-            }
-
             float wait = Flow.FloodGatesOpen ? Settings.FloodFlowDelay : Settings.SandFlowDelay;
 
             Flow.InvokeOnSandPassed(sand);
@@ -354,7 +347,7 @@ public class Timeglass : MonoBehaviour
     void SandOnUpdate() {
         if (Sand.DebugSpawnSand) {
             Sand.DebugSpawnSand = false;
-            SpawnSand(33);
+            SpawnSand(100);
         }
     }
 
@@ -408,34 +401,71 @@ public class Timeglass : MonoBehaviour
         yield return new WaitUntil(() => Rotation.IsRotating == false);
 
         for (int i = 0; i < amount; i++) {
-            // If Max Amount Of Sand Do Not Add More
-            if (Sand.SandNormalList.Count >= Settings.SandNormalMaxAmount) { break; }
-            GetFromNormalSandPool();
+
+            SpawnSingleSand();
+
             yield return new WaitForSeconds(0.1f);
         }
     }
 
-    void GetFromNormalSandPool() {
-        GameObject sandObject = Sand.SandNormalPool.Get();
-        Sand.SandNormalList.Add(sandObject);
+    void SpawnSingleSand() {
+        var entry = GetRandomSandEntry();
+        if (entry == null) { return; }
+
+        GameObject sandObject = entry.Pool.Get();
+        entry.ActiveSand.Add(sandObject);
+    }
+
+    // For Weighted Sand
+    SandSpawnEntry GetRandomSandEntry() {
+        float totalWeight = 0f;
+
+        // Get Total Weight
+        foreach (var entry in Settings.SandTypes) {
+            // Don't Count If Max Amount Of Said Sand
+            if (entry.ActiveSand.Count >= entry.MaxAmount) { continue; }
+
+            totalWeight += entry.Weight;
+        }
+
+        // Get Random Value From Total Weight
+        float randomValue = UnityEngine.Random.Range(0f, totalWeight);
+
+        float cumulative = 0f;
+
+        // Get The Sand Using Random Value
+        foreach (var entry in Settings.SandTypes) {
+            // Don't Count If Max Amount Of Said Sand
+            if (entry.ActiveSand.Count >= entry.MaxAmount) { continue; }
+
+            cumulative += entry.Weight;
+            if (randomValue <= cumulative) {
+                return entry;
+            }
+        }
+
+        // Fall Back Everything Fails
+        return null;
     }
 
     #region Sand Pooling
 
     public void SandPoolInit() {
-        Sand.SandNormalPool = new ObjectPool<GameObject>(
-            createFunc: CreateSand,
-            actionOnGet: OnGetSand,
-            actionOnRelease: OnReleaseSand,
-            actionOnDestroy: OnDestroySand,
-            collectionCheck: true,
-            defaultCapacity: 10,
-            maxSize: Sand.SandPoolMaxCount
-            );
+        foreach (var entry in Settings.SandTypes) {
+            entry.Pool = new ObjectPool<GameObject>(
+                createFunc: () => CreateSand(entry),
+                actionOnGet: OnGetSand,
+                actionOnRelease: OnReleaseSand,
+                actionOnDestroy: OnDestroySand,
+                collectionCheck: true,
+                defaultCapacity: 10,
+                maxSize: Sand.SandPoolMaxCount
+                );
+        }
     }
 
-    GameObject CreateSand() {
-        GameObject sandObject = Instantiate(Sand.SandNormalPrefab, Sand.SandSpawnPoint);
+    GameObject CreateSand(SandSpawnEntry entry) {
+        GameObject sandObject = Instantiate(entry.Prefab, Sand.SandSpawnPoint);
         sandObject.transform.parent = Sand.PoolParent;
         sandObject.transform.localScale = Vector3.one;
         return sandObject;
@@ -458,6 +488,15 @@ public class Timeglass : MonoBehaviour
 
     void OnReleaseSand(GameObject gameObject) {
 
+        SandGrain grain = gameObject.GetComponent<SandGrain>();
+
+        if (grain != null) {
+            var entry = Settings.SandTypes.Find(e => e.Type == grain.Type);
+            if (entry != null) {
+                entry.ActiveSand.Remove(gameObject);
+            }
+        }
+
         if (Sand.TopSand.Contains(gameObject)) {
             Sand.TopSand.Remove(gameObject);
         }
@@ -467,6 +506,7 @@ public class Timeglass : MonoBehaviour
         else {
             Debug.LogError("<color=red> Released Sand Is Not In Either Top Or Bottom </color>");
         }
+
         SetPossibleSand();
 
         gameObject.transform.parent = Sand.PoolParent;
@@ -481,6 +521,8 @@ public class Timeglass : MonoBehaviour
 
     #endregion
 }
+
+#region Rotation Class
 
 [System.Serializable]
 public class TimeglassRotationValues {
@@ -523,6 +565,10 @@ public class TimeglassRotationValues {
     }
 }
 
+#endregion
+
+#region Flow Class
+
 [System.Serializable]
 public class TimeglassFlowValues {
     [Header("Flow Points")]
@@ -558,6 +604,10 @@ public class TimeglassFlowValues {
     }
 }
 
+#endregion
+
+#region Sand Class
+
 [System.Serializable]
 public class TimeglassSandValues {
     [Header("DEBUG SPAWN SAND")]
@@ -566,16 +616,30 @@ public class TimeglassSandValues {
 
     [Header("Sand Spawn Settings")]
     public Transform SandParent;
-    public GameObject SandNormalPrefab;
     public Transform SandSpawnPoint;
 
     [Header("Sand Pool")]
     public Transform PoolParent;
     public int SandPoolMaxCount = 100;
-    public ObjectPool<GameObject> SandNormalPool;
+
 
     [Header("Sand Lists")]
-    [ReadOnly] public List<GameObject> SandNormalList = new();
     [ReadOnly] public List<GameObject> TopSand = new();
     [ReadOnly] public List<GameObject> BottomSand = new();
 }
+
+[System.Serializable]
+public class SandSpawnEntry {
+    [Header("Settings")]
+    public SandType Type;
+    public GameObject Prefab;
+    [Range(0f, 1f)] public float Weight = 1;
+
+    [Header("List")]
+    public int MaxAmount = 100;
+    [ReadOnly] public List<GameObject> ActiveSand = new();
+
+    [HideInInspector] public ObjectPool<GameObject> Pool;
+}
+
+#endregion
