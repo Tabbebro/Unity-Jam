@@ -628,18 +628,4 @@ public class TimeglassSandValues {
     [ReadOnly] public List<GameObject> BottomSand = new();
 }
 
-[System.Serializable]
-public class SandSpawnEntry {
-    [Header("Settings")]
-    public SandType Type;
-    public GameObject Prefab;
-    [Range(0f, 1f)] public float Weight = 1;
-
-    [Header("List")]
-    public int MaxAmount = 100;
-    [ReadOnly] public List<GameObject> ActiveSand = new();
-
-    [HideInInspector] public ObjectPool<GameObject> Pool;
-}
-
 #endregion

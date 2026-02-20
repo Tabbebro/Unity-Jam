@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 [CreateAssetMenu(menuName = "Hourglass/Physics Settings", fileName = "Timeglass Settings")]
 public class TimeglassSettingsSO : ScriptableObject
@@ -24,4 +25,18 @@ public class TimeglassSettingsSO : ScriptableObject
     [Header("Sand Settings")]
     public List<SandSpawnEntry> SandTypes;
     [Range(0, 1)] public float SandSpawnDelay = 0.1f;
+}
+
+[System.Serializable]
+public class SandSpawnEntry {
+    [Header("Settings")]
+    public SandType Type;
+    public GameObject Prefab;
+    [Range(0f, 1f)] public float Weight = 1;
+
+    [Header("List")]
+    public int MaxAmount = 100;
+    [ReadOnly] public List<GameObject> ActiveSand = new();
+
+    [HideInInspector] public ObjectPool<GameObject> Pool;
 }
