@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.Pool;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class Timeglass : MonoBehaviour
 {
@@ -232,7 +233,12 @@ public class Timeglass : MonoBehaviour
         while (result.Count < count && Flow.PossibleSand.Count > 0 && safety < count) { 
             safety++;
 
-            var sand = Flow.PossibleSand[UnityEngine.Random.Range(0, Flow.PossibleSand.Count)];
+            // Random Sand
+            // var sand = Flow.PossibleSand[UnityEngine.Random.Range(0, Flow.PossibleSand.Count)];
+
+            // First Sand Under Certain Y Level
+            var sand = Flow.PossibleSand.FirstOrDefault(s => s.transform.position.y < Flow.YHeight);
+
             Flow.PossibleSand.Remove(sand);
 
             if (Flow.UsedSand.Contains(sand)) { continue; }
@@ -383,8 +389,6 @@ public class Timeglass : MonoBehaviour
         }
         CheckIfAllPassed();
     }
-
-
 
     void SpawnSand(int amount) {
 
@@ -565,6 +569,30 @@ public class Timeglass : MonoBehaviour
 
     #endregion
 
+    #region OnGizmos
+
+    private void OnDrawGizmosSelected() {
+
+        float xOffset;
+        Vector2 StartPos;
+        Vector2 EndPos;
+
+        // Flow Y Check Gizmos
+        xOffset = 20f;
+        StartPos = new Vector2(transform.position.x - xOffset , Flow.YHeight);
+        EndPos = new Vector2(transform.position.x + xOffset , Flow.YHeight);
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(StartPos, EndPos);
+
+        // Nudge Y Check Gizmos
+        StartPos = new Vector2(transform.position.x - xOffset, Nudge.YHeight);
+        EndPos = new Vector2(transform.position.x + xOffset, Nudge.YHeight);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(StartPos, EndPos);
+    }
+
+    #endregion
+
 }
 
 #region Rotation Class
@@ -616,6 +644,9 @@ public class TimeglassRotationValues {
 
 [System.Serializable]
 public class TimeglassFlowValues {
+    [Header("Flow Y Height")]
+    public float YHeight;
+
     [Header("Flow Points")]
     public Transform TopPoint;
     public Transform BottomPoint;
